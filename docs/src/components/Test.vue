@@ -14,7 +14,7 @@
     name: 'test',
     data() {
       return{
-        url: "../../../static/jsons/brickwall.json",
+        url: "../../../static/codesnippets/brickwall.vert",
         info: ''
       }
     },
@@ -43,13 +43,15 @@
         rq.open("GET", this.url);
         rq.onreadystatechange = function(vm) {
           if (this.readyState === XMLHttpRequest.DONE) {
+            console.log(`status:${this.status}`)
             if (this.status === 200) {
-              _this.info = this.responseText;
-              //document.getElementById('codeConatiner').innerHTML = this.responseText;
-
+              //_this.info = this.responseText;
+              document.getElementById('codeConatiner').innerHTML = this.responseText;
+      
               //console.log(this.responseText)
+             // alert(this.responseText);
             } else {
-              _this.info = "Request Failed";
+              //_this.info = "Reque1st Failed";
               //document.getElementById('codeConatiner').innerHTML =  "Request Failed";
             }
           }
