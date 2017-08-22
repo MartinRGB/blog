@@ -7,12 +7,19 @@
     import Stats from 'stats.js'
     import * as THREE from 'three'
     import '../assets/js/orbitControls.js'
+    import ShaderFrogRuntime from 'shaderfrog-runtime'
 
     var centerContainerId = 'body'
     var canvasContainerId = 'threecanvas'
+    var aspectRatio = 0.75
 
     var scene, camera, renderer;
-    var geometry, material, mesh;
+    var geometry, material, mesh, lights;
+    var count = 0;
+    var stats;
+
+
+
 
     export default {
         name: 'threecanvas',
@@ -23,38 +30,44 @@
             // Panel
             var canvasContainer  = document.getElementById(canvasContainerId)
             var centerContainer = document.getElementById(centerContainerId)
-            var aspectRatio = 0.75
-            var stats = new Stats()
-            stats.dom.id = 'stats-board'
-            stats.showPanel(0)
-            stats.dom.style.top = ""
-            stats.dom.style.left = ""
-            stats.dom.style.position = "absolute"
-            canvasContainer.appendChild(stats.dom)
-
-            init();
-            animate();
-
-
             
-            function init() {
 
+            if(renderer !=null){
+                canvasContainer.appendChild( stats.dom )
+                canvasContainer.appendChild( renderer.domElement );
+            }
+            else{
+                init();
+                addAnimate();
+            }
+
+            console.log(count)
+
+            function init() {   
+                
+                stats = new Stats()
+                addStatsUI(canvasContainer)
+                
+                count++;
                 scene = new THREE.Scene();
+                addLight(scene)
+                camera = new THREE.PerspectiveCamera( 75, 1/aspectRatio, 1, 1000 );
+                camera.position.z = 20;
 
-                camera = new THREE.PerspectiveCamera( 75, 1/aspectRatio, 1, 10000 );
-                camera.position.z = 1000;
-
-                geometry = new THREE.BoxGeometry( 200, 200, 200 );
-                material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+                geometry = new THREE.BoxGeometry( 5, 5, 5 );
+                material = new THREE.MeshLambertMaterial( { color: 0x333300, wireframe: false } );
 
                 mesh = new THREE.Mesh( geometry, material );
+                mesh.rotation.x = 0.;
+                mesh.rotation.y = 0.;
                 scene.add( mesh );
 
                 renderer = new THREE.WebGLRenderer();
-                renderer.setSize( window.innerWidth, window.innerHeight );
                 renderer.setSize((centerContainer.offsetWidth),(centerContainer.offsetWidth)*aspectRatio);
                 canvasContainer.appendChild( renderer.domElement );
+                
                 var controls = new THREE.OrbitControls(camera,renderer.domElement)
+                addZoomCondition(controls,renderer)
 
                 window.addEventListener("resize", function() {
                     renderer.setSize((centerContainer.offsetWidth),(centerContainer.offsetWidth)*aspectRatio);
@@ -63,23 +76,62 @@
             
             }
 
-            function animate() {
-
+            function addAnimate() {
+                
                 stats.begin();
                 stats.end();
                 renderer.render(scene, camera);
+                mesh.rotation.x += 0.02;
+                mesh.rotation.y += 0.02;
 
-                requestAnimationFrame( animate );
+                requestAnimationFrame( addAnimate );
 
+            }
+
+            // Light
+            function addLight(scene){
+                lights = [];
+                lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+                lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+                lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+                lights[ 3 ] = new THREE.AmbientLight( 0x904040 );
+                lights[ 0 ].position.set( 0, 20, 20 );
+                lights[ 1 ].position.set( 10, 10, 10 );
+                lights[ 2 ].position.set( - 10, - 20, - 10 );
+                scene.add( lights[ 0 ] );
+                scene.add( lights[ 1 ] );
+                scene.add( lights[ 2 ] );
+                scene.add( lights[ 3 ] );
+            }
+
+            // Control
+            function addZoomCondition(controls,renderer){
+                controls.enableZoom = false;
+                controls.enableRotate = false;
+                controls.enablePan = false;
+                renderer.domElement.onmouseover = function(){
+                controls.enableZoom = true;
+                controls.enableRotate = true;
+                controls.enablePan = true;
+                }
+                renderer.domElement.onmouseleave = function(){
+                controls.enableZoom = false;
+                controls.enableRotate = false;
+                controls.enablePan = false;
+                }
+            }
+
+            function addStatsUI(container){
+                stats.dom.id = 'stats-board'
+                stats.showPanel(0)
+                stats.dom.style.top = ""
+                stats.dom.style.left = ""
+                stats.dom.style.position = "absolute"
+                container.appendChild(stats.dom)
             }
 
         },
         destroyed:function(){
-            // cancelAnimationFrame(animate)
-            // cancelAnimationFrame(statsAnimate)
-            // var canvasContainer  = document.getElementById(canvasContainerId)
-            //var canvasContainer  = document.getElementById(canvasContainerId)
-            //canvasContainer.remove(render.domElement)
         }
     }
 </script>
