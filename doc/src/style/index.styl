@@ -1,0 +1,395 @@
+//@import '~normalize.css'
+//@import '~prismjs/themes/prism.css'
+
+//
+// variable
+// -----------------------------------------
+
+fontSize = 14px
+
+fontFamily = "Avenir", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",Helvetica, Arial, sans-serif
+monospaceFontFamily = "Ubuntu Mono" ,"PT Mono", Consolas, Monaco, Menlo, monospace
+
+bgColor = #fff
+textColor = #555
+linkColor = #05f
+metaColor = #888
+// codeBgColor = #f7f7f7
+blockBgColor = #f7f7f7
+codeBgColor = #fff
+titleColor = #0AF
+
+//
+// common
+// -----------------------------------------
+
+/::-moz-selection,
+/::selection
+  background #B2D7FF
+
+body
+  // font
+  font-family fontFamily
+  font-size fontSize
+  line-height 2
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  -webkit-text-size-adjust none
+  // size
+  position relative
+  // max-width 700px
+  margin 0 auto
+  padding 0
+  background bgColor
+  color textColor
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  color #222
+  font-weight 400
+
+a
+  text-decoration none
+  color linkColor
+  overflow-wrap break-word
+  word-break break-all
+
+//
+// Shared
+// -----------------------------------------
+
+.header
+  background: #222;
+  
+.header .linkCon 
+  padding: 16px 20px;
+  width: 670px;
+  margin: 0 auto;
+
+.header .linkCon .link 
+  color:white;
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing 5px
+  text-transform uppercase
+  // font-weight: 600;
+  display: -webkit-box;
+
+
+.footer
+  text-align center
+  color metaColor
+  max-width: 670px;
+  margin: 15px auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  a
+    color metaColor
+    text-decoration underline
+
+.center-container 
+  max-width: 670px;
+  margin: 0 auto;
+  text-align: left;
+  padding-left:20px;
+  padding-right:20px;
+  margin-top:24px;
+
+
+//
+// List View
+// -----------------------------------------
+
+.list-view
+  ol,
+  ul
+    padding 0
+    list-style none
+
+.list-view 
+  ul
+    li
+      padding-top: 3px;
+      padding-bottom: 3px;
+
+.list-view
+  a
+    font-size: 1.05em;
+
+//
+// Article View
+// -----------------------------------------
+
+.markdown-body
+  a:hover
+    border-bottom 1px dashed linkColor
+
+// when smaller than tablet
+@media (max-width: 767px)
+  // .post-title
+  //   font-size 1.5em
+
+
+pre
+  // background codeBgColor !important
+  background blockBgColor
+  padding 16px
+  overflow-x auto
+  white-space pre
+
+code
+  background blockBgColor
+  font-family monospaceFontFamily !important
+
+img
+  width:100%
+
+.caption
+  text-align: center;
+  font-size: 0.5em;
+  letter-spacing: 0.1em;
+
+blockquote
+  margin 0
+  padding 0 16px
+  border-left 4px solid #ddd
+
+//
+// HLJS - mWebBase
+// -----------------------------------------
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: codeBgColor;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.css .rule .hljs-keyword,
+.hljs-winutils,
+.nginx .hljs-title,
+.hljs-subst,
+.hljs-request,
+.hljs-status,
+.hljs-selector-tag {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-hexcolor,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr,
+.ruby .hljs-constant {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-id,
+.scss .hljs-preprocessor,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-list .hljs-keyword,
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-class .hljs-title,
+.hljs-type,
+.vhdl .hljs-literal,
+.tex .hljs-command {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute,
+.hljs-tag .hljs-title,
+.hljs-rule .hljs-property,
+.django .hljs-tag .hljs-keyword {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.hljs-name {
+  color: #008080;
+}
+
+.hljs-regexp,
+.hljs-link  {
+  color: #009926;
+}
+
+.hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.lisp .hljs-keyword,
+.clojure .hljs-keyword,
+.scheme .hljs-keyword,
+.tex .hljs-special,
+.hljs-prompt,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-preprocessor,
+.hljs-pragma,
+.hljs-pi,
+.hljs-doctype,
+.hljs-shebang,
+.hljs-cdata {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-ln-n:before {
+  color: #5c6370;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.diff .hljs-change {
+  background: #0086b3;
+}
+
+.hljs-chunk {
+  color: #aaa;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-ln {
+  width: 100%;
+}
+
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+    background: #ffffff;
+    font-weight: 700;
+}
+
+
+
+// Github-Gist-Theme
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+//
+// Three.js - Canvas 
+// -----------------------------------------
