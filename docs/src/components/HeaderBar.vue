@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div id="header" class="header">
     <div class="linkCon">
       <router-link to="/"><a class="link">{{title}}</a></router-link>
     </div>

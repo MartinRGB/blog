@@ -1,6 +1,6 @@
 <template>
     <div class="center-container">
-      <div class ="list-view">
+      <div id="list" class ="list-view">
         <h2>Environment ,Style Test & Lab</h2>
         <ul>
           <router-link to="/test"><li><a >1.砖块着色器</a></li></router-link>
