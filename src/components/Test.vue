@@ -45,13 +45,13 @@
           if (this.readyState === XMLHttpRequest.DONE) {
             console.log(`status:${this.status}`)
             if (this.status === 200) {
-              //_this.info = this.responseText;
-              document.getElementById('codeConatiner').innerHTML = this.responseText;
+              _this.info = this.responseText;
+              //document.getElementById('codeConatiner').innerHTML = this.responseText;
       
               //console.log(this.responseText)
              // alert(this.responseText);
             } else {
-              //_this.info = "Reque1st Failed";
+              _this.info = "Reque1st Failed";
               //document.getElementById('codeConatiner').innerHTML =  "Request Failed";
             }
           }

@@ -24,7 +24,7 @@
         <p>向量的模 - <code>向量 AB（AB上面有→）的长度叫做向量的模，记作|AB|(AB上有→）或|a|(a上有→)</code><br/>
         向量的点积 - <code>点积的计算方式为:  a·b=|a|·|b|cos&lt;a,b&gt;  其中|a|和|b|表示向量的模，&lt;a,b&gt;表示两个向量的夹角。</code></p>
 
-<!-- <pre><code class="language-java">java
+<pre><code class="language-java">java
 /**
 * @author John Smith 
 */
@@ -39,7 +39,7 @@ public void moveTo(int x, int y, int z) {
     if (1 > 5) { // wtf!?
     return;
     }
-}</code></pre> -->
+}</code></pre>
 
         <h3 id="toc_3">顶点着色器</h3>
         <!-- <div id ="glslCodeContainer_vert"></div> -->
