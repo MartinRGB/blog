@@ -32,8 +32,8 @@
         <h3 id="toc_4">MOD 函数图表</h3>
 
         <h3 id="toc_4">小试牛刀</h3>
-        <!-- <glsl-editor v-if="$route.meta.keepAlive" bindId="codeAndCanvas" bindClass="codeAndCanvas"></glsl-editor> -->
-        <div id ="graphContainer" class="codeAndCanvas" data="../../../static/codesnippets/hsbcolor.frag"></div>
+        <glsl-editor v-if="$route.meta.keepAlive" bindId="codeAndCanvas" bindClass="codeAndCanvas"></glsl-editor>
+        <!-- <div id ="graphContainer" class="codeAndCanvas" data="../../../static/codesnippets/hsbcolor.frag"></div> -->
         <!-- <glsl-editor></glsl-editor> -->
         <h2 id="toc_5">最终结果</h2>
         <three-canvas v-if="$route.meta.keepAlive"></three-canvas>
@@ -59,9 +59,9 @@
   import GLSLEditor from './GLSLEditor.vue'
 
   
-  import '../assets/js/glslEditor.js'
-  import '../assets/js/glslCanvas.js'
-  import '../assets/js/CanvasStyle.js'
+  // import '../assets/js/glslEditor.js'
+  // import '../assets/js/glslCanvas.js'
+  // import '../assets/js/CanvasStyle.js'
 
   export default {
     name: 'article',

@@ -25,7 +25,7 @@
 }
 
 .CodeMirror-lines {
-    padding: 4px 0
+    padding: 8px 0;
 }
 
 .CodeMirror pre {
@@ -3332,7 +3332,7 @@ a.ge_panel_tab_close {
 }
 
 .CodeMirror-linenumber.CodeMirror-gutter-elt {
-    color: #546e7a
+    color: #969896
 }
 
 .CodeMirror pre {
@@ -3345,6 +3345,8 @@ a.ge_panel_tab_close {
 
 .ge_editor {
     background: #f7f7f7;
+    /* padding-bottom: 16px;
+    padding-top: 8px; */
 }
 
 .ge_editor-unfocus {
@@ -3389,7 +3391,24 @@ a.ge_panel_tab_close {
 }
 
 .ge_control_panel {
-    padding: 8px;
+    padding: 4px;
+    padding-bottom: 16px;
+    border-radius: 4px;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 120px;
+    height: 24px;
+    background-color: rgba(122, 122, 122, 0.5);
+    font-size: 18px!important;
+    opacity: 1;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+    z-index: 200;
+    /* padding: 8px;
     border-radius: 4px;
     text-align: center;
     position: absolute;
@@ -3403,7 +3422,7 @@ a.ge_panel_tab_close {
     opacity: 1;
     transition: opacity .3s;
     z-index: 200;
-    padding-left:0px !important;
+    padding-left:0px !important; */
 }
 
 .ge_contol li {
