@@ -15,7 +15,7 @@ textColor = #555
 linkColor = #05f
 metaColor = #888
 // codeBgColor = #f7f7f7
-blockBgColor = #f7f7f7
+blockBgColor = #f0f0f0
 codeBgColor = #fff
 titleColor = #0AF
 
@@ -58,12 +58,45 @@ a
   overflow-wrap break-word
   word-break break-all
 
+
+::-webkit-scrollbar
+{
+	width: 8px;
+  height: 8px;
+	background-color: transparent;
+
+  
+}
+
+::-webkit-scrollbar-track
+{
+	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #E9E9E9;
+  border-radius: 16px;
+}
+
+
+::-webkit-scrollbar-thumb
+{
+  width: 8px;
+  height: 8px;
+  border-radius: 16px;
+	background-color: #333;
+  
+}
+
+
 //
 // Shared
 // -----------------------------------------
 
 .header
   background: #222;
+  //fixed header
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   
 .header .linkCon 
   padding: 16px 20px;
@@ -136,14 +169,18 @@ a
 
 pre
   // background codeBgColor !important
-  background blockBgColor
+  background codeBgColor
   padding 16px
   overflow-x auto
   white-space pre
 
+
 code
   background blockBgColor
-  font-family monospaceFontFamily !important
+  padding: 4px
+  // font-family monospaceFontFamily !important
+
+
 
 img
   width:100%
@@ -164,12 +201,41 @@ blockquote
 
 .hljs {
   display: block;
-  overflow-x: auto;
-  padding: 0.5em;
+  padding: 0.0em;
+  padding-bottom:0.75em
   color: #333;
   background: codeBgColor;
   -webkit-text-size-adjust: none;
+  // 添加无滚动条效果
+  overflow-x: auto;
 }
+
+.hljs-ln-n:before {
+  //margin-right: 12px;
+}
+
+.hljs-ln-n {
+  // padding-right: 10px;
+  // padding-left: 10px;
+  width: 1%;
+  min-width: 24px; 
+  padding-right: 12px;
+  color: #969896;
+  text-align: right;
+  user-select: none;
+}
+
+.hljs-ln-numbers .hljs-ln-line {
+  border-right: 1px solid #ddd;
+}
+
+.hljs-ln-code  {
+  padding-left: 11px !important;
+}
+
+.hljs-ln-line code
+  background: codeBgColor
+  padding: 0px
 
 .hljs-comment,
 .diff .hljs-header,
@@ -277,10 +343,6 @@ blockquote
   font-weight: bold;
 }
 
-.hljs-ln-n:before {
-  color: #5c6370;
-}
-
 .hljs-deletion {
   background: #fdd;
 }
@@ -322,14 +384,6 @@ blockquote
 
 
 // Github-Gist-Theme
-
-.hljs {
-  display: block;
-  background: white;
-  padding: 0.5em;
-  color: #333333;
-  overflow-x: auto;
-}
 
 .hljs-comment,
 .hljs-meta {

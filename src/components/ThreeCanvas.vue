@@ -1,6 +1,5 @@
 <template>
-  <div class="three-canvas" id="threecanvas">
-  </div>
+  <div class="three-canvas" id="threecanvas"></div>
 </template>
 
 <script>  

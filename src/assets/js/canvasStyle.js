@@ -159,9 +159,9 @@ function loadGlslElements() {
         if (sfList[i].hasAttribute("data")){
             var srcFile = sfList[i].getAttribute("data");
             glslGraphs.push(new GlslEditor(sfList[i], { 
-                canvas_width: body.offsetWidth-40, 
+                // canvas_width: body.offsetWidth-40, 
                 lineNumbers: true, 
-                canvas_height: (body.offsetWidth-40) * 15/38, 
+                // canvas_height: (body.offsetWidth-40) * 15/38, 
                 canvas_follow: true,
                 canvas_float: false,
                 frag_header: preFunction, 

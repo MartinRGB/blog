@@ -11,6 +11,7 @@
 <script>
 import FooterBar from './components/FooterBar.vue'
 import HeaderBar from './components/HeaderBar.vue'
+
 export default {
   name: 'app',
   components: {
@@ -18,6 +19,7 @@ export default {
     HeaderBar
   }
 }
+    
 </script>
 
 <style>

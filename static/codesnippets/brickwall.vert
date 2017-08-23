@@ -1,5 +1,3 @@
-...
- 
 uniform vec3 lightPosition;
 varying float LightIntensity;
 varying vec2 MCposition;

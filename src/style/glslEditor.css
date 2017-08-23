@@ -3362,6 +3362,7 @@ a.ge_panel_tab_close {
     margin: 0;
     padding: 0;
     z-index: 200;
+    /* top:0px; */
 		/* width:540px;
 		height:960px; */
 }
@@ -3370,6 +3371,7 @@ a.ge_panel_tab_close {
     margin: 0;
     padding: 0;
     z-index: 200;
+    /* float: right; */
         /* width:760px; */
 		/* width:540px;
 		height:960px; */
@@ -3735,7 +3737,7 @@ a.ge_panel_tab_close {
     width: 36px;
     height: 36px;
     border-radius: 18px;
-    padding-top: 4px;
+    /* padding-top: 4px; */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
