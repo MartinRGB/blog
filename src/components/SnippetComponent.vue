@@ -28,6 +28,21 @@
             // 响应错误回调
             this.codeInfo = 'Request Failed'
           }).then(this.highlight);       
+
+          // var TxtFile = new XMLHttpRequest();
+          // var _this = this;
+          // TxtFile.open("GET", this.bindUrl, true);
+          // TxtFile.onreadystatechange = function() {
+          //   if (TxtFile.readyState === 4) {  // Makes sure the document is ready to parse.
+          //     if (TxtFile.status === 200) {  // Makes sure it's found the file.
+          //       //allText = TxtFile.responseText; 
+          //       //lines = txtFile.responseText.split("\n"); // Will separate each line into an array
+          //       _this.codeInfo = TxtFile.responseText;
+          //     }
+          //   }
+          // }
+          // TxtFile.send(null);
+        
         },
         highlight:function(){
             var aCodes = document.getElementById(this.bindId).getElementsByTagName('pre');

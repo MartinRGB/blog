@@ -11,14 +11,24 @@
           </ul>
           <h2 id="toc_2">基础概念：</h2>
             <p>顶点着色器中的光照模型：</p>
-            <p><img src="http://cse.csusb.edu/tongyu/courses/cs520/images/glsl/brick-light.png" alt="fig06-02-partialbricks"/></p>
+            <!-- <p><img src='./../assets/images/bricks_light.jpg' alt="fig06-02-partialbricks"/></p> -->
+             <p><img src='../static/images/bricks_light.jpg' alt="fig06-02-partialbricks"/></p>
             <p>向量的模 - <code>向量 AB（AB上面有→）的长度叫做向量的模，记作|AB|(AB上有→）或|a|(a上有→)</code><br/>
             向量的点积 - <code>点积的计算方式为:  a·b=|a|·|b|cos&lt;a,b&gt;  其中|a|和|b|表示向量的模，&lt;a,b&gt;表示两个向量的夹角。</code></p>
 
-            <h3 id="toc_3">顶点着色器</h3>
+            <!-- <h3 id="toc_3">顶点着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet" bindUrl="https://gist.githubusercontent.com/MartinRGB/aee922946fe4558a205c65ccc13ab8b6/raw/534abcf9dab6ded01bd212ba573706966aa0db87/lut.vert"></snippet-component>
             <h3 id="toc_4">片段着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet2" bindUrl="https://gist.githubusercontent.com/MartinRGB/aee922946fe4558a205c65ccc13ab8b6/raw/534abcf9dab6ded01bd212ba573706966aa0db87/lut.frag"></snippet-component>
+            <h3 id="toc_4">MOD 函数图表</h3>
+              <glsl-component v-if="$route.meta.keepAlive" id ="graphContainer" class="simpleGraph" data="https://gist.githubusercontent.com/MartinRGB/384738e7718fcfe74aa54e16a4784131/raw/a382394b478a1519ec398023ec0410f6afbc59fd/mod_test.frag"></glsl-component>
+            <h3 id="toc_4">小试牛刀</h3>
+              <glsl-component v-if="$route.meta.keepAlive" id ="graphContainer" class="codeAndCanvas" data="https://gist.githubusercontent.com/MartinRGB/29b5c9b50f35278e0ca42b67bce3c4a0/raw/bd10f0cc92bb6a4d4ec2a7ba3d44b6bc2283ad05/circle.frag"></glsl-component>
+               -->
+            <h3 id="toc_3">顶点着色器</h3>
+              <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet" bindUrl="../static/codesnippets/brickwall.vert"></snippet-component>
+            <h3 id="toc_4">片段着色器</h3>
+              <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet2" bindUrl="../static/codesnippets/brickwall.frag"></snippet-component>
             <h3 id="toc_4">MOD 函数图表</h3>
               <glsl-component v-if="$route.meta.keepAlive" id ="graphContainer" class="simpleGraph" data="https://gist.githubusercontent.com/MartinRGB/384738e7718fcfe74aa54e16a4784131/raw/a382394b478a1519ec398023ec0410f6afbc59fd/mod_test.frag"></glsl-component>
             <h3 id="toc_4">小试牛刀</h3>
