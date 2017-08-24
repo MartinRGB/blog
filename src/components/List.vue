@@ -49,7 +49,15 @@
 <script>
 
 export default {
-  name: 'list'
+  name: 'list',
+  methods: {
+    scrollToTop: function(){
+      window.scrollTo(0, 0);
+    }
+  },
+  mounted:function() {
+    this.scrollToTop()
+  }
 }
 </script>
 

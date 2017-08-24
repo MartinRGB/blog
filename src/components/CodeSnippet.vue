@@ -17,8 +17,6 @@
     data () {
       return {
         codeInfo: '',
-        // codeUrl: "../../../static/codesnippets/triangles.cpp",
-        // bindId: 'CodeSnippet'
       }
     },
     methods: {
