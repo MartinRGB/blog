@@ -9,6 +9,7 @@ fontSize = 14px
 
 fontFamily = "Avenir", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",Helvetica, Arial, sans-serif
 monospaceFontFamily = "Ubuntu Mono" ,"PT Mono", Consolas, Monaco, Menlo, monospace
+anthoerFontFamily = Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
 bgColor = #fff
 textColor = #555
@@ -85,6 +86,58 @@ a
   
 }
 
+//
+// table
+// -----------------------------------------
+
+table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
+    word-break: keep-all;
+    margin-top: 0;
+    margin-bottom: 16px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    border-color: grey;
+}
+
+table thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+table th {
+
+    text-align: -internal-center;
+    display: table-cell;
+    vertical-align: inherit;
+    border: 1px solid #ddd;
+    padding-left: 13px;
+}
+
+table tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+table td {
+    padding: 6px 13px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+}
 
 //
 // Shared
@@ -131,7 +184,7 @@ a
   text-align: left;
   padding-left:20px;
   padding-right:20px;
-  margin-top:24px;
+  margin-top:90px;
 
 
 //
@@ -156,7 +209,7 @@ a
 
 .list-view
   h2:nth-child(1){
-    padding-top 68px
+    // padding-top 68px
   }
 //
 // Article View
@@ -174,7 +227,7 @@ a
 
 pre
   // background codeBgColor !important
-  background codeBgColor
+  background blockBgColor
   padding 16px
   overflow-x auto
   white-space pre
@@ -213,6 +266,16 @@ blockquote
   -webkit-text-size-adjust: none;
   // 添加无滚动条效果
   overflow-x: auto;
+}
+
+.hljs table {
+  display: inline;
+  margin-bottom: 0px;
+}
+
+
+.hljs tr,.hljs td {
+  border: 0px;
 }
 
 .hljs-ln-n:before {
@@ -379,6 +442,7 @@ blockquote
 
 .hljs-ln {
   width: 100%;
+  // border: 0px;
 }
 
 :not(pre) > code[class*="language-"], pre[class*="language-"] {

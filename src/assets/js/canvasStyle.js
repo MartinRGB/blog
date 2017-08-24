@@ -186,6 +186,23 @@ var GLSLStyle = function(){
             }
         }
 
+        window.addEventListener("resize", function(){
+            var sgComponent = document.getElementsByClassName('simpleGraph');
+            for(var a = 0; a < sgComponent.length; a++)
+            {
+                var sgContainer = sgComponent[a].getElementsByClassName('ge_canvas_container')
+                for(var b=0; b< sgContainer.length;b++){
+
+                    var sgCanvas = sgContainer[b].getElementsByClassName('ge_canvas')
+                    for(var c=0; c< sgCanvas.length;c++){
+                        
+                        sgCanvas[c].style.backgroundColor = 'transparent'
+                        sgCanvas[c].style.width = container.offsetWidth - 40 + 'px'
+                    }
+                }
+            }
+        });
+
     }
 
     function insertAfter(newElement,targetElement) {
@@ -224,21 +241,6 @@ var GLSLStyle = function(){
         }
     }
 
-    function canvasResize(){
-        var container = document.getElementById("center-container")
-        var sgComponent = document.getElementsByClassName('simpleGraph');
-        for(var a = 0; a < sgComponent.length; a++)
-        {
-            var sgContainer = sgComponent[a].getElementsByClassName('ge_canvas_container')
-            for(var b=0; b< sgContainer.length;b++){
-                var sgCanvas = sgContainer[b].getElementsByClassName('ge_canvas')
-                for(var c=0; c< sgCanvas.length;c++){
-                    sgCanvas[c].style.backgroundColor = 'transparent'
-                    sgCanvas[c].style.width = container.offsetWidth - 40
-                }
-            }
-        }
-    }
 
 
 
@@ -247,7 +249,6 @@ var GLSLStyle = function(){
             styleCodeBlocks()
             loadGlslElements()
 
-            window.addEventListener("resize", canvasResize);
         }
     }
 

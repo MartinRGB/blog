@@ -1,5 +1,5 @@
   
-  // FPS Stats
+  // xxx FPS Stats
   function loadStatsUI(canvasContainer){
 
     var stats = new Stats();
@@ -46,7 +46,7 @@
     TxtFile.send(null);
   }
 
-  // Control
+  // xxx Control
   function addZoomCondition(controls,renderer){
     controls.enableZoom = false;
     controls.enableRotate = false;
@@ -64,7 +64,7 @@
 
   }
 
-  // Light
+  // xxx Light
   function addLight(scene){
     var lights = [];
     lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
@@ -86,7 +86,7 @@
     });
   }
 
-  // Highlight
+  // xxx Highlight
   window.onload = function() {
     var aCodes = document.getElementsByTagName('pre');
     for (var i=0; i < aCodes.length; i++) {
