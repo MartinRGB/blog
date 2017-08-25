@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <header-bar></header-bar>
-    <router-view></router-view>
+    <transition name="fade" mode="out-in" v-on:before-enter="beforeEnter" v-on:after-enter="afterEnter" appear>
+        <router-view></router-view>
+    </transition>
     <footer-bar></footer-bar>
   </div>
 </template>
@@ -11,16 +13,38 @@
 <script>
 import FooterBar from './components/FooterBar.vue'
 import HeaderBar from './components/HeaderBar.vue'
-
 export default {
   name: 'app',
   components: {
     FooterBar,
     HeaderBar
+  },
+  methods:{
+    afterEnter: function( el ) {
+      //alert(el.firstChild.firstChild.className +' Route entered' );
+      // var tc = document.getElementById('transition-coantainer')
+      // alert(tc.getClassName)
+    },
+    beforeEnter: function(el){
+      //alert(el.firstChild.firstChild.className +' Route entered' );
+      window.scrollTo(0, 0);
+    }
   }
 }
     
 </script>
 
 <style>
+
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.3s
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+  transform: translateY(10px)
+}
+
 </style>

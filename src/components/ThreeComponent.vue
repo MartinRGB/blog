@@ -107,6 +107,7 @@
                 stats.dom.style.top = ""
                 stats.dom.style.left = ""
                 stats.dom.style.position = "absolute"
+                stats.dom.style.zIndex = "1000"
             }
             addStatsUI(stats)
 
@@ -126,12 +127,12 @@
 
         },
         mounted:function(){
-            console.log('mounted')
+            console.log('mounted canvas')
             this.destroyWebGL = this.initThreeCanvas(document.getElementById(canvasContainerId),document.getElementById(articleViewId))
 
         },
         destroyed:function(){
-            console.log('destroyed')
+            console.log('destroyed canvas')
             this.destroyWebGL()
         }
     }

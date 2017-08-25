@@ -41,7 +41,7 @@ body
   // max-width 700px
   margin 0 auto
   padding 0
-  background bgColor
+  // background #222
   color textColor
 
 h1,
@@ -171,12 +171,15 @@ table td {
   text-align center
   color metaColor
   max-width: 670px;
-  margin: 15px auto;
+  margin: 4px auto;
   padding-left: 20px;
   padding-right: 20px;
   a
     color metaColor
     text-decoration underline
+
+.transition-container
+  background-color white
 
 .center-container 
   max-width: 670px;
@@ -184,7 +187,8 @@ table td {
   text-align: left;
   padding-left:20px;
   padding-right:20px;
-  margin-top:90px;
+  // margin-top:90px;
+  padding-top:80px;
 
 
 //
@@ -204,8 +208,13 @@ table td {
       padding-bottom: 3px;
 
 .list-view
+  padding-bottom: 20px;
   a
     font-size: 1.05em;
+    border-bottom 1px dashed transparent
+  a:hover
+    font-size: 1.05em;
+    border-bottom 1px dashed linkColor
 
 .list-view
   h2:nth-child(1){
@@ -216,6 +225,7 @@ table td {
 // -----------------------------------------
 
 .article-view
+  padding-bottom: 20px;
   a:hover
     border-bottom 1px dashed linkColor
 
@@ -520,3 +530,115 @@ blockquote
 //
 // Three.js - Canvas 
 // -----------------------------------------
+
+
+
+
+
+
+
+// Controls
+.controls {
+	position: absolute;
+	left: 50%;
+	bottom: 40px;
+	transform: translate(-50%, 0);
+	width: 100%;
+	margin-top: 30px;
+	text-align: center;
+	padding: 0;
+	
+	li {
+		opacity: 0.6;
+		cursor: pointer;
+		overflow: hidden;
+		display: inline-block;
+		height: 30px;
+		margin: 0 10px;
+		padding: 0 30px;
+		border-radius: 10px;
+		font: .8rem/30px Arial, sans-serif;
+		font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+		background: #505050;
+		
+		&.active {
+			background: lighten(#505050, 40%);
+		}
+	}
+}
+
+// Page
+.page {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #c0c0c0;
+	
+	.center {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		font-size: 3rem;
+		text-align: center;
+	}
+	
+	h1 {
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+		font-size: 2.8rem;
+		text-transform: capitalize;
+	}
+	
+	p {
+		font-family: 'Vollkorn', Georgia, Times, serif;
+		font-size: 1.1rem;
+	}
+	
+	a {
+		transition: color 200ms ease-out;
+		color: darken(rgba(#fff, .8), 40%);
+		
+		&:hover {
+			color: darken(rgba(#fff, .8), 60%);
+		}
+	}
+
+  // Active animation
+  .active-animation {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  // Page styles
+  .fade {
+    background: $color1;
+  }
+
+  .slide {
+    background: $color2;
+  }
+
+  .zoom {
+    background: $color3;
+  }
+
+  .flipX {
+    background: $color4;
+  }
+
+  .flipY {
+    background: $color5;
+  }
+
+  .slideUp {
+    background: $color6;
+  }
+}

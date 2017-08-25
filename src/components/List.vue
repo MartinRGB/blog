@@ -1,11 +1,13 @@
 <template>
+  <div class="transition-container">
     <div class="center-container">
       <div id="list" class ="list-view">
+
         <h2>Environment ,Style Test & Lab</h2>
         <ul>
           <router-link to="/article"><li><a >1.砖块着色器</a></li></router-link>
           
-          <router-link to="/test1"><li><a >2.Vue Test1</a></li></router-link>
+          <router-link to="/test"><li><a >2.Three Test</a></li></router-link>
           <router-link to="/test2"><li><a >3.Vue Test2</a></li></router-link>
           <router-link to="/test3"><li><a >4.Vue Test3</a></li></router-link>
           <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
@@ -44,6 +46,7 @@
         </ul>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -51,12 +54,10 @@
 export default {
   name: 'list',
   methods: {
-    scrollToTop: function(){
-      window.scrollTo(0, 0);
-    }
   },
   mounted:function() {
-    this.scrollToTop()
+  },
+  components: {
   }
 }
 </script>

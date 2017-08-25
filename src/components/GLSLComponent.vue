@@ -2,6 +2,8 @@
       <div></div>
 </template>
 
+<style src="../style/glslEditor.css"></style>
+
 <script>
   import '../static/js/glslCanvas.js'
   import '../static/js/glslEditor.js'
