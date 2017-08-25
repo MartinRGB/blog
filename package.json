@@ -15,6 +15,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "dat.gui": "^0.6.1",
     "file-loader": "^0.11.2",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
@@ -48,7 +49,6 @@
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.5",
     "cssnano": "^3.10.0",
-    "dat.gui-mirror": "^0.7.4",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-friendly-formatter": "^3.0.0",

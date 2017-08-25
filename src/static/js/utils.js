@@ -198,7 +198,7 @@
   function loadDATGUI(gui,obj,reset) {
 
 
-    var color = gui.addFolder('Color');
+    var color = gui.addFolder('BGColor');
     var cam = gui.addFolder('Camera');
     options = {
       color:{
@@ -211,9 +211,6 @@
         positionX: 0,
         positionY: 1,
         positionZ: 2.5
-      },
-      teapot:{
-        //positionY: 0.75,
       },
       reset: function() {
         reset()

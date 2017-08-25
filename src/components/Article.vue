@@ -94,7 +94,7 @@
     created: function () {},
     mounted:function(){
       this.initGLSLEditor()
-
+      window.scrollTo(0, 0);
       // this.request()
 
     },
