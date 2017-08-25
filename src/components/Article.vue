@@ -29,7 +29,7 @@
               <glsl-component v-if="$route.meta.keepAlive" id ="graphContainer" class="codeAndCanvas" data="https://gist.githubusercontent.com/MartinRGB/29b5c9b50f35278e0ca42b67bce3c4a0/raw/bd10f0cc92bb6a4d4ec2a7ba3d44b6bc2283ad05/circle.frag"></glsl-component>
                -->
             <h3 id="toc_3">顶点着色器</h3>
-              <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet" bindUrl='../static/codesnippets/brickwall.frag'></snippet-component>
+              <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet" :bindUrl='fragUrl'></snippet-component>
               <p>{{fragUrl}}</p>
             <h3 id="toc_4">片段着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet2" bindUrl="https://gist.githubusercontent.com/MartinRGB/aee922946fe4558a205c65ccc13ab8b6/raw/534abcf9dab6ded01bd212ba573706966aa0db87/lut.frag"></snippet-component>
@@ -61,7 +61,7 @@
   import SnippetComponent from './SnippetComponent.vue'
   import GLSLComponent from './GLSLComponent.vue'
   import GLSLStyle from '../assets/js/CanvasStyle.js'
-  import frag from '../static/codesnippets/brickwall.frag'
+  import frag from '../static/codesnippets/brickwallGraph.frag'
 
 
   export default {
