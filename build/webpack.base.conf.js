@@ -57,7 +57,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(txt|cpp|c|vert|frag|glsl)(\?.*)?$/,
+        test: /\.(txt|cpp|c|java|vert|frag|glsl)(\?.*)?$/,
         loader: 'file-loader',
         options: {
           limit: 10000,

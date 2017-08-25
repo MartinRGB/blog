@@ -3,8 +3,8 @@
 </template>
 
 <script>
-  import '../assets/js/glslCanvas.js'
-  import '../assets/js/glslEditor.js'
+  import '../static/js/glslCanvas.js'
+  import '../static/js/glslEditor.js'
   //import GLSLStyle from '../assets/js/CanvasStyle.js'
 
   var bindData

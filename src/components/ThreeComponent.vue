@@ -5,7 +5,7 @@
 <script>  
     import Stats from 'stats.js'
     import * as THREE from 'three'
-    import '../assets/js/orbitControls.js'
+    import '../static/js/orbitControls.js'
     import ShaderFrogRuntime from 'shaderfrog-runtime'
 
     var articleViewId = 'article-view'

@@ -29,14 +29,16 @@
               <glsl-component v-if="$route.meta.keepAlive" id ="graphContainer" class="codeAndCanvas" data="https://gist.githubusercontent.com/MartinRGB/29b5c9b50f35278e0ca42b67bce3c4a0/raw/bd10f0cc92bb6a4d4ec2a7ba3d44b6bc2283ad05/circle.frag"></glsl-component>
                -->
             <h3 id="toc_3">顶点着色器</h3>
-              <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet" :bindUrl='fragUrl'></snippet-component>
-              <p>{{fragUrl}}</p>
+              <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
+
+              <snippet-component v-if="$route.meta.keepAlive" lan='java' id="CodeSnippet3" :bindUrl ='cppSnippet'></snippet-component>
+              
             <h3 id="toc_4">片段着色器</h3>
-              <snippet-component v-if="$route.meta.keepAlive" bindId="CodeSnippet2" bindUrl="https://gist.githubusercontent.com/MartinRGB/aee922946fe4558a205c65ccc13ab8b6/raw/534abcf9dab6ded01bd212ba573706966aa0db87/lut.frag"></snippet-component>
+              <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet2" :bindUrl ='fragSnippet'></snippet-component>
             <h3 id="toc_4">MOD 函数图表</h3>
-              <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer" class="simpleGraph" data="https://gist.githubusercontent.com/MartinRGB/384738e7718fcfe74aa54e16a4784131/raw/a382394b478a1519ec398023ec0410f6afbc59fd/mod_test.frag"></GLSL-Component>
+              <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer" class="simpleGraph" :data='graphSnippet'></GLSL-Component>
             <h3 id="toc_4">小试牛刀</h3>
-              <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer" class="codeAndCanvas" data="https://gist.githubusercontent.com/MartinRGB/29b5c9b50f35278e0ca42b67bce3c4a0/raw/bd10f0cc92bb6a4d4ec2a7ba3d44b6bc2283ad05/circle.frag"></GLSL-Component>
+              <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer2" class="simpleEditor" :data='editorSnippet'></GLSL-Component>
           <h2 id="toc_5">最终结果</h2>
             <three-component v-if="$route.meta.keepAlive"></three-component>
             <three-component v-if="$route.meta.keepAlive"></three-component>
@@ -57,17 +59,28 @@
   import Vue from 'vue'
   import VueResource from 'vue-resource'
   Vue.use(VueResource);
+
   import ThreeComponent from './ThreeComponent.vue'
   import SnippetComponent from './SnippetComponent.vue'
   import GLSLComponent from './GLSLComponent.vue'
-  import GLSLStyle from '../assets/js/CanvasStyle.js'
-  import frag from '../static/codesnippets/brickwallGraph.frag'
 
+  import GLSLStyle from '../static/js/CanvasStyle.js'
+
+  import vertFile from '../static/codesnippets/brickwall.vert'
+  import fragFile from '../static/codesnippets/brickwall.frag'
+  import graphFile from '../static/codesnippets/brickwallGraph.frag'
+  import editorFile from '../static/codesnippets/hsbcolor.frag'
+  import cppFile from '../static/codesnippets/ScreenSwitchUtils.java'
+  
 
   export default {
     name: 'article',
     data: function () {return {
-       fragUrl: frag,
+       vertSnippet:vertFile,
+       fragSnippet:fragFile,
+       graphSnippet:graphFile,
+       editorSnippet:editorFile,
+       cppSnippet:cppFile,
        html: '<p>Loading...</p>',
        bindHtml: 'https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/lessons/1.BrickWall.html'
 
@@ -100,6 +113,7 @@
     mounted:function(){
       this.initGLSLEditor()
       this.scrollToTop()
+
       // this.request()
 
     },
