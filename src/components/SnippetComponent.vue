@@ -20,6 +20,9 @@
       }
     },
     methods: {
+        // ----------------------------------------
+        // Vue Resource Request
+        // ----------------------------------------
         request:function() {
           this.$http.get(this.bindUrl).then((response) => {
             // 响应成功回调
@@ -30,6 +33,9 @@
           }).then(this.highlight);       
         
         },
+        // ----------------------------------------
+        // HighLight Snippet
+        // ----------------------------------------
         highlight:function(){
             var aCodes = this.$el.getElementsByTagName('pre');
             for (var i=0; i < aCodes.length; i++) {

@@ -19,7 +19,7 @@
 
             <h3 id="toc_3">顶点着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
-              <!-- <snippet-component v-if="$route.meta.keepAlive" lan='cpp' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/AndroidGL/master/OpenGLNDK/app/src/main/cpp/textureLoader.cpp'></snippet-component> -->
+              <snippet-component v-if="$route.meta.keepAlive" lan='cpp' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/AndroidGL/master/OpenGLNDK/app/src/main/cpp/textureLoader.cpp'></snippet-component>
             <h3 id="toc_4">片段着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet2" :bindUrl ='fragSnippet'></snippet-component>
             <h3 id="toc_4">MOD 函数图表</h3>
@@ -71,12 +71,17 @@
     }},
     components: {ThreeComponent,SnippetComponent,GLSLComponent},
     methods: {
-      // 加载完成多个 Glsl 后，一次配置元素
+      // -------------------------------------------------------
+      // GLSLEditor Setting ---- 加载完成多个 Glsl 后，一次配置元素
+      // -------------------------------------------------------
       initGLSLEditor:function(){
         var canvasStyle = new GLSLStyle()
         canvasStyle.load()
       },
 
+      // -------------------------------------------------------
+      // V-HTML Binding
+      // -------------------------------------------------------
       // ,request:function() {
       //     this.$http.get(this.bindHtml).then((response) => {
       //       // 响应成功回调
@@ -87,6 +92,10 @@
       //     });       
       // }
     }
+
+    // -------------------------------------------------------
+    // Before Enter Event
+    // -------------------------------------------------------
     // ,beforeRouteEnter (to, from, next) {
     //   next()
     // }

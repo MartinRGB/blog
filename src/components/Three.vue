@@ -2,7 +2,7 @@
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <three-component v-if="$route.meta.keepAlive"></three-component>
-            <three-component v-if="$route.meta.keepAlive"></three-component>
+            <!-- <three-component v-if="$route.meta.keepAlive"></three-component> -->
       </div>
     </div>
 </template>

@@ -20,6 +20,9 @@ export default {
     HeaderBar
   },
   methods:{
+    // -------------------------------------------------------
+    // Router Event
+    // -------------------------------------------------------
     afterEnter: function( el ) {
       //alert(el.firstChild.firstChild.className +' Route entered' );
       // var tc = document.getElementById('transition-coantainer')
@@ -36,8 +39,7 @@ export default {
 
 <style>
 
-
-
+/* Route CSS Page Transition */
 .fade-enter-active, .fade-leave-active {
   transition: all 0.3s
 }
