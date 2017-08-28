@@ -7,7 +7,7 @@
     import * as THREE from 'three'
     import '../static/js/orbitControls.js'
     import ShaderFrogRuntime from 'shaderfrog-runtime'
-    import dat from 'dat.gui'
+    import dat from 'dat.gui/build/dat.gui.js'
 
 //       import Vue from 'vue'
 //   import VueResource from 'vue-resource'
