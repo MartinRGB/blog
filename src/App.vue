@@ -25,8 +25,7 @@ export default {
     // -------------------------------------------------------
     afterEnter: function( el ) {
       //alert(el.firstChild.firstChild.className +' Route entered' );
-      // var tc = document.getElementById('transition-coantainer')
-      // alert(tc.getClassName)
+      window.scrollTo(0, 0);
     },
     beforeEnter: function(el){
       //alert(el.firstChild.firstChild.className +' Route entered' );

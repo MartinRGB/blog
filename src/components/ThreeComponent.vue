@@ -8,40 +8,28 @@
     import '../static/js/orbitControls.js'
     import ShaderFrogRuntime from 'shaderfrog-runtime'
     import dat from 'dat.gui/build/dat.gui.js'
-
-//       import Vue from 'vue'
-//   import VueResource from 'vue-resource'
-//   Vue.use(VueResource);
-    import shader0 from '../static/shaders/brickwall.json'
-    import texture0 from '../static/textures/metal.jpg'
-    import model0 from '../static/models/teapot.json'
-
-
+    
     var articleViewId = 'article-view'
     var canvasContainerId = 'threecanvas'
     var aspectRatio = 0.75
     export default {
         name: 'ThreeComponent',
+        props: ['bindModel','bindMaterial','bindUniform'],
         data () {
             return {}
         },
         methods:{
                 initThreeCanvas: function (canvasContainer,centerContainer) {
+                          
+                var _this = this;
                 // ----------------------------------------
                 // init ShaderRuntime
-                // ----------------------------------------               
-                var _this = this;
+                // ----------------------------------------         
+
                 var mRuntime = new ShaderFrogRuntime()
                 var mClock = new THREE.Clock()
-                
                 var timeUniform
-                var brickPctUniform = new THREE.Vector2(0.9,0.85);
-                var brickColUniform =  new THREE.Vector3(1.,0.3,0.2);
-                function uniformSetting(shader){
-                    shader.uniforms.textureMap.value = THREE.ImageUtils.loadTexture(texture0);
-                    shader.uniforms.BrickPct.value = brickPctUniform;
-                    shader.uniforms.BrickColor.value = brickColUniform;
-                }
+
                 // ----------------------------------------
                 // init ThreeJS
                 // ----------------------------------------              
@@ -52,24 +40,27 @@
                 var mModel = new THREE.BoxGeometry( 2, 2, 2 );
                 var mMaterial = new THREE.MeshLambertMaterial( { color: 0xfff000, wireframe: true } );
                 var mObject = new THREE.Mesh( mModel, mMaterial );
+
                 var mRenderer = new THREE.WebGLRenderer();
                 var mControl = new THREE.OrbitControls(mCamera,mRenderer.domElement)
                 var mLights = [];
                 // ----------------------------------------
                 // define Tex and Shape Here
                 // ----------------------------------------
-                //mModel = new THREE.SphereGeometry( 1.5,1.5, 3);
-                //mMaterial = new THREE.MeshLambertMaterial( { color: 0x9e4fc5, wireframe: true } );
 
-                // mModel = new THREE.SphereGeometry( 1.5,1.5, 3);
-                // mMaterial = texture0;
+                if(this.bindModel != null){
+                    mModel = this.bindModel;
+                }
+                else{
+                    mModel = new THREE.BoxGeometry( 2, 2, 2 );
+                }
 
-                // mModel = model0;
-                // mMaterial = shader0;
-
-                mModel = model0;
-                mMaterial = shader0;
-
+                if(this.bindMaterial != null){
+                    mMaterial = this.bindMaterial;
+                }
+                else{
+                    mMaterial =  new THREE.MeshLambertMaterial( { color: 0xfff000, wireframe: false } );
+                }
 
                 // ----------------------------------------
                 // Stats & Dat)
@@ -129,7 +120,6 @@
                 this.addLight(mLights,mScene)
                 this.addControlCondition(mControl,mRenderer)
 
-            
                 function addObject(scene,runtime,modelFile,textureFile,gui){
 
 
@@ -144,7 +134,7 @@
                                 if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
                                     var textureLoader = new THREE.TextureLoader();
                                     var customTexture;
-                                    textureLoader.load(texture0,function ( texture ) {
+                                    textureLoader.load(textureFile,function ( texture ) {
                                         texture.repeat.x = 0.5;
                                         texture.repeat.y = 0.5;
                                         var TextureMaterial = new THREE.MeshBasicMaterial( {
@@ -161,7 +151,7 @@
                                 else if (textureFile.split('.').pop() == 'json'){
                                     runtime.load([textureFile], function( shaders ) {
                                         var customShader = runtime.get( shaders[0].name );
-                                        uniformSetting(customShader)
+                                        _this.uniformSetting(customShader)
                                         mObject.material = customShader
                                         _this.addObjectGUI(gui,mObject)
 
@@ -179,7 +169,7 @@
                             if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
                                 var textureLoader = new THREE.TextureLoader();
                                 var customTexture;
-                                textureLoader.load(texture0,function ( texture ) {
+                                textureLoader.load(textureFile,function ( texture ) {
                                     texture.repeat.x = 0.5;
                                     texture.repeat.y = 0.5;
                                     var TextureMaterial = new THREE.MeshBasicMaterial( {
@@ -196,7 +186,7 @@
                             else if (textureFile.split('.').pop() == 'json'){
                                 runtime.load([textureFile], function( shaders ) {
                                     var customShader = runtime.get( shaders[0].name );
-                                    uniformSetting(customShader)
+                                    _this.uniformSetting(customShader)
                                     mObject.material = customShader
 
                                     _this.addObjectGUI(gui,mObject)
@@ -249,10 +239,11 @@
                         timeUniform = mClock.getElapsedTime();
                         mRuntime.updateShaders(timeUniform);
                         mRenderer.render(mScene, mCamera);
-                        // object.rotation.x += 0.02;
-                        // object.rotation.y += 0.02;
                         id = requestAnimationFrame( animation );
+
                         // console.log(`id:${id}`)
+                        // mObject.rotation.x += 0.02;
+                        // mObject.rotation.y += 0.02;
                     }
                     return {
                         start: function () {
@@ -369,110 +360,118 @@
                 camera.rotation.y = 0;
                 camera.rotation.z = 0;
             }
-            // ,addObject:function(scene,mObject,runtime,modelFile,textureFile,gui){
+            ,addObject:function(scene,mObject,runtime,modelFile,textureFile,gui){
 
-            //         var _this = this;
-            //         if (!textureFile.isMaterial){
+                    var _this = this;
+                    if (!textureFile.isMaterial){
 
-            //             if (!modelFile.isGeometry){
-            //                 var loader = new THREE.ObjectLoader();
-            //                 loader.load(modelFile, function ( obj ) {
-            //                     mObject = obj
+                        if (!modelFile.isGeometry){
+                            var loader = new THREE.ObjectLoader();
+                            loader.load(modelFile, function ( obj ) {
+                                mObject = obj
 
-            //                     // Texture
-            //                     if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
-            //                         var textureLoader = new THREE.TextureLoader();
-            //                         var customTexture;
-            //                         textureLoader.load(texture0,function ( texture ) {
-            //                             texture.repeat.x = 0.5;
-            //                             texture.repeat.y = 0.5;
-            //                             var TextureMaterial = new THREE.MeshBasicMaterial( {
-            //                                 map: texture
-            //                             });
-            //                             mObject.material = TextureMaterial
+                                // Texture
+                                if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
+                                    var textureLoader = new THREE.TextureLoader();
+                                    var customTexture;
+                                    textureLoader.load(textureFile,function ( texture ) {
+                                        texture.repeat.x = 0.5;
+                                        texture.repeat.y = 0.5;
+                                        var TextureMaterial = new THREE.MeshBasicMaterial( {
+                                            map: texture
+                                        });
+                                        mObject.material = TextureMaterial
 
-            //                             _this.addObjectGUI(gui,mObject)
+                                        _this.addObjectGUI(gui,mObject)
 
-            //                         });
-            //                     }
+                                    });
+                                }
 
-            //                     //Shader
-            //                     else if (textureFile.split('.').pop() == 'json'){
-            //                         runtime.load([textureFile], function( shaders ) {
-            //                             var customShader = runtime.get( shaders[0].name );
-            //                             uniformSetting(customShader)
-            //                             mObject.material = customShader
-            //                             _this.addObjectGUI(gui,mObject)
+                                //Shader
+                                else if (textureFile.split('.').pop() == 'json'){
+                                    runtime.load([textureFile], function( shaders ) {
+                                        var customShader = runtime.get( shaders[0].name );
+                                        _this.uniformSetting(customShader)
+                                        mObject.material = customShader
+                                        _this.addObjectGUI(gui,mObject)
 
-            //                         })
-            //                     }
+                                    })
+                                }
 
-            //                     scene.add(mObject)
-
-
-
-            //                 });
-            //             }
-            //             else{
-            //                 // Texture
-            //                 if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
-            //                     var textureLoader = new THREE.TextureLoader();
-            //                     var customTexture;
-            //                     textureLoader.load(texture0,function ( texture ) {
-            //                         texture.repeat.x = 0.5;
-            //                         texture.repeat.y = 0.5;
-            //                         var TextureMaterial = new THREE.MeshBasicMaterial( {
-            //                             map: texture
-            //                         });
-            //                         mObject.material = TextureMaterial
-
-            //                         _this.addObjectGUI(gui,mObject)
-
-            //                     });
-            //                 }
-
-            //                 //Shader
-            //                 else if (textureFile.split('.').pop() == 'json'){
-            //                     runtime.load([textureFile], function( shaders ) {
-            //                         var customShader = runtime.get( shaders[0].name );
-            //                         uniformSetting(customShader)
-            //                         mObject.material = customShader
-
-            //                         _this.addObjectGUI(gui,mObject)
-
-            //                     })
-            //                 }
-            //                 mObject.geometry.dispose()
-            //                 mObject.geometry = modelFile
-            //                 scene.add(mObject)
-            //             }
-
-            //         }
-            //         else{
-            //             if (!modelFile.isGeometry){
-            //                 var loader = new THREE.ObjectLoader();
-            //                 loader.load(modelFile, function ( obj ) {
-            //                     mObject = obj
-            //                     mObject.material = textureFile
-            //                     _this.addObjectGUI(gui,mObject)
-            //                     scene.add(mObject)
+                                scene.add(mObject)
 
 
 
-            //                 });
-            //             }
-            //             else{
-            //                 mObject.geometry.dispose()
-            //                 mObject.geometry = modelFile;
-            //                 mObject.material = textureFile
-            //                 _this.addObjectGUI(gui,mObject)
-            //                 scene.add(mObject)
-            //             }
+                            });
+                        }
+                        else{
+                            // Texture
+                            if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
+                                var textureLoader = new THREE.TextureLoader();
+                                var customTexture;
+                                textureLoader.load(textureFile,function ( texture ) {
+                                    texture.repeat.x = 0.5;
+                                    texture.repeat.y = 0.5;
+                                    var TextureMaterial = new THREE.MeshBasicMaterial( {
+                                        map: texture
+                                    });
+                                    mObject.material = TextureMaterial
+
+                                    _this.addObjectGUI(gui,mObject)
+
+                                });
+                            }
+
+                            //Shader
+                            else if (textureFile.split('.').pop() == 'json'){
+                                runtime.load([textureFile], function( shaders ) {
+                                    var customShader = runtime.get( shaders[0].name );
+                                    _this.uniformSetting(customShader)
+                                    mObject.material = customShader
+
+                                    _this.addObjectGUI(gui,mObject)
+
+                                })
+                            }
+                            mObject.geometry.dispose()
+                            mObject.geometry = modelFile
+                            scene.add(mObject)
+                        }
+
+                    }
+                    else{
+                        if (!modelFile.isGeometry){
+                            var loader = new THREE.ObjectLoader();
+                            loader.load(modelFile, function ( obj ) {
+                                mObject = obj
+                                mObject.material = textureFile
+                                _this.addObjectGUI(gui,mObject)
+                                scene.add(mObject)
 
 
-            //         }
 
-            // }
+                            });
+                        }
+                        else{
+                            mObject.geometry.dispose()
+                            mObject.geometry = modelFile;
+                            mObject.material = textureFile
+                            _this.addObjectGUI(gui,mObject)
+                            scene.add(mObject)
+                        }
+
+
+                    }
+
+            },
+            uniformSetting:function(shader){
+                //Key-Value
+                var PropKeys = Object.keys(this.bindUniform)
+                var PropValues = Object.values(this.bindUniform)
+                Object.keys(PropKeys).forEach(function (index) {
+                    shader['uniforms'][PropKeys[index]]['value'] = PropValues[index]
+                });
+            }
 
         },
         mounted:function(){

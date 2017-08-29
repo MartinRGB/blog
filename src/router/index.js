@@ -29,24 +29,6 @@ export default new Router({
       component: Three,
       meta: {keepAlive: true}
     }
-    // ,{
-    //   path: '/test1',
-    //   name: 'Template',
-    //   component: Template,
-    //   meta: {keepAlive: true}
-    // }
-    // ,{
-    //   path: '/test2',
-    //   name: 'Template2',
-    //   component: Template2,
-    //   meta: {keepAlive: true}
-    // }
-    // ,{
-    //   path: '/test3',
-    //   name: 'Template3',
-    //   component: Template3,
-    //   meta: {keepAlive: true}
-    // }
   ]
 })
 

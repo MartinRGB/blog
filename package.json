@@ -19,6 +19,7 @@
     "file-loader": "^0.11.2",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
+    "mathjax": "^2.7.2",
     "shaderfrog-runtime": "^0.2.0",
     "stats.js": "^0.17.0",
     "style-loader": "^0.18.2",

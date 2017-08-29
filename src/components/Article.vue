@@ -16,7 +16,7 @@
             <p><img src='http://cse.csusb.edu/tongyu/courses/cs520/images/glsl/brick-light.png' alt="fig06-02-partialbricks"/></p>
             <p>向量的模 - <code>向量 AB（AB上面有→）的长度叫做向量的模，记作|AB|(AB上有→）或|a|(a上有→)</code><br/>
             向量的点积 - <code>点积的计算方式为:  a·b=|a|·|b|cos&lt;a,b&gt;  其中|a|和|b|表示向量的模，&lt;a,b&gt;表示两个向量的夹角。</code></p>
-
+            <mathjax-component :bindFunc="MathFunc"></mathjax-component>
             <h3 id="toc_3">顶点着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
               <snippet-component v-if="$route.meta.keepAlive" lan='cpp' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/AndroidGL/master/OpenGLNDK/app/src/main/cpp/textureLoader.cpp'></snippet-component>
@@ -27,8 +27,8 @@
             <h3 id="toc_4">小试牛刀</h3>
               <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer2" class="simpleEditor" :data='editorSnippet'></GLSL-Component>
           <h2 id="toc_5">最终结果</h2>
-            <three-component v-if="$route.meta.keepAlive"></three-component>
-            <three-component v-if="$route.meta.keepAlive"></three-component>
+            <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel1' :bindMaterial='ThreeMaterial1'></three-component>
+            <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel0' :bindMaterial='ThreeMaterial0' :bindUniform='ShaderUniform0'></three-component>
           <h2 id="参考">参考</h2>
             <ul>
               <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator</a></li>
@@ -56,20 +56,42 @@
   import graphFile from '../static/codesnippets/brickwallGraph.frag'
   import editorFile from '../static/codesnippets/brickfrag.frag'
   
+  import * as THREE from 'three'
+  import shader0 from '../static/shaders/brickwall.json'
+  import texture0 from '../static/textures/metal.jpg'
+  import model0 from '../static/models/teapot.json'
+
+
+  import MathjaxComponent from './MathjaxComponent'
+
+  
+  
 
   export default {
     name: 'article',
     data: function () {return {
-       vertSnippet:vertFile,
-       fragSnippet:fragFile,
-       graphSnippet:graphFile,
-       editorSnippet:editorFile,
+      vertSnippet:vertFile,
+      fragSnippet:fragFile,
+      graphSnippet:graphFile,
+      editorSnippet:editorFile,
+      Threemodel1:new THREE.BoxGeometry( 2, 2, 2 ),
+      ThreeMaterial1:texture0,
+      ThreeModel0:model0,
+      ThreeMaterial0:shader0,
+      ShaderUniform0:{
+        TextureMap:THREE.ImageUtils.loadTexture(texture0),
+        BrickPct:new THREE.Vector2(0.9,0.85),
+        BrickColor:new THREE.Vector3(1.,0.3,0.2)
+      },
+      MathFunc: String.raw`  1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots =
+    \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})},
+     \quad\quad \text{for $|q|<1$}.`
        
       //  html: '<p>Loading...</p>',
       //  bindHtml: 'https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/lessons/1.BrickWall.html'
 
     }},
-    components: {ThreeComponent,SnippetComponent,GLSLComponent},
+    components: {MathjaxComponent,ThreeComponent,SnippetComponent,GLSLComponent},
     methods: {
       // -------------------------------------------------------
       // GLSLEditor Setting ---- 加载完成多个 Glsl 后，一次配置元素
@@ -103,7 +125,6 @@
     created: function () {},
     mounted:function(){
       this.initGLSLEditor()
-      window.scrollTo(0, 0);
       // this.request()
 
     },

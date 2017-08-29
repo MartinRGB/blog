@@ -14,6 +14,7 @@ Libraries I used:
 * GLSLCanvas
 * highlight.js
 * highlight-linenumbers.js
+* MathJax
 * Babel 
 * Webpack
 * ESLint
