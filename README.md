@@ -1,4 +1,4 @@
-# example
+## Introduction
 
 > A mixin project for my OpenGL Online Notes
 
@@ -16,6 +16,7 @@ Libraries I used:
 * highlight-linenumbers.js
 * MathJax
 * GSAP
+* Rebound.js
 * HTML5 device mockups
 * MathJax
 * Babel 
@@ -24,6 +25,48 @@ Libraries I used:
 * Stylus
 * vue-ghpages-blog
 * vue-gh-pages
+
+## To do
+
+**Blog**
+
+- [ ] Post & List rendering
+- [ ] Create template
+- [ ] Read local folder & html file
+
+**GLSL-Componet**
+
+- [ ] Support HTTP Resource
+- [ ] Support Local Resource
+
+**Snippet-Componet**
+
+- [x] Support HTTP Resource
+- [x] Support Local Resource
+
+**GSAP**
+
+- [ ] Draw in Canvas
+- [ ] Curve utils & route transition
+
+**Mathjax-Copmonent**
+
+- [ ] Support HTTP Resource
+
+**Mockup-Component**
+
+- [ ] CORS (Access-Control-Allow-Origin)
+- [ ] Support HTTP Resource
+
+**Three-Component**
+
+- [ ] add shader uniforms with datGUI settings
+- [ ] Easy to extend
+
+**ReboundJS**
+
+- [ ] Interaction Animation
+
 
 ## Build Setup
 
