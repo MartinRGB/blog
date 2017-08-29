@@ -15,6 +15,9 @@ Libraries I used:
 * highlight.js
 * highlight-linenumbers.js
 * MathJax
+* GSAP
+* HTML5 device mockups
+* MathJax
 * Babel 
 * Webpack
 * ESLint

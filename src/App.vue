@@ -13,6 +13,8 @@
 <script>
 import FooterBar from './components/FooterBar.vue'
 import HeaderBar from './components/HeaderBar.vue'
+import { TweenMax, Expo } from 'gsap';
+
 export default {
   name: 'app',
   components: {
@@ -26,6 +28,7 @@ export default {
     afterEnter: function( el ) {
       //alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
+      // alert(el.firstChild.firstChild.className)
     },
     beforeEnter: function(el){
       //alert(el.firstChild.firstChild.className +' Route entered' );

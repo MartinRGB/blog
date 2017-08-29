@@ -1,4 +1,5 @@
 <template>
+  <div class="transition-container">
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
         <h1 id="toc_0">1.砖块着色器</h1>
@@ -38,6 +39,7 @@
           <!-- <div v-html="html"></div> -->
       </div>
     </div>
+  </div>
 </template>
 
 <script>
