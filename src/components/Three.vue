@@ -3,8 +3,6 @@
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel' :bindMaterial='ThreeMaterial' :bindUniform='ShaderUniform'></three-component>
-            <!-- <three-component v-if="$route.meta.keepAlive"></three-component> -->
-            <mockup-component></mockup-component>
             <GSAP-test></GSAP-test>
       </div>
     </div>
@@ -14,7 +12,6 @@
 <script>
 
   import ThreeComponent from './ThreeComponent.vue'
-  import MockupComponent from './MockupComponent.vue'
 
   import * as THREE from 'three'
   import shader0 from '../static/shaders/brickwall.json'
@@ -22,6 +19,7 @@
   import model0 from '../static/models/teapot.json'
 
   import GSAPTest from './GSAPTest.vue'
+
 
 
 
@@ -36,7 +34,7 @@
         BrickColor:new THREE.Vector3(1.,0.3,0.2)
       }
     }},
-    components: {ThreeComponent,MockupComponent,GSAPTest},
+    components: {ThreeComponent,GSAPTest},
     methods: {
     }
     ,computed: {},

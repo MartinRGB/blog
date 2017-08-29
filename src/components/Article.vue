@@ -36,6 +36,9 @@
               <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters</a></li>
               <li><a href="http://stackoverflow.com/questions/33898512/spread-operator-vs-rest-parameter-in-es2015-es6" target="_blank" rel="noopener noreferrer">http://stackoverflow.com/questions/33898512/spread-operator-vs-rest-parameter-in-es2015-es6</a></li>
             </ul>
+          <h2 id="mobile">移动端开发效果</h2>
+              <mockup-component :bindDevice='DeviceType0' :bindUrl='ScreenAsset1'></mockup-component>
+              <mockup-component :bindDevice='DeviceType1' bindUrl='https://raw.githubusercontent.com/cozyplanes/wallpaper/master/walls/javascript_this.png'></mockup-component>
           <!-- <div v-html="html"></div> -->
       </div>
     </div>
@@ -48,24 +51,26 @@
   Vue.use(VueResource);
 
   import ThreeComponent from './ThreeComponent.vue'
-  import SnippetComponent from './SnippetComponent.vue'
-  import GLSLComponent from './GLSLComponent.vue'
-
-  import GLSLStyle from '../static/js/CanvasStyle.js'
-
-  import vertFile from '../static/codesnippets/brickwall.vert'
-  import fragFile from '../static/codesnippets/brickwall.frag'
-  import graphFile from '../static/codesnippets/brickwallGraph.frag'
-  import editorFile from '../static/codesnippets/brickfrag.frag'
-  
   import * as THREE from 'three'
   import shader0 from '../static/shaders/brickwall.json'
   import texture0 from '../static/textures/metal.jpg'
   import model0 from '../static/models/teapot.json'
 
 
-  import MathjaxComponent from './MathjaxComponent'
+  import GLSLComponent from './GLSLComponent.vue'
+  import GLSLStyle from '../static/js/CanvasStyle.js'
+  import graphFile from '../static/codesnippets/brickwallGraph.frag'
+  import editorFile from '../static/codesnippets/brickfrag.frag'
 
+  import SnippetComponent from './SnippetComponent.vue'
+  import vertFile from '../static/codesnippets/brickwall.vert'
+  import fragFile from '../static/codesnippets/brickwall.frag'
+
+  import MathjaxComponent from './MathjaxComponent'
+  
+  import MockupComponent from './MockupComponent.vue'
+  import asset0 from '../static/mockups/device_test.jpg'
+  import asset1 from '../static/mockups/device_test.mp4'
   
   
 
@@ -74,8 +79,10 @@
     data: function () {return {
       vertSnippet:vertFile,
       fragSnippet:fragFile,
+      
       graphSnippet:graphFile,
       editorSnippet:editorFile,
+
       Threemodel1:new THREE.BoxGeometry( 2, 2, 2 ),
       ThreeMaterial1:texture0,
       ThreeModel0:model0,
@@ -85,15 +92,21 @@
         BrickPct:new THREE.Vector2(0.9,0.85),
         BrickColor:new THREE.Vector3(1.,0.3,0.2)
       },
+
       MathFunc: String.raw`  1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots =
     \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})},
-     \quad\quad \text{for $|q|<1$}.`
+     \quad\quad \text{for $|q|<1$}.`,
+
+      DeviceType0:'iOS',
+      DeviceType1:'android',
+      ScreenAsset0:asset0,
+      ScreenAsset1:asset1
        
       //  html: '<p>Loading...</p>',
       //  bindHtml: 'https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/lessons/1.BrickWall.html'
 
     }},
-    components: {MathjaxComponent,ThreeComponent,SnippetComponent,GLSLComponent},
+    components: {MathjaxComponent,ThreeComponent,SnippetComponent,GLSLComponent,MockupComponent},
     methods: {
       // -------------------------------------------------------
       // GLSLEditor Setting ---- 加载完成多个 Glsl 后，一次配置元素
