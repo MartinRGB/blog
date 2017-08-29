@@ -28,6 +28,8 @@ Libraries I used:
 
 ## To do
 
+- [ ] Modify project struct
+
 **Blog**
 
 - [ ] Post & List rendering
