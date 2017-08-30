@@ -1,0 +1,79 @@
+<template>
+
+  <div id="GSAP">
+      <h2 class="exampleTitle">GSAP - Counter Repeat Animation</h2>
+      <div class="exampleDescription">
+        This example demonstrates moving a box on a GSAP ease animation.
+      </div>
+      <div class="box" id="box"></div>
+  </div>
+</template>
+
+<script>
+
+  import { TweenMax,TweenLite, Elastic} from 'gsap';
+
+  export default {
+    name: 'gsap',
+    data: function () {return {
+    }},
+    components: {},
+    methods: {
+      runExample:function(){
+        var box = document.getElementById("box"),
+            count = 0,
+            tween;
+        box.innerHTML = count
+        tween = TweenMax.to(box, 2.5, 
+                            {left:"570px", 
+                            repeat:Infinity, 
+                            yoyo:true,
+                            onRepeat:onRepeat, 
+                            repeatDelay:0.5,         
+                            ease:Elastic.easeInOut});
+
+        function onRepeat() {
+          count++
+          box.innerHTML = count;
+          TweenLite.set(box, {backgroundColor:"hsl(" + Math.random() * 255 + ", 90%, 60%)"});
+        }						
+      },
+      example2:function(){
+        
+      }
+    }
+    ,computed: {},
+    created: function () {},
+    mounted:function(){
+      this.runExample()
+    },
+
+    destroyed:function(){
+    }
+  }
+
+</script>
+
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  #demo {
+    height:100%;
+    position:relative;
+    /* overflow:hidden; */
+  }
+  .box {
+    width:100px;
+    height:100px;
+    position:relative;
+    border-radius:6px;
+    margin-top:24px;
+    margin-bottom:24px;
+    text-align:center;
+    line-height:100px;
+    color:black;
+    font-size:80px;
+    background-color:#6fb936;
+  }
+
+</style>

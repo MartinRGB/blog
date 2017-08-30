@@ -3,7 +3,8 @@
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel' :bindMaterial='ThreeMaterial' :bindUniform='ShaderUniform'></three-component>
-            <GSAP-component></GSAP-component>
+            <GSAP-example></GSAP-example>
+            <rebound-example></rebound-example>
       </div>
     </div>
   </div>
@@ -18,7 +19,8 @@
   import texture0 from '../static/textures/metal.jpg'
   import model0 from '../static/models/teapot.json'
 
-  import GSAPComponent from './GSAPComponent.vue'
+  import GSAPExample from './utils/GSAPExample.vue'
+  import ReboundExample from './utils/ReboundExample.vue'
 
 
 
@@ -34,7 +36,7 @@
         BrickColor:new THREE.Vector3(1.,0.3,0.2)
       }
     }},
-    components: {ThreeComponent,GSAPComponent},
+    components: {ThreeComponent,GSAPExample,ReboundExample},
     methods: {
     }
     ,computed: {},
