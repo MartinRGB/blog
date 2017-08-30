@@ -9,6 +9,10 @@
       <div class="box" id="box"></div>
     </div>
     <div class="visualizerExampple">
+      <h2 class="exampleTitle">GSAP - Easing Visualizer</h2>
+        <div class="exampleDescription">
+          This example demonstrates GSAP Easing Curves
+      </div>
       <div class="ease-visualizer" data-ease="Power2.easeOut">
       <div class="load-conatiner hidden" id ="load-container">
         <h2>GreenSock Ease Visualizer</h2>
@@ -359,7 +363,12 @@ import $ from 'jquery'
                             ease:Elastic.easeInOut});
 
         function onRepeat() {
-          count++
+          if(count<99){
+            count++
+          }
+          else{
+            count = 0;
+          }
           box.innerHTML = count;
           TweenLite.set(box, {backgroundColor:"hsl(" + Math.random() * 255 + ", 90%, 60%)"});
         }						
@@ -1288,6 +1297,11 @@ div.hidden
 	font-size: 13px;
 	margin: 0;
 	padding: 2px 0;
+}
+
+.ease-visualizer {
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 .ease-visualizer .ease-instructions h2 {
 	font-size: 17px;

@@ -11,8 +11,8 @@
         directly into Rebound animations. (<a href="https://github.com/facebook/rebound-js/blob/master/examples/photoScale/main.js" target="_blank">Code</a>)
       </div>
     </div>
-    <div class="exampleContainer">
-      <div class="inner-content">
+    <div class="example-container" id="example-container">
+      <div class="inner-content" id="inner-content">
         <canvas id="graph-canvas" width="600" height="600"></canvas>
         <div id="example-photo" class="photo" :style ="defaultPics" onmousedown="this.className='photo down'">
           <div class="pill">Press and Hold</div>
@@ -50,6 +50,8 @@
           var springSystem = new rebound.SpringSystem();
           var spring = createSpring(springSystem, 40, 3);
           var springConfig = spring.getSpringConfig();
+          var exampleContainer = document.getElementById('example-container');
+          var innerContent = document.getElementById('inner-content');
           var photo = document.getElementById('example-photo');
           spring.addListener({
             el: null,
@@ -146,6 +148,14 @@
 
           tensionControl.addEventListener('change', onTensionChange);
           tensionControl.addEventListener('input', onTensionChange);
+
+          window.addEventListener("resize", function(){
+            // photo.style.width = exampleContainer.offsetWidth/2 - 10 + 'px'
+            // photo.style.height = exampleContainer.offsetWidth/2 - 10 + 'px'
+            // canvas.style.height = exampleContainer.offsetWidth/2 - 10 + 'px'
+            // canvas.style.left = exampleContainer.offsetWidth/2 + 10 + 'px'
+            // canvas.style.height = exampleContainer.offsetWidth/2 - 10 + 'px'
+          });
       }
 
     }
@@ -166,32 +176,36 @@
 <style scoped>
 .inner-content {
   position: relative;
-  width: 610px;
   margin: auto;
+  max-width: 610px;
 }
 
 #graph-canvas {
-  width: 300px;
-  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
   box-shadow: 0px 1px 2px #888;
   left: 310px;
   position: relative;
 }
 
-.exampleContainer {
+.example-container {
   margin-top: 24px;
   margin-bottom: 24px;
+  max-width: 670px;
 }
 
 .photo {
   -webkit-transform: scale3d(1,1,1);
-  width: 300px;
-  height: 300px;
+  width:300px;
+  height:300px;
+  max-width: 300px;
+  max-height: 300px;
   display: block;
   box-shadow: 0px 1px 2px #999;
   position: absolute;
   top: 0px;
   left: 0px;
+  background-size: contain !important;
   /* background: url('../../static/images/landscape.jpg'); */
 }
 
