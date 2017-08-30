@@ -25,7 +25,7 @@
     data: function () {return {
        html: '<p>Loading...</p>',
       //  bindHtml: 'https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/lessons/1.BrickWall.html'
-       bindHtml:'https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/lessons/1.BrickWall.html'
+       bindHtml:'https://raw.githubusercontent.com/MartinRGB/vue_threejs_test/master/src/static/pages/Easing-Visualizer/index.html'
     }},
     components: {},
     methods: {
