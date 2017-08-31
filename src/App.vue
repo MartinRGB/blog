@@ -13,7 +13,6 @@
 <script>
 import FooterBar from './components/FooterBar.vue'
 import HeaderBar from './components/HeaderBar.vue'
-import { TweenMax, Expo } from 'gsap';
 
 export default {
   name: 'app',

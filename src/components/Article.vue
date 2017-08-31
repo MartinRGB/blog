@@ -20,7 +20,7 @@
             <mathjax-component :bindFunc="MathFunc"></mathjax-component>
             <h3 id="toc_3">顶点着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
-              <snippet-component v-if="$route.meta.keepAlive" lan='cpp' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/AndroidGL/master/OpenGLNDK/app/src/main/cpp/textureLoader.cpp'></snippet-component>
+              <snippet-component v-if="$route.meta.keepAlive" lan='javascript' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/js/utils.js'></snippet-component>
             <h3 id="toc_4">片段着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet2" :bindUrl ='fragSnippet'></snippet-component>
             <h3 id="toc_4">MOD 函数图表</h3>

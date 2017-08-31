@@ -29,6 +29,16 @@
         </div>
       </div>
     </div>
+
+    <div class="exampleHeader">
+      <h2 class="exampleTitle">ReboundJS - Ball Animation</h2>
+      <div class="exampleDescription">
+        This example demonstrates moving a ball on a Rebound spring animation. 
+      </div>
+    </div>
+    <div class="example-container" id="example-container">
+      <div id="logo"><img src="https://d13yacurqjgara.cloudfront.net/users/623000/avatars/normal/f0b3779cdcf32f657caef941f75ca237.png?1407233150" alt="" /></div>
+    </div>
   </div>
 </template>
 
@@ -156,6 +166,64 @@
             // canvas.style.left = exampleContainer.offsetWidth/2 + 10 + 'px'
             // canvas.style.height = exampleContainer.offsetWidth/2 - 10 + 'px'
           });
+      },
+
+      ballExample:function(){
+        // Get a reference to the logo element.
+        var el = this.$el.querySelector('#logo');
+        
+        // create a SpringSystem and a Spring with a bouncy config.
+        var springSystem = new rebound.SpringSystem();
+        var spring = springSystem.createSpring(30, 5);
+
+        // Add a listener to the spring. Every time the physics
+        // solver updates the Spring's value onSpringUpdate will
+        // be called.
+        spring.addListener({
+          onSpringUpdate: function(spring) {
+            var val = spring.getCurrentValue();
+            var scaleVal = rebound.MathUtil
+                        .mapValueInRange(val, 0, 1, 1, 0.9);
+            var moveVal = rebound.MathUtil
+                        .mapValueInRange(val, 0, 1, 1, 0.);
+            scale(el, scaleVal,moveVal);
+          },
+          onSpringAtRest:function(spring){
+            animFunc()
+          }
+        });
+
+        spring.setCurrentValue(0);
+
+        // Listen for mouse down/up/out and toggle the
+        //springs endValue from 0 to 1.
+
+        var isRight = false;
+        animFunc()
+
+        el.addEventListener('click',animFunc);
+
+        function animFunc(){
+          if(!isRight){
+            spring.setEndValue(1);
+            isRight = true;
+          }
+          else{
+            spring.setEndValue(0);
+            isRight = false;
+          }
+        }
+
+
+        // Helper for scaling an element with css transforms.
+        function scale(el, scaleVal,moveVal) {
+          el.style.mozTransform =
+          el.style.msTransform =
+          el.style.webkitTransform =
+          el.style.transform = 'scale3d(' +
+            scaleVal + ', ' + scaleVal + ', 1)';
+          el.style.left =  moveVal*570. + 'px';
+        }
       }
 
     }
@@ -163,6 +231,7 @@
     created: function () {},
     mounted:function(){
       this.runExample();
+      this.ballExample();
     },
 
     destroyed:function(){
@@ -178,6 +247,15 @@
   position: relative;
   margin: auto;
   max-width: 610px;
+}
+
+#logo {
+  display: inline-block;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  left:0px;
+  width: 100px;
 }
 
 #graph-canvas {
