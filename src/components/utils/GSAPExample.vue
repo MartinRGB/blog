@@ -62,7 +62,7 @@
 
       visualizerExample:function(){
         (function ($) {
-          var htmlLink = 'https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/laboratory/gsap.html';
+          var htmlLink = 'https://raw.githubusercontent.com/MartinRGB/vue_threejs_test/master/src/static/pages/gsap.html';
           var id = 0;
           var timeline;
           var $menuEases;
