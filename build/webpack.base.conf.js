@@ -7,6 +7,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+
 module.exports = {
   entry: {
     app: './src/main.js'
@@ -43,7 +44,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|codesnippets/,
         loader: 'babel-loader',
         query: {compact: false},
         include: [resolve('src'), resolve('test')]
@@ -57,12 +58,21 @@ module.exports = {
         }
       },
       {
-        test: /\.(txt|cpp|c|java|vert|frag|glsl|json|.html|.js)(\?.*)?$/,
+        test: /\.(txt|cpp|c|java|vert|frag|glsl|json)(\?.*)?$/,
         loader: 'file-loader',
         options: {
           limit: 10000,
           name: utils.assetsPath('file/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.(js)(\?.*)?$/,
+        loader: 'file-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('file/[name].[hash:7].[ext]')
+        },
+        include: /codesnippets/
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,

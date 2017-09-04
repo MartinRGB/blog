@@ -22,7 +22,7 @@
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
               <snippet-component v-if="$route.meta.keepAlive" lan='javascript' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/js/utils.js'></snippet-component>
             <h3 id="toc_4">片段着色器</h3>
-              <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet2" :bindUrl ='fragSnippet'></snippet-component>
+              <snippet-component v-if="$route.meta.keepAlive" lan='javascript' id="CodeSnippet2" :bindUrl ='fragSnippet'></snippet-component>
             <h3 id="toc_4">MOD 函数图表</h3>
               <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer" class="simpleGraph" :data='graphSnippet'></GLSL-Component>
             <h3 id="toc_4">小试牛刀</h3>
@@ -39,7 +39,6 @@
           <h2 id="mobile">移动端开发效果</h2>
               <mockup-component :bindDevice='DeviceType0' :bindUrl='ScreenAsset1'></mockup-component>
               <mockup-component :bindDevice='DeviceType1' bindUrl='https://raw.githubusercontent.com/cozyplanes/wallpaper/master/walls/javascript_this.png'></mockup-component>
-          <!-- <div v-html="html"></div> -->
       </div>
     </div>
   </div>
@@ -65,6 +64,7 @@
   import SnippetComponent from './SnippetComponent.vue'
   import vertFile from '../static/codesnippets/brickwall.vert'
   import fragFile from '../static/codesnippets/brickwall.frag'
+  // import fragFile from '../static/codesnippets/brickwall.js'
 
   import MathjaxComponent from './MathjaxComponent'
   
@@ -72,7 +72,7 @@
   import asset0 from '../static/mockups/device_test.jpg'
   import asset1 from '../static/mockups/device_test.mp4'
   
-  
+  import axios from 'axios'
 
   export default {
     name: 'article',
@@ -101,10 +101,6 @@
       DeviceType1:'android',
       ScreenAsset0:asset0,
       ScreenAsset1:asset1
-       
-      //  html: '<p>Loading...</p>',
-      //  bindHtml: 'https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/lessons/1.BrickWall.html'
-
     }},
     components: {MathjaxComponent,ThreeComponent,SnippetComponent,GLSLComponent,MockupComponent},
     methods: {
@@ -115,19 +111,6 @@
         var canvasStyle = new GLSLStyle()
         canvasStyle.load()
       },
-
-      // -------------------------------------------------------
-      // V-HTML Binding
-      // -------------------------------------------------------
-      // ,request:function() {
-      //     this.$http.get(this.bindHtml).then((response) => {
-      //       // 响应成功回调
-      //       this.html = response.data
-      //     }, (response) => {
-      //       // 响应错误回调
-      //       this.html = 'Request Failed'
-      //     });       
-      // }
     }
 
     // -------------------------------------------------------
@@ -140,6 +123,12 @@
     created: function () {},
     mounted:function(){
       this.initGLSLEditor()
+          // let LocalAPI = require('html!../static/codesnippets/tpl.html')
+          // axios.get(LocalAPI).then( (response) => {
+          //     alert(response.data)
+          // },(response) => {
+          //     alert('error');
+          // })
       // this.request()
 
     },

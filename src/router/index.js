@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import List from '@/components/List'
 import Article from '@/components/Article'
-import Three from '@/components/Three'
+import ThreeTest from '@/components/ThreeTest'
 // import Template from '@/components/Template'
 // import Template2 from '@/components/Template2'
 // import Template3 from '@/components/Template3'
@@ -25,8 +25,8 @@ export default new Router({
     },
     {
       path: '/test',
-      name: 'Three',
-      component: Three,
+      name: 'ThreeTest',
+      component: ThreeTest,
       meta: {keepAlive: true}
     }
   ]

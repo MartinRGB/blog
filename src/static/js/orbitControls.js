@@ -14,6 +14,8 @@
 //    Pan - right mouse, or arrow keys / touch: three finter swipe
 import * as THREE from 'three'
 
+// import 'three'
+
 THREE.OrbitControls = function ( object, domElement ) {
 
 	this.object = object;
