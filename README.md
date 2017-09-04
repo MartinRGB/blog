@@ -36,21 +36,6 @@ Libraries I used:
 - [ ] Create template
 - [ ] Read local folder & html file
 
-**GLSL-Componet**
-
-- [ ] Support HTTP Resource
-- [ ] Support Local Resource
-
-**Snippet-Componet**
-
-- [x] Support HTTP Resource
-- [x] Support Local Resource
-
-**GSAP**
-
-- [ ] Draw in Canvas
-- [ ] Curve utils & route transition
-
 **Mathjax-Copmonent**
 
 - [ ] Support HTTP Resource
@@ -68,6 +53,21 @@ Libraries I used:
 **ReboundJS**
 
 - [ ] Interaction Animation
+
+**GSAP**
+
+- [ ] Draw in Canvas
+- [ ] Curve utils & route transition
+
+**GLSL-Componet**
+
+- [x] Support HTTP Resource
+- [x] Support Local Resource
+
+**Snippet-Componet**
+
+- [x] Support HTTP Resource
+- [x] Support Local Resource
 
 
 ## Build Setup
