@@ -36,15 +36,6 @@ Libraries I used:
 - [ ] Create template
 - [ ] Read local folder & html file
 
-**Mathjax-Copmonent**
-
-- [ ] Support HTTP Resource
-
-**Mockup-Component**
-
-- [ ] CORS (Access-Control-Allow-Origin)
-- [ ] Support HTTP Resource
-
 **Three-Component**
 
 - [ ] add shader uniforms with datGUI settings
@@ -58,6 +49,15 @@ Libraries I used:
 
 - [ ] Draw in Canvas
 - [ ] Curve utils & route transition
+
+**Mockup-Component**
+
+- [ ] CORS (Access-Control-Allow-Origin)
+- [ ] Support HTTP Resource
+
+**Mathjax-Copmonent**
+
+- [x] Support HTTP Resource
 
 **GLSL-Componet**
 
