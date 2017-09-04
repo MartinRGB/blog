@@ -18,6 +18,7 @@
             <p>向量的模 - <code>向量 AB（AB上面有→）的长度叫做向量的模，记作|AB|(AB上有→）或|a|(a上有→)</code><br/>
             向量的点积 - <code>点积的计算方式为:  a·b=|a|·|b|cos&lt;a,b&gt;  其中|a|和|b|表示向量的模，&lt;a,b&gt;表示两个向量的夹角。</code></p>
             <mathjax-component :bindFunc="MathFunc"></mathjax-component>
+            <mathjax-component :bindFunc="MathFunc2"></mathjax-component>
             <h3 id="toc_3">顶点着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
               <snippet-component v-if="$route.meta.keepAlive" lan='javascript' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/js/utils.js'></snippet-component>
@@ -67,6 +68,7 @@
   // import fragFile from '../static/codesnippets/brickwall.js'
 
   import MathjaxComponent from './MathjaxComponent'
+  import MathFile from '../static/codesnippets/mathfunc.txt'
   
   import MockupComponent from './MockupComponent.vue'
   import asset0 from '../static/mockups/device_test.jpg'
@@ -93,7 +95,8 @@
         BrickColor:new THREE.Vector3(1.,0.3,0.2)
       },
 
-      MathFunc: String.raw`1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots =
+      MathFunc:MathFile,
+      MathFunc2: String.raw`1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots =
     \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})},
      \quad\quad \text{for $|q|<1$}.`,
 

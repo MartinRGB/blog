@@ -85,6 +85,12 @@ disturbing the spacing between lines.</p>
 
 <script>
 
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+Vue.use(VueResource);
+
+var scriptHasAdded = false;
+var localScriptHasAdded = false;
 
 export default {
   props:['bindFunc'],
@@ -132,10 +138,31 @@ export default {
 
      },
     fetchData() {
-      this.codeInfo = this.bindFunc
-      // nextTick 先拿数据，然后更新
+
+      if (this.bindFunc.split('.').pop() == 'html' || this.bindFunc.split('.').pop() == 'txt'){
+        this.$http.get(this.bindFunc).then((response) => {
+          // 响应成功回调
+          this.codeInfo = response.data
+          // nextTick 先拿数据，然后更新
+          
+        }, (response) => {
+          // 响应错误回调
+          this.codeInfo = 'Request Failed'
+        }).then(this.refreshFunc);
+
+      }
+      else{
+        this.codeInfo = this.bindFunc
+
+        this.refreshFunc
+
+      }
+
+
+    },
+    refreshFunc:function(){
       this.$nextTick(function () {
-        // DOM UPdated
+            // DOM UPdated
         this.makeMath()
         // 重新渲染
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
