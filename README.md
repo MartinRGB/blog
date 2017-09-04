@@ -55,19 +55,19 @@ Libraries I used:
 - [ ] CORS (Access-Control-Allow-Origin)
 - [ ] Support HTTP Resource
 
-**Mathjax-Copmonent**
+~~**Mathjax-Copmonent**~~
 
-- [x] Support HTTP Resource
+~~- [x] Support HTTP Resource~~
 
-**GLSL-Componet**
+~~**GLSL-Componet**~~
 
-- [x] Support HTTP Resource
-- [x] Support Local Resource
+~~- [x] Support HTTP Resource~~
+~~- [x] Support Local Resource~~
 
-**Snippet-Componet**
+~~**Snippet-Componet**~~
 
-- [x] Support HTTP Resource
-- [x] Support Local Resource
+~~- [x] Support HTTP Resource~~
+~~- [x] Support Local Resource~~
 
 
 ## Build Setup
