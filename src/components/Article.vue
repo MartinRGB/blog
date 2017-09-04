@@ -46,35 +46,36 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-  import VueResource from 'vue-resource'
-  Vue.use(VueResource);
 
   import ThreeComponent from './ThreeComponent.vue'
   import * as THREE from 'three'
+
   import shader0 from '../static/shaders/brickwall.json'
   import texture0 from '../static/textures/metal.jpg'
   import model0 from '../static/models/teapot.json'
 
 
   import GLSLComponent from './GLSLComponent.vue'
-  import GLSLStyle from '../static/js/CanvasStyle.js'
+  
   import graphFile from '../static/codesnippets/brickwallGraph.frag'
   import editorFile from '../static/codesnippets/brickfrag.frag'
 
   import SnippetComponent from './SnippetComponent.vue'
+
   import vertFile from '../static/codesnippets/brickwall.vert'
   import fragFile from '../static/codesnippets/brickwall.frag'
   // import fragFile from '../static/codesnippets/brickwall.js'
 
   import MathjaxComponent from './MathjaxComponent'
+
   import MathFile from '../static/codesnippets/mathfunc.txt'
   
   import MockupComponent from './MockupComponent.vue'
+
   import asset0 from '../static/mockups/device_test.jpg'
   import asset1 from '../static/mockups/device_test.mp4'
   
-  import axios from 'axios'
+  // import axios from 'axios'
 
   export default {
     name: 'article',

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header-bar></header-bar>
+    <header-bar id="fsdaf"></header-bar>
     <transition name="fade" mode="out-in" v-on:before-enter="beforeEnter" v-on:after-enter="afterEnter" appear>
         <router-view></router-view>
     </transition>
@@ -13,6 +13,8 @@
 <script>
 import FooterBar from './components/FooterBar.vue'
 import HeaderBar from './components/HeaderBar.vue'
+
+var count = 0;
 
 export default {
   name: 'app',
