@@ -7,7 +7,12 @@
 <script>
   import '../static/js/glslCanvas.js'
   import '../static/js/glslEditor.js'
-  //import GLSLStyle from '../assets/js/CanvasStyle.js'
+  import GLSLStyle from '../static/js/CanvasStyle.js'
+
+  var styleTriggered = false;
+
+  var count = 0;
+  var funcNum = 0;
 
   var bindData
   export default {
@@ -18,20 +23,27 @@
       }
     },
     methods: {
-      // initGLSLEditor:function(){
-      //     var canvasStyle = new GLSLStyle()
-      //     canvasStyle.load()
-      // }
+      initGLSLEditor:function(){
+          var canvasStyle = new GLSLStyle()
+          canvasStyle.load()
+      }
     },
     ready:function(){
     },
     created:function(){
     },
     mounted:function(){
-      //this.glslInit = this.initGLSLEditor();
+
+      // Function only triggered once
+      if(!styleTriggered){
+        this.glslInit = this.initGLSLEditor();
+        styleTriggered = true;
+      }
+
 
     },
     destroyed:function(){
+      styleTriggered = false;
     }
   }
 

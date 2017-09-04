@@ -2,7 +2,7 @@
   <div class="transition-container">
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
-        <h1 id="toc_0">1.砖块着色器</h1>
+          <h1 id="toc_0">1.砖块着色器</h1>
           <h2 id="toc_1">需求的总体效果：</h2>
             <ul>
             <li><p>独立光源</p></li>
@@ -22,7 +22,7 @@
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
               <snippet-component v-if="$route.meta.keepAlive" lan='javascript' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/js/utils.js'></snippet-component>
             <h3 id="toc_4">片段着色器</h3>
-              <snippet-component v-if="$route.meta.keepAlive" lan='javascript' id="CodeSnippet2" :bindUrl ='fragSnippet'></snippet-component>
+              <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet2" :bindUrl ='fragSnippet'></snippet-component>
             <h3 id="toc_4">MOD 函数图表</h3>
               <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer" class="simpleGraph" :data='graphSnippet'></GLSL-Component>
             <h3 id="toc_4">小试牛刀</h3>
@@ -81,7 +81,7 @@
       fragSnippet:fragFile,
       
       graphSnippet:graphFile,
-      editorSnippet:editorFile,
+      editorSnippet:'https://raw.githubusercontent.com/MartinRGB/vue_threejs_test/master/src/static/codesnippets/brickfrag.frag',
 
       Threemodel1:new THREE.BoxGeometry( 2, 2, 2 ),
       ThreeMaterial1:texture0,
@@ -104,15 +104,7 @@
     }},
     components: {MathjaxComponent,ThreeComponent,SnippetComponent,GLSLComponent,MockupComponent},
     methods: {
-      // -------------------------------------------------------
-      // GLSLEditor Setting ---- 加载完成多个 Glsl 后，一次配置元素
-      // -------------------------------------------------------
-      initGLSLEditor:function(){
-        var canvasStyle = new GLSLStyle()
-        canvasStyle.load()
-      },
     }
-
     // -------------------------------------------------------
     // Before Enter Event
     // -------------------------------------------------------
@@ -122,15 +114,13 @@
     ,computed: {},
     created: function () {},
     mounted:function(){
-      this.initGLSLEditor()
-          // let LocalAPI = require('html!../static/codesnippets/tpl.html')
-          // axios.get(LocalAPI).then( (response) => {
-          //     alert(response.data)
-          // },(response) => {
-          //     alert('error');
-          // })
+      // let LocalAPI = require('html!../static/codesnippets/tpl.html')
+      // axios.get(LocalAPI).then( (response) => {
+      //     alert(response.data)
+      // },(response) => {
+      //     alert('error');
+      // })
       // this.request()
-
     },
     destroyed:function(){
     }
