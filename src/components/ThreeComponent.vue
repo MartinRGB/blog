@@ -26,6 +26,7 @@
                 // init ShaderRuntime
                 // ----------------------------------------         
 
+                var mUniform
                 var mRuntime = new ShaderFrogRuntime()
                 var mClock = new THREE.Clock()
                 var timeUniform
@@ -60,6 +61,13 @@
                 }
                 else{
                     mMaterial =  new THREE.MeshLambertMaterial( { color: 0xfff000, wireframe: false } );
+                }
+
+                if(this.bindUniform != null){
+                    mUniform = this.bindUniform;
+                }
+                else{
+                    //
                 }
 
                 // ----------------------------------------
@@ -109,7 +117,7 @@
                 // ----------------------------------------
                 // Add Object & Element Setting
                 // ----------------------------------------
-                this.addObject(mScene,mObject,mRuntime,mModel,mMaterial,mGUI);
+                this.addObject(mScene,mObject,mRuntime,mModel,mMaterial,mUniform,mGUI);
                 mRenderer.setSize((centerContainer.offsetWidth),(centerContainer.offsetWidth)*aspectRatio);
                 mRenderer.setClearColor( 0x3f403b, 1 );
                 canvasContainer.appendChild( mGUI.domElement );
@@ -258,20 +266,15 @@
                 camera.rotation.y = 0;
                 camera.rotation.z = 0;
             },
-            uniformSetting:function(gui,shader){
+            // BUG Probably happened here
+            uniformSetting:function(gui,shader,uniform){
                 //Key-Value
-                var PropKeys = Object.keys(this.bindUniform)
-                var PropValues = Object.values(this.bindUniform)
-
+                var PropKeys = Object.keys(uniform)
+                var PropValues = Object.values(uniform)
                 var guiUniform = gui.addFolder('Uniform')
 
-
-                // alert(PropKeys[0])
-                // alert(PropValues[0].constructor.name)
-                // alert(PropValues[0].constructor.name)
                 Object.keys(PropKeys).forEach(function (index) {
                     shader['uniforms'][PropKeys[index]]['value'] = PropValues[index]
-
 
                     if(PropValues[index].constructor.name == 'Vector2'){
                         guiUniform.add(PropValues[index],'x',-1,1).name(PropKeys[index]+'.v1').listen;
@@ -302,7 +305,7 @@
                     }
                 });
             }
-            ,addObject:function(scene,object,runtime,modelFile,textureFile,gui){
+            ,addObject:function(scene,object,runtime,modelFile,textureFile,uniform,gui){
 
                     var _this = this;
                     if (!textureFile.isMaterial){
@@ -334,7 +337,7 @@
 
                                     runtime.load([textureFile], function( shaders ) {
                                         var customShader = runtime.get( shaders[0].name );
-                                        _this.uniformSetting(gui,customShader)
+                                        _this.uniformSetting(gui,customShader,uniform)
                                         object.material = customShader
                                         _this.addObjectGUI(gui,object)
 
@@ -370,7 +373,7 @@
                             else if (textureFile.split('.').pop() == 'json'){
                                 runtime.load([textureFile], function( shaders ) {
                                     var customShader = runtime.get( shaders[0].name );
-                                    _this.uniformSetting(gui,customShader)
+                                    _this.uniformSetting(gui,customShader,uniform)
                                     object.material = customShader
 
                                     _this.addObjectGUI(gui,object)
