@@ -68,6 +68,9 @@
                 var mStats = new Stats()
                 var mGUI = new dat.GUI()
                 mGUI.domElement.style.right = (window.innerWidth - centerContainer.offsetWidth)/2 + 'px';
+                
+                
+                // ##### TODO:USE Options #######
                 var guiOptions = {
 
                     color:{
@@ -106,7 +109,7 @@
                 // ----------------------------------------
                 // Add Object & Element Setting
                 // ----------------------------------------
-                addObject(mScene,mRuntime,mModel,mMaterial,mGUI);
+                this.addObject(mScene,mObject,mRuntime,mModel,mMaterial,mGUI);
                 mRenderer.setSize((centerContainer.offsetWidth),(centerContainer.offsetWidth)*aspectRatio);
                 mRenderer.setClearColor( 0x3f403b, 1 );
                 canvasContainer.appendChild( mGUI.domElement );
@@ -119,111 +122,6 @@
 
                 this.addLight(mLights,mScene)
                 this.addControlCondition(mControl,mRenderer)
-
-                function addObject(scene,runtime,modelFile,textureFile,gui){
-
-
-                    if (!textureFile.isMaterial){
-
-                        if (!modelFile.isGeometry){
-                            var loader = new THREE.ObjectLoader();
-                            loader.load(modelFile, function ( obj ) {
-                                mObject = obj
-
-                                // Texture
-                                if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
-                                    var textureLoader = new THREE.TextureLoader();
-                                    var customTexture;
-                                    textureLoader.load(textureFile,function ( texture ) {
-                                        texture.repeat.x = 0.5;
-                                        texture.repeat.y = 0.5;
-                                        var TextureMaterial = new THREE.MeshBasicMaterial( {
-                                            map: texture
-                                        });
-                                        mObject.material = TextureMaterial
-
-                                        _this.addObjectGUI(gui,mObject)
-
-                                    });
-                                }
-
-                                //Shader
-                                else if (textureFile.split('.').pop() == 'json'){
-                                    runtime.load([textureFile], function( shaders ) {
-                                        var customShader = runtime.get( shaders[0].name );
-                                        _this.uniformSetting(customShader)
-                                        mObject.material = customShader
-                                        _this.addObjectGUI(gui,mObject)
-
-                                    })
-                                }
-
-                                scene.add(mObject)
-
-
-
-                            });
-                        }
-                        else{
-                            // Texture
-                            if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
-                                var textureLoader = new THREE.TextureLoader();
-                                var customTexture;
-                                textureLoader.load(textureFile,function ( texture ) {
-                                    texture.repeat.x = 0.5;
-                                    texture.repeat.y = 0.5;
-                                    var TextureMaterial = new THREE.MeshBasicMaterial( {
-                                        map: texture
-                                    });
-                                    mObject.material = TextureMaterial
-
-                                    _this.addObjectGUI(gui,mObject)
-
-                                });
-                            }
-
-                            //Shader
-                            else if (textureFile.split('.').pop() == 'json'){
-                                runtime.load([textureFile], function( shaders ) {
-                                    var customShader = runtime.get( shaders[0].name );
-                                    _this.uniformSetting(customShader)
-                                    mObject.material = customShader
-
-                                    _this.addObjectGUI(gui,mObject)
-
-                                })
-                            }
-                            mObject.geometry.dispose()
-                            mObject.geometry = modelFile
-                            scene.add(mObject)
-                        }
-
-                    }
-                    else{
-                        if (!modelFile.isGeometry){
-                            var loader = new THREE.ObjectLoader();
-                            loader.load(modelFile, function ( obj ) {
-                                mObject = obj
-                                mObject.material = textureFile
-                                _this.addObjectGUI(gui,mObject)
-                                scene.add(mObject)
-
-
-
-                            });
-                        }
-                        else{
-                            mObject.geometry.dispose()
-                            mObject.geometry = modelFile;
-                            mObject.material = textureFile
-                            _this.addObjectGUI(gui,mObject)
-                            scene.add(mObject)
-                        }
-
-
-                    }
-
-                }
 
                 // ----------------------------------------
                 // Animation Updating
@@ -359,8 +257,52 @@
                 camera.rotation.x = 0;
                 camera.rotation.y = 0;
                 camera.rotation.z = 0;
+            },
+            uniformSetting:function(gui,shader){
+                //Key-Value
+                var PropKeys = Object.keys(this.bindUniform)
+                var PropValues = Object.values(this.bindUniform)
+
+                var guiUniform = gui.addFolder('Uniform')
+
+
+                // alert(PropKeys[0])
+                // alert(PropValues[0].constructor.name)
+                // alert(PropValues[0].constructor.name)
+                Object.keys(PropKeys).forEach(function (index) {
+                    shader['uniforms'][PropKeys[index]]['value'] = PropValues[index]
+
+
+                    if(PropValues[index].constructor.name == 'Vector2'){
+                        guiUniform.add(PropValues[index],'x',-1,1).name(PropKeys[index]+'.v1').listen;
+                        guiUniform.add(PropValues[index],'y',-1,1).name(PropKeys[index]+'.v2').listen;
+                        //alert(PropKeys[index])
+                    }
+                    if(PropValues[index].constructor.name == 'Vector3'){
+                        
+                        if(PropKeys[index].match(new RegExp('color', "gi"))){
+                            var ColorConfiguracion=function(){
+                                this[PropKeys[index]] = [PropValues[index].x*255,PropValues[index].y*255,PropValues[index].z*255];
+                            }
+                            var colorConf = new ColorConfiguracion();
+                            var colorController = guiUniform.addColor(colorConf,String(PropKeys[index])).listen();
+                            colorController.onChange( function( colorValue  )
+                            {
+                                PropValues[index].x = colorValue[0]/255.;
+                                PropValues[index].y = colorValue[1]/255.;
+                                PropValues[index].z = colorValue[2]/255.;
+                            });
+                        }
+                        else{
+                            guiUniform.add(PropValues[index],'x',-1,1).name(PropKeys[index]+'.v1').listen;
+                            guiUniform.add(PropValues[index],'y',-1,1).name(PropKeys[index]+'.v2').listen;
+                            guiUniform.add(PropValues[index],'z',-1,1).name(PropKeys[index]+'.v3').listen;
+
+                        }
+                    }
+                });
             }
-            ,addObject:function(scene,mObject,runtime,modelFile,textureFile,gui){
+            ,addObject:function(scene,object,runtime,modelFile,textureFile,gui){
 
                     var _this = this;
                     if (!textureFile.isMaterial){
@@ -368,7 +310,7 @@
                         if (!modelFile.isGeometry){
                             var loader = new THREE.ObjectLoader();
                             loader.load(modelFile, function ( obj ) {
-                                mObject = obj
+                                object = obj
 
                                 // Texture
                                 if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
@@ -380,25 +322,27 @@
                                         var TextureMaterial = new THREE.MeshBasicMaterial( {
                                             map: texture
                                         });
-                                        mObject.material = TextureMaterial
+                                        object.material = TextureMaterial
 
-                                        _this.addObjectGUI(gui,mObject)
+                                        _this.addObjectGUI(gui,object)
 
                                     });
                                 }
 
                                 //Shader
                                 else if (textureFile.split('.').pop() == 'json'){
+
                                     runtime.load([textureFile], function( shaders ) {
                                         var customShader = runtime.get( shaders[0].name );
-                                        _this.uniformSetting(customShader)
-                                        mObject.material = customShader
-                                        _this.addObjectGUI(gui,mObject)
+                                        _this.uniformSetting(gui,customShader)
+                                        object.material = customShader
+                                        _this.addObjectGUI(gui,object)
 
                                     })
+
                                 }
 
-                                scene.add(mObject)
+                                scene.add(object)
 
 
 
@@ -415,9 +359,9 @@
                                     var TextureMaterial = new THREE.MeshBasicMaterial( {
                                         map: texture
                                     });
-                                    mObject.material = TextureMaterial
+                                    object.material = TextureMaterial
 
-                                    _this.addObjectGUI(gui,mObject)
+                                    _this.addObjectGUI(gui,object)
 
                                 });
                             }
@@ -426,16 +370,16 @@
                             else if (textureFile.split('.').pop() == 'json'){
                                 runtime.load([textureFile], function( shaders ) {
                                     var customShader = runtime.get( shaders[0].name );
-                                    _this.uniformSetting(customShader)
-                                    mObject.material = customShader
+                                    _this.uniformSetting(gui,customShader)
+                                    object.material = customShader
 
-                                    _this.addObjectGUI(gui,mObject)
+                                    _this.addObjectGUI(gui,object)
 
                                 })
                             }
-                            mObject.geometry.dispose()
-                            mObject.geometry = modelFile
-                            scene.add(mObject)
+                            object.geometry.dispose()
+                            object.geometry = modelFile
+                            scene.add(object)
                         }
 
                     }
@@ -443,34 +387,26 @@
                         if (!modelFile.isGeometry){
                             var loader = new THREE.ObjectLoader();
                             loader.load(modelFile, function ( obj ) {
-                                mObject = obj
-                                mObject.material = textureFile
-                                _this.addObjectGUI(gui,mObject)
-                                scene.add(mObject)
+                                object = obj
+                                object.material = textureFile
+                                _this.addObjectGUI(gui,object)
+                                scene.add(object)
 
 
 
                             });
                         }
                         else{
-                            mObject.geometry.dispose()
-                            mObject.geometry = modelFile;
-                            mObject.material = textureFile
-                            _this.addObjectGUI(gui,mObject)
-                            scene.add(mObject)
+                            object.geometry.dispose()
+                            object.geometry = modelFile;
+                            object.material = textureFile
+                            _this.addObjectGUI(gui,object)
+                            scene.add(object)
                         }
 
 
                     }
 
-            },
-            uniformSetting:function(shader){
-                //Key-Value
-                var PropKeys = Object.keys(this.bindUniform)
-                var PropValues = Object.values(this.bindUniform)
-                Object.keys(PropKeys).forEach(function (index) {
-                    shader['uniforms'][PropKeys[index]]['value'] = PropValues[index]
-                });
             }
 
         },

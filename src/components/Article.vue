@@ -51,7 +51,7 @@
   import * as THREE from 'three'
 
   import shader0 from '../static/shaders/brickwall.json'
-  import texture0 from '../static/textures/metal.jpg'
+  import texture0 from '../static/textures/dirt.jpg'
   import model0 from '../static/models/teapot.json'
 
 
@@ -88,12 +88,15 @@
 
       Threemodel1:new THREE.BoxGeometry( 2, 2, 2 ),
       ThreeMaterial1:texture0,
-      ThreeModel0:model0,
+      ThreeModel0:new THREE.BoxGeometry( 2, 2, 2 ), //Model0
       ThreeMaterial0:shader0,
       ShaderUniform0:{
         TextureMap:THREE.ImageUtils.loadTexture(texture0),
         BrickPct:new THREE.Vector2(0.9,0.85),
-        BrickColor:new THREE.Vector3(1.,0.3,0.2)
+        BrickColor:new THREE.Vector3(1.,0.3,0.2),
+        MortarColor:new THREE.Vector3(0.85,0.85,0.85),
+        BrickSize:new THREE.Vector2(0.3,0.15),
+        LightPosition:new THREE.Vector3(0.,0.,4.)
       },
 
       MathFunc:MathFile,
