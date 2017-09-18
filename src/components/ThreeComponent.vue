@@ -282,12 +282,12 @@
                     console.log(PropValues[index].constructor.name)
 
 
-                    if(PropValues[index].constructor.name == 'Vector2'){
+                    if(PropValues[index].constructor.name == 'Vector2' || PropValues[index].constructor.name == 'r'){
                         guiUniform.add(PropValues[index],'x',-1,1).name(PropKeys[index]+'.v1').listen;
                         guiUniform.add(PropValues[index],'y',-1,1).name(PropKeys[index]+'.v2').listen;
                         //alert(PropKeys[index])
                     }
-                    if(PropValues[index].constructor.name == 'Vector3'){
+                    if(PropValues[index].constructor.name == 'Vector3' || PropValues[index].constructor.name == 'c'){
                         
                         if(PropKeys[index].match(new RegExp('color', "gi"))){
                             var ColorConfiguracion=function(){
