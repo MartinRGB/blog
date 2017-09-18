@@ -278,6 +278,10 @@
                 Object.keys(PropKeys).forEach(function (index) {
                     shader['uniforms'][PropKeys[index]]['value'] = PropValues[index]
 
+
+                    console.log(PropValues[index].constructor.name)
+
+
                     if(PropValues[index].constructor.name == 'Vector2'){
                         guiUniform.add(PropValues[index],'x',-1,1).name(PropKeys[index]+'.v1').listen;
                         guiUniform.add(PropValues[index],'y',-1,1).name(PropKeys[index]+'.v2').listen;
@@ -317,7 +321,7 @@
                             loader.load(modelFile, function ( obj ) {
                                 object = obj
 
-                                // Texture
+                                //自定义材质，自定义模型
                                 if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
                                     var textureLoader = new THREE.TextureLoader();
                                     var customTexture;
@@ -334,7 +338,7 @@
                                     });
                                 }
 
-                                //Shader
+                                //自定义着色器材质，自定义模型
                                 else if (textureFile.split('.').pop() == 'json'){
 
                                     runtime.load([textureFile], function( shaders ) {
@@ -354,7 +358,7 @@
                             });
                         }
                         else{
-                            // Texture
+                            //自定义材质，不自定义模型
                             if(textureFile.split('.').pop() == 'png' || textureFile.split('.').pop() == 'jpg'){
                                 var textureLoader = new THREE.TextureLoader();
                                 var customTexture;
@@ -371,7 +375,7 @@
                                 });
                             }
 
-                            //Shader
+                            //自定义着色器材质，不自定义模型
                             else if (textureFile.split('.').pop() == 'json'){
                                 runtime.load([textureFile], function( shaders ) {
                                     var customShader = runtime.get( shaders[0].name );
@@ -389,6 +393,7 @@
 
                     }
                     else{
+                        //不自定义材质，自定义模型
                         if (!modelFile.isGeometry){
                             var loader = new THREE.ObjectLoader();
                             loader.load(modelFile, function ( obj ) {
@@ -401,6 +406,7 @@
 
                             });
                         }
+                        //不自定义材质，不自定义模型
                         else{
                             object.geometry.dispose()
                             object.geometry = modelFile;
