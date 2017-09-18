@@ -28,7 +28,7 @@ export default new Router({
       name: 'ThreeTest',
       component: ThreeTest,
       meta: {keepAlive: true}
-    }
+    },
   ]
 })
 

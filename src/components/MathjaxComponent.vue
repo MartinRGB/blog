@@ -125,16 +125,13 @@ export default {
       tex2jaxScript.src  = require('mathjax/extensions/tex2jax.js');
       document.getElementsByTagName("head")[0].appendChild(tex2jaxScript);
 
-
       fontdataScript.type = "text/javascript";
       fontdataScript.src  = require('mathjax/jax/output/HTML-CSS/fonts/STIX/fontdata.js');
       document.getElementsByTagName("head")[0].appendChild(fontdataScript);
 
-
       variantScript.type = "text/javascript";
       variantScript.src  = require('mathjax/jax/output/HTML-CSS/fonts/STIX/Variants/Regular/All.js');
       document.getElementsByTagName("head")[0].appendChild(variantScript);
-
 
      },
     fetchData() {

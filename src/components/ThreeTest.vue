@@ -7,6 +7,7 @@
             <rebound-example></rebound-example>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet1" :bindUrl ='htmlSnippet'></snippet-component>
             <div v-html="rawHTML"></div>
+            <list-transition></list-transition>
       </div>
     </div>
   </div>
@@ -30,6 +31,9 @@
   import SnippetComponent from './SnippetComponent.vue'
   import htmlFile from 'file-loader!../static/codesnippets/brickwall.html';
   import htmlFile2 from 'vue-html-loader!../static/codesnippets/brickwall.html';
+  import htmlFile3 from 'vue-html-loader!../static/articles/test3.html';
+
+  import ListTransition from './utils/ListTransition.vue';
 
 
   export default {
@@ -46,7 +50,7 @@
         BrickColor:new THREE.Vector3(1.,0.3,0.2)
       }
     }},
-    components: {ThreeComponent,GSAPExample,ReboundExample,SnippetComponent},
+    components: {ThreeComponent,GSAPExample,ReboundExample,SnippetComponent,ListTransition},
     methods: {
     }
     ,computed: {},

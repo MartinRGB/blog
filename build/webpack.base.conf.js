@@ -74,6 +74,15 @@ module.exports = {
         },
         include: /codesnippets/
       },
+            {
+        test: /\.(html)(\?.*)?$/,
+        loader: 'file-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('articles/[name].[hash:7].[ext]')
+        },
+        include: /articles/
+      },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
