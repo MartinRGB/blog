@@ -266,9 +266,11 @@
                 camera.rotation.y = 0;
                 camera.rotation.z = 0;
             },
-            // BUG Probably happened here
+            // BUG Probably happened here,try using nextTick
             uniformSetting:function(gui,shader,uniform){
                 //Key-Value
+
+                console.log("loaded Uniform")
                 var PropKeys = Object.keys(uniform)
                 var PropValues = Object.values(uniform)
                 var guiUniform = gui.addFolder('Uniform')
