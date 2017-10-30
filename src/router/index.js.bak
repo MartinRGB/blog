@@ -23,7 +23,7 @@ export default new Router({
     }
     // Define yourself routes above this
     // Use Shell Export article component here;
-   ,{path: '/ThreeTest4',name: 'ThreeTest4',component: ThreeTest4,meta: {keepAlive: true}} 
+exportholder 
    ,{path: '/ThreeTest3',name: 'ThreeTest3',component: ThreeTest3,meta: {keepAlive: true}} 
    ,{path: '/ThreeTest2',name: 'ThreeTest2',component: ThreeTest2,meta: {keepAlive: true}} 
    ,{path: '/ThreeTest',name: 'ThreeTest',component: ThreeTest,meta: {keepAlive: true}} 

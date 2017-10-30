@@ -5,14 +5,16 @@
   "author": "MartinRGB <qiuyinsen@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "deploy": "node ./node_modules/vue-gh-pages/index.js",
+    "dev": "npm run generatelist && npm run generaterouter && node build/dev-server.js",
+    "deploy": "npm run generatelist && npm run generaterouter && node ./node_modules/vue-gh-pages/index.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "generatelist": "cd src/postjs && sh autopiler_list.sh",
+    "generaterouter": "cd src/router && sh autopiler_router.sh"
   },
   "dependencies": {
     "axios": "^0.16.2",
