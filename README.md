@@ -1,6 +1,6 @@
 ## Introduction
 
-> A blog system based on ThreeJS & Vue
+> A simple blog system based on ThreeJS & Vue
 
 Libraries I used:
 
