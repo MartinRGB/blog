@@ -14,7 +14,7 @@
             <p><caption>图片示例</caption></p>
 
             <h2>代码高亮 - SnippetComponent</h2>
-            <strong><p>基于 <a href="https://highlightjs.org/" target="_blank">highlightjs</a></p></strong>
+            <strong><p>基于 <a href="https://highlightjs.org/" target="_blank">highlightjs</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importSnippetComponent'></snippet-component></strong>
 
             <p>在 <code>v-if</code> 中设置 <code>$route.meta.keepAlive</code> 是否缓存</p>
@@ -35,7 +35,7 @@
             <p><caption>高亮示例</caption></p>
 
             <h2>LaTex 数学公式 - MathjaxComponent</h2>
-            <strong><p>基于 <a href="https://github.com/mathjax/MathJax" target="_blank">MathJax</a></p></strong>
+            <strong><p>基于 <a href="https://github.com/mathjax/MathJax" target="_blank">MathJax</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importMathjaxComponent'></snippet-component></strong>
             <p>在 <code>:bindFunc</code> 中设置绑定的本地公式文件或字符串</p>
             <h3>使用本地文件</h3>
@@ -49,7 +49,7 @@
             <p><caption>公式示例</caption></p>
 
             <h2>GLSLCanvas - GLSLComponent</h2>
-            <strong><p>基于 <a href="https://github.com/patriciogonzalezvivo/glslCanvas" target="_blank">glslCanvas</a> 和 <a href="https://github.com/patriciogonzalezvivo/glslEditor" target="_blank">glslEditor</a></p></strong>
+            <strong><p>基于 <a href="https://github.com/patriciogonzalezvivo/glslCanvas" target="_blank">glslCanvas</a> 和 <a href="https://github.com/patriciogonzalezvivo/glslEditor" target="_blank">glslEditor</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importGLSLComponent'></snippet-component></strong>
             <p>在 <code>v-if</code> 中设置 <code>$route.meta.keepAlive</code> 是否缓存</p>
             <p>class 设置为 <code>simpleGraph</code> 生成图表 Canvas</p>
@@ -74,7 +74,7 @@
             <p><caption>使用外部资源示例 - 效果来自 ShaderToy</caption></p>
 
             <h2>ThreeJS - ThreeComponent</h2>
-            <strong><p>基于 <a href="https://github.com/mrdoob/three.js" target="_blank">threeJS</a></p></strong>
+            <strong><p>基于 <a href="https://github.com/mrdoob/three.js" target="_blank">threeJS</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importThreeComponent'></snippet-component></strong>
 
             <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel' :bindMaterial='ThreeMaterial' :bindUniform='ShaderUniform'></three-component>
