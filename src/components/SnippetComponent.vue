@@ -12,7 +12,7 @@
   import '../static/js/hljs-linenumbers.js'
 
   export default {
-    props: ['bindUrl','lan'],
+    props: ['bindUrl','lan','bindCode'],
     name: 'SnippetComponent',
     data () {
       return {
@@ -33,6 +33,15 @@
           }).then(this.highlight);       
         
         },
+        localBind:function() {
+          this.$http.get(this.bindCode).then((response) => {
+            // 响应成功回调
+            this.codeInfo = this.bindCode
+          }, (response) => {
+            // 响应错误回调
+            this.codeInfo = this.bindCode
+          }).then(this.highlight);
+        },
         // ----------------------------------------
         // HighLight Snippet
         // ----------------------------------------
@@ -45,7 +54,19 @@
         }
     },
     mounted:function(){
-      this.request()
+      if(this.bindUrl !=null){
+        this.request()
+      }
+      else if(this.bindCode !=null){
+        this.localBind()
+
+        var codeElements = this.$el.getElementsByTagName('code')
+        for (var i = 0; i < codeElements.length; i++) {
+          codeElements[i].style.background = 'transparent';
+          codeElements[i].style.whiteSpace = 'pre-line';
+          codeElements[i].style.fontSize = '12px';
+        }
+      }
     }
   }
 

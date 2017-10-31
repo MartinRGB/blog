@@ -14,14 +14,15 @@
             <p>顶点着色器中的光照模型：</p>
             <p><img src='../static/images/bricks_light.jpg' alt="fig06-02-partialbricks"/>
             <caption>Lighting Model Concept - 光照模型</caption></p>
-            <p><img src='http://cse.csusb.edu/tongyu/courses/cs520/images/glsl/brick-light.png' alt="fig06-02-partialbricks"/></p>
+            <!-- <p><img src='http://cse.csusb.edu/tongyu/courses/cs520/images/glsl/brick-light.png' alt="fig06-02-partialbricks"/></p>
+            <caption>Lighting Model Concept - 光照模型</caption></p> -->
             <p>向量的模 - <code>向量 AB（AB上面有→）的长度叫做向量的模，记作|AB|(AB上有→）或|a|(a上有→)</code><br/>
             向量的点积 - <code>点积的计算方式为:  a·b=|a|·|b|cos&lt;a,b&gt;  其中|a|和|b|表示向量的模，&lt;a,b&gt;表示两个向量的夹角。</code></p>
-            <mathjax-component :bindFunc="MathFunc"></mathjax-component>
-            <mathjax-component :bindFunc="MathFunc2"></mathjax-component>
+            <!-- <mathjax-component :bindFunc="MathFunc"></mathjax-component>
+            <mathjax-component :bindFunc="MathFunc2"></mathjax-component> -->
             <h3 id="toc_3">顶点着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
-              <snippet-component v-if="$route.meta.keepAlive" lan='javascript' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/js/utils.js'></snippet-component>
+              <!-- <snippet-component v-if="$route.meta.keepAlive" lan='javascript' id="CodeSnippet3" bindUrl ='https://raw.githubusercontent.com/MartinRGB/OpenGL_Online_Notes/master/docs/js/utils.js'></snippet-component> -->
             <h3 id="toc_4">片段着色器</h3>
               <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet2" :bindUrl ='fragSnippet'></snippet-component>
             <h3 id="toc_4">MOD 函数图表</h3>
@@ -54,7 +55,6 @@
   import texture0 from '../static/textures/dirt.jpg'
   import model0 from '../static/models/teapot.json'
 
-
   import GLSLComponent from '@/components/GLSLComponent'
   
   import graphFile from '../static/codesnippets/brickwallGraph.frag'
@@ -67,11 +67,8 @@
   // import fragFile from '../static/codesnippets/brickwall.js'
 
   import MathjaxComponent from '@/components/MathjaxComponent'
-
   import MathFile from '../static/codesnippets/mathfunc.txt'
-  
   import MockupComponent from '@/components/MockupComponent'
-
   import asset0 from '../static/mockups/device_test.jpg'
   import asset1 from '../static/mockups/device_test.mp4'
   
@@ -112,27 +109,11 @@
       ScreenAsset1:asset1
     }},
     components: {MathjaxComponent,ThreeComponent,SnippetComponent,GLSLComponent,MockupComponent},
-    methods: {
-    }
-    // -------------------------------------------------------
-    // Before Enter Event
-    // -------------------------------------------------------
-    // ,beforeRouteEnter (to, from, next) {
-    //   next()
-    // }
-    ,computed: {},
+    methods: {},
+    computed: {},
     created: function () {},
-    mounted:function(){
-      // let LocalAPI = require('html!../static/codesnippets/tpl.html')
-      // axios.get(LocalAPI).then( (response) => {
-      //     alert(response.data)
-      // },(response) => {
-      //     alert('error');
-      // })
-      // this.request()
-    },
-    destroyed:function(){
-    }
+    mounted:function(){},
+    destroyed:function(){}
   }
 
 </script>
