@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="example-container" id="example-container">
-      <div id="logo"><img src="https://d13yacurqjgara.cloudfront.net/users/623000/avatars/normal/f0b3779cdcf32f657caef941f75ca237.png?1407233150" alt="" /></div>
+      <div id="logo"><img style="background: aquamarine;" alt="" /></div>
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
-            <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel' :bindMaterial='ThreeMaterial' :bindUniform='ShaderUniform'></three-component>
+            <three-component v-if="$route.meta.keepAlive" bindId='testContainer' :bindModel='ThreeModel' :bindMaterial='ThreeMaterial' :bindUniform='ShaderUniform'></three-component>
             <GSAP-example></GSAP-example>
             <rebound-example></rebound-example>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet1" :bindUrl ='htmlSnippet'></snippet-component>

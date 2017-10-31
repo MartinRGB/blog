@@ -30,8 +30,8 @@
             <h3 id="toc_4">小试牛刀</h3>
               <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer2" class="simpleEditor" :data='editorSnippet'></GLSL-Component>
           <h2 id="toc_5">最终结果</h2>
-            <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel1' :bindMaterial='ThreeMaterial1'></three-component>
-            <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel0' :bindMaterial='ThreeMaterial0' :bindUniform='ShaderUniform0'></three-component>
+            
+            <three-component v-if="$route.meta.keepAlive" id="brickContainer" :bindModel='ThreeModel0' :bindMaterial='ThreeMaterial0' :bindUniform='ShaderUniform0'></three-component>
           <h2 id="参考">参考</h2>
             <ul>
               <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator</a></li>

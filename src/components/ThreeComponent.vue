@@ -1,5 +1,5 @@
 <template>
-  <div class="three-canvas" id="threecanvas"></div>
+  <div class="three-canvas" v-bind:id='bindId'></div>
 </template>
 
 <script>  
@@ -10,11 +10,10 @@
     import dat from 'dat.gui/build/dat.gui.js'
     
     var articleViewId = 'article-view'
-    var canvasContainerId = 'threecanvas'
     var aspectRatio = 0.75
     export default {
         name: 'ThreeComponent',
-        props: ['bindModel','bindMaterial','bindUniform'],
+        props: ['bindModel','bindMaterial','bindUniform','bindId'],
         data () {
             return {}
         },
@@ -423,6 +422,8 @@
         },
         mounted:function(){
             console.log('mounted canvas')
+
+            var canvasContainerId = this.bindId;
             this.destroyWebGL = this.initThreeCanvas(document.getElementById(canvasContainerId),document.getElementById(articleViewId))
 
         },

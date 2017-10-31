@@ -24,14 +24,6 @@ export default new Router({
    ,{path: '/ThreeTest',name: 'ThreeTest',component: ThreeTest,meta: {keepAlive: true}} 
    ,{path: '/Guide',name: 'Guide',component: Guide,meta: {keepAlive: true}} 
    ,{path: '/Article',name: 'Article',component: Article,meta: {keepAlive: true}} 
-    // {
-    //   path: '/article',
-    //   meta: {keepAlive: true}
-    // },
-    // {
-    //   path: '/test',
-    //   meta: {keepAlive: true}
-    // },
   ]
 })
 
