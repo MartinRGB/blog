@@ -5,9 +5,6 @@ import Home from '@/components/Home'
 
 // Define yourself import above this
 // Use Shell Import article component here;
-import ThreeTest4 from '@/posts/ThreeTest4' 
-import ThreeTest3 from '@/posts/ThreeTest3' 
-import ThreeTest2 from '@/posts/ThreeTest2' 
 import ThreeTest from '@/posts/ThreeTest' 
 import Article from '@/posts/Article' 
 
@@ -24,9 +21,6 @@ export default new Router({
     // Define yourself routes above this
     // Use Shell Export article component here;
 exportholder 
-   ,{path: '/ThreeTest3',name: 'ThreeTest3',component: ThreeTest3,meta: {keepAlive: true}} 
-   ,{path: '/ThreeTest2',name: 'ThreeTest2',component: ThreeTest2,meta: {keepAlive: true}} 
-   ,{path: '/ThreeTest',name: 'ThreeTest',component: ThreeTest,meta: {keepAlive: true}} 
    ,{path: '/Article',name: 'Article',component: Article,meta: {keepAlive: true}} 
     // {
     //   path: '/article',
