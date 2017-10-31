@@ -139,6 +139,8 @@
             <strong><p>基于 <a href="https://github.com/facebook/rebound-js" target="_blank">ReboundJS</a> 请查看其使用指南或者 API 文档,以及 <code>src/components/ReboundExample.vue</code>下面是组件效果</p></strong>
             <p>下面是案例组件实现的效果</p>
             <rebound-example></rebound-example>
+
+            <p>感谢浩哥在 Vue 上进行的简单入门，以及 Eric 兄弟在 Shell 上的指点</p>
       </div>
     </div>
   </div>
