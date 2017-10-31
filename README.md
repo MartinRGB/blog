@@ -46,7 +46,9 @@ npm run deploy
 **Blog**
 
 - [ ] Create template
+
 ~~- [x] Post & List rendering~~
+
 ~~- [x] Read local folder & generate static files~~
 
 **Three-Component**
