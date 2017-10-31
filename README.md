@@ -1,6 +1,6 @@
 ## Introduction
 
-> A mixin project for my OpenGL Online Notes
+> A blog system based on ThreeJS & VUEJS
 
 Libraries I used:
 
@@ -26,20 +26,36 @@ Libraries I used:
 * vue-ghpages-blog
 * vue-gh-pages
 
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for static page
+npm run deploy
+```
+
+## How to use
+
 ## To do
 
-- [ ] Modify project struct
+~~- [x] Modify project structs~~
 
 **Blog**
 
-- [ ] Post & List rendering
+~~- [x] Post & List rendering~~
 - [ ] Create template
-- [ ] Read local folder & html file
+~~- [x] Read local folder & generate static files~~
 
 **Three-Component**
 
-- [ ] add shader uniforms with datGUI settings
+~~- [x] add shader uniforms with datGUI settings~~
 - [ ] Easy to extend
+- [ ] reset shader uniforms
 
 **ReboundJS**
 
@@ -71,16 +87,3 @@ Libraries I used:
 
 ~~- [x] Support Local Resource~~
 
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for static page
-npm run deploy
-```
