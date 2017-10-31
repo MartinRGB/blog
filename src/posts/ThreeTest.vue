@@ -31,16 +31,16 @@
   import ListTransition from '@/components/example/ListTransition'
 
   import SnippetComponent from '@/components/SnippetComponent'
-  import htmlFile from 'file-loader!../static/codesnippets/brickwall.html';
-  import htmlFile2 from 'vue-html-loader!../static/codesnippets/brickwall.html';
-  import htmlFile3 from 'vue-html-loader!../static/html/test3.html';
+  import htmlFile from 'file-loader!../static/codesnippets/brickwall.html'
+  import htmlFile2 from 'vue-html-loader!../static/codesnippets/brickwall.html'
+  import htmlFile3 from 'vue-html-loader!../static/html/test3.html'
 
 
 
   export default {
     name: 'three',
     data: function () {return {
-      articleTitle:'2.ThreeTest',
+      articleTitle:'3.ThreeTest',
       htmlSnippet: htmlFile,
       rawHTML:htmlFile2,
 

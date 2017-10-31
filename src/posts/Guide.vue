@@ -3,9 +3,10 @@
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
+            <p>这是一个简单的、主要基于 Vue 和 ThreeJS 的着色器学习博客，之前在学习 OpenGL 的过程中，主要使用 Github Wiki 结合项目学习，但 Github Wiki 无法展示着色器效果，只能使用截图。因此决定自己动手学习制作一个 GLES 学习环境</p>
             <h2>设置标题</h2>
-            <p>因为使用了 Shell 脚本来填充列表和排序，所以若想文章有序，必须在单文件组件文章中设置<code>articleTitle:</code></p>
-            <p>因为使用了 Shell 脚本来填充列表和排序，所以若想文章有序，必须在单文件组件文章中设置<code>articleTitle:</code></p>
+            <p>因为使用了 Shell 脚本来填充列表和排序，所以若想文章有序，必须在单文件组件文章中设置<p style="display: inline;"><code>article<p style="text-transform: capitalize;display: inline;">t</p>itle:</code></p></p>
+            <p>postjs posts</code></p>
 
             <h2>导入图片</h2>
             <p>本地图片需要放置到 <code>src/static/xxxx</code> 中：</p>
@@ -77,12 +78,12 @@
             <strong><p>基于 <a href="https://github.com/mrdoob/three.js" target="_blank">threeJS</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importThreeComponent'></snippet-component></strong>
 
-            <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel' :bindMaterial='ThreeMaterial' :bindUniform='ShaderUniform'></three-component>
+            <!-- <three-component v-if="$route.meta.keepAlive" :bindModel='ThreeModel' :bindMaterial='ThreeMaterial' :bindUniform='ShaderUniform'></three-component>
             <GSAP-example></GSAP-example>
             <rebound-example></rebound-example>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet1" :bindUrl ='htmlSnippet'></snippet-component>
             <div v-html="rawHTML"></div>
-            <list-transition></list-transition>
+            <list-transition></list-transition> -->
       </div>
     </div>
   </div>
@@ -109,16 +110,16 @@
 
 
 
-  import htmlFile from 'file-loader!../static/codesnippets/brickwall.html';
-  import htmlFile2 from 'vue-html-loader!../static/codesnippets/brickwall.html';
-  import htmlFile3 from 'vue-html-loader!../static/html/test3.html';
+  import htmlFile from 'file-loader!../static/codesnippets/brickwall.html'
+  import htmlFile2 from 'vue-html-loader!../static/codesnippets/brickwall.html'
+  import htmlFile3 from 'vue-html-loader!../static/html/test3.html'
 
 
 
   export default {
     name: 'three',
     data: function () {return {
-      articleTitle:'0.使用指南',
+      articleTitle:'1.使用指南',
       imgImportSnippet: "<img src='../static/images/img0.jpeg' alt=\"img0\"/>",
       importSnippetComponent:"import SnippetComponent from '@/components/SnippetComponent'",
       codeImportSnippet0: "<snippet-component v-if=\"$route.meta.keepAlive\" lan='javascript' bindUrl ='HttpUrl'></snippet-component>",
@@ -132,9 +133,7 @@
       graphSnippet:graphFile,
       glslImportSnippet0:"<GLSL-Component v-if=\"$route.meta.keepAlive\" id =\"graphContainer\" class=\"simpleGraph\" :data='graphSnippet'></GLSL-Component>",
       glslImportSnippet1:"<GLSL-Component v-if=\"$route.meta.keepAlive\" id =\"graphContainer\" class=\"simpleEditor\" :data='graphSnippet'></GLSL-Component>",
-      glslImportSnippet2:"<GLSL-Component v-if=\"$route.meta.keepAlive\" id =\"graphContainer\" class=\"simpleEditor\" data='https://gist.githubusercontent.com/MartinRGB/1148c22d7189ec2a78e32beca4ce45fd/raw/4ecd8bd7e46a11daaaadef252a8eacc910245294/frag_dali.frag'></GLSL-Component>",
-      importThreeComponent:"import ThreeComponent from '@/components/ThreeComponent'",
-  
+      glslImportSnippet2:"<GLSL-Component v-if=\"$route.meta.keepAlive\" id =\"graphContainer\" class=\"simpleEditor\" data='HttpUrl'></GLSL-Component>",
 
       htmlSnippet: htmlFile,
       rawHTML:htmlFile2,

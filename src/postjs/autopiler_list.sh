@@ -73,7 +73,6 @@ do
     # echo "<router-link to="${a}"><li><a>${resultFirst#*:}</a></li></router-link>" >> $vuefilename
     # echo "<router-link to="{path:"/"+"${a}",name:"${a}",component:"${a}"}"><li><"${a}"><
     # echo "<div>tester</div>" >> $vuefilename
-    # printf $result
 done
 
 # breaker
