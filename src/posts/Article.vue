@@ -31,16 +31,16 @@
               <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer2" class="simpleEditor" :data='editorSnippet'></GLSL-Component>
           <h2 id="toc_5">最终结果</h2>
             
-            <three-component v-if="$route.meta.keepAlive" id="brickContainer" :bindModel='ThreeModel0' :bindMaterial='ThreeMaterial0' :bindUniform='ShaderUniform0'></three-component>
+            <three-component v-if="$route.meta.keepAlive" bindId="brickContainer" :bindModel='ThreeModel0' :bindMaterial='ThreeMaterial0' :bindUniform='ShaderUniform0'></three-component>
           <h2 id="参考">参考</h2>
             <ul>
               <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator</a></li>
               <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters</a></li>
               <li><a href="http://stackoverflow.com/questions/33898512/spread-operator-vs-rest-parameter-in-es2015-es6" target="_blank" rel="noopener noreferrer">http://stackoverflow.com/questions/33898512/spread-operator-vs-rest-parameter-in-es2015-es6</a></li>
             </ul>
-          <h2 id="mobile">移动端开发效果</h2>
+          <!-- <h2 id="mobile">移动端开发效果</h2>
               <mockup-component :bindDevice='DeviceType0' :bindUrl='ScreenAsset1'></mockup-component>
-              <mockup-component :bindDevice='DeviceType1' bindUrl='https://raw.githubusercontent.com/cozyplanes/wallpaper/master/walls/javascript_this.png'></mockup-component>
+              <mockup-component :bindDevice='DeviceType1' bindUrl='https://raw.githubusercontent.com/cozyplanes/wallpaper/master/walls/javascript_this.png'></mockup-component> -->
       </div>
     </div>
   </div>
