@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="example-container" id="example-container">
-      <div id="logo"><img style="background: aquamarine;" alt="" /></div>
+      <div id="logo"><img src="https://raw.githubusercontent.com/MartinRGB/vue_shader_ghblog/master/src/static/images/orange.png" alt="" /></div>
     </div>
   </div>
 </template>

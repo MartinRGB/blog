@@ -131,11 +131,13 @@
             <p><caption>这个效果来自“人肉安卓Stackoverflow” —— <a href="http://weibo.com/u/2834711045?topnav=1&wvr=6&topsug=1" target="_blank">Cyandev</a> 的 <a href="https://github.com/unixzii/android-SpringAnimator" target="_blank">SpringAnimator</a>,在安卓上实现了 FramerJS 的动画器</caption></p>
             
             <h2>在 Vue 中使用 GSAP 动画系统</h2>
-            <strong><p>基于 <a href="https://github.com/greensock/GreenSock-JS" target="_blank">GreenSock-JS</a> 请查看其使用指南或者 API 文档,以及 <code>src/components/GSAPExample.vue</code>案例</p></strong>
+            <strong><p>基于 <a href="https://github.com/greensock/GreenSock-JS" target="_blank">GreenSock-JS</a> 请查看其使用指南或者 API 文档,以及 <code>src/components/GSAPExample.vue</code></p></strong>
+            <p>下面是案例组件实现的效果</p>
             <GSAP-example></GSAP-example>
             
             <h2>在 Vue 中使用 ReboundJS 动画系统</h2>
-            <strong><p>基于 <a href="https://github.com/facebook/rebound-js" target="_blank">ReboundJS</a> 请查看其使用指南或者 API 文档,以及 <code>src/components/ReboundExample.vue</code>案例</p></strong>
+            <strong><p>基于 <a href="https://github.com/facebook/rebound-js" target="_blank">ReboundJS</a> 请查看其使用指南或者 API 文档,以及 <code>src/components/ReboundExample.vue</code>下面是组件效果</p></strong>
+            <p>下面是案例组件实现的效果</p>
             <rebound-example></rebound-example>
       </div>
     </div>
