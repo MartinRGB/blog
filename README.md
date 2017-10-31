@@ -41,7 +41,7 @@ npm run deploy
 
 ## How to use & Demo
 
-[Demo](http://localhost:8080/#/Guide)
+[Demo](http://www.martinrgb.com/vue_shader_ghblog/#/Guide)
 
 ## To do
 
