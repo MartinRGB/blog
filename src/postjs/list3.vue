@@ -1,8 +1,8 @@
-           <!-- Add List Here -->
-          <!-- Add List Finished -->
           <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
         </ul>
         <ul>
+<!-- Add List Finish -->
+<!-- Add List Here -->
 </template>
 <template>
 <router-link to=Article><li><a>1.砖块着色器</a></li></router-link> 
