@@ -43,12 +43,10 @@ npm run deploy
 
 ## To do
 
-~~- [x] Modify project structs~~
-
 **Blog**
 
-~~- [x] Post & List rendering~~
 - [ ] Create template
+~~- [x] Post & List rendering~~
 ~~- [x] Read local folder & generate static files~~
 
 **Three-Component**
@@ -86,4 +84,6 @@ npm run deploy
 ~~- [x] Support HTTP Resource~~
 
 ~~- [x] Support Local Resource~~
+
+~~- [x] Modify project structs~~
 
