@@ -39,7 +39,9 @@ npm run dev
 npm run deploy
 ```
 
-## How to use
+## How to use & Demo
+
+[Demo](http://localhost:8080/#/Guide)
 
 ## To do
 
