@@ -36,11 +36,11 @@ echo export default "["$all"]" >> $jsfilename
 
 # for file in $filepath
 # do
-    
+
 #     a=${file:9}
 #     # title = ${file##articleTitle:}
 #     a=${a/.vue/}
-#     resultFirst=$(grep -w "articleTitle:"  ${file} | cut -f2 -d\') 
+#     resultFirst=$(grep -w "articleTitle:"  ${file} | cut -f2 -d\')
 #     printf $resultFirst
 
 #     echo "<router-link to="${a}"><li><a>${resultFirst#*:}</a></li></router-link>" >> $vuefilename
@@ -57,10 +57,10 @@ echo export default "["$all"]" >> $jsfilename
 results=()
 for file in $filepath
 do
-    
+
     a=${file:9}
     a=${a/.vue/}
-    resultFirst=$(grep -w "articleTitle:"  ${file} | cut -f2 -d\') 
+    resultFirst=$(grep -w "articleTitle:"  ${file} | cut -f2 -d\')
     # clean
     sed -i.bak "/${a}/d" list.vue
 
@@ -69,7 +69,7 @@ do
     # list_place_holder \
     # ' list.vue
     # sed -i.bak "s|list_place_holder|<router-link to="${a}"><li><a>${resultFirst#*:}</a></li></router-link>|g" list.vue
-    results+="<router-link to="${a}"><li><a>${resultFirst#*:}</a></li></router-link>\n"
+    results+="<router-link to="${a}"><\li><a>${resultFirst#*:}<\/a><\/li><\/router-link> \n"
     # echo "<router-link to="${a}"><li><a>${resultFirst#*:}</a></li></router-link>" >> $vuefilename
     # echo "<router-link to="{path:"/"+"${a}",name:"${a}",component:"${a}"}"><li><"${a}"><
     # echo "<div>tester</div>" >> $vuefilename
@@ -78,19 +78,13 @@ done
 
 # breaker
 IFS=$'\n' breaker="${results[*]}"
-#printf "${breaker}" | sort -t '>' -n -k4
-reorder=$(printf "${breaker}" | sort -t '>' -n -k4)
-# echo "$reorder"
-reorder2=$(printf "%s\n" $reorder)
-echo "$reorder2"
+# sorter
+sorter=$(printf "${breaker}" | sort -t '>' -n -k4)
+# reorder
+reorder=$(printf "%s" $sorter)
+echo "$reorder"
 # Add into File
 sed -i.bak '/Add List Here/a\
 list_place_holder \
 ' list.vue
-sed -i.bak "s|list_place_holder|$reorder2|g" list.vue
-
-
-# printf "[%s]\n" "${sorted[@]}"
-# print the results:
-# printf "%s\n" "${results[@]}" 
-# echo "${results}"
+sed -i.bak "s|list_place_holder|$reorder|g" list.vue
