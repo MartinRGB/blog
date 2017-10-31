@@ -40,8 +40,7 @@
   export default {
     name: 'three',
     data: function () {return {
-      articleTitle:'101.ThreeTest',
-
+      articleTitle:'2.ThreeTest',
       htmlSnippet: htmlFile,
       rawHTML:htmlFile2,
 
@@ -54,16 +53,11 @@
       }
     }},
     components: {ThreeComponent,GSAPExample,ReboundExample,SnippetComponent,ListTransition},
-    methods: {
-    }
-    ,computed: {},
+    methods: {},
+    computed: {},
     created: function () {},
-    mounted:function(){
-
-    },
-
-    destroyed:function(){
-    }
+    mounted:function(){},
+    destroyed:function(){}
   }
 
 </script>
