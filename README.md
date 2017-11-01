@@ -95,9 +95,7 @@ npm run deploy
 
 License
 --------
-
     MIT License
-
     Copyright (c) 2017 MartinRGB
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
