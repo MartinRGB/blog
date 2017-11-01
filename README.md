@@ -14,7 +14,6 @@ Libraries I used:
 * GLSLCanvas
 * highlight.js
 * highlight-linenumbers.js
-* MathJax
 * GSAP
 * Rebound.js
 * HTML5 device mockups
