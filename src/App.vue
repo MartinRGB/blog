@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <header-bar id="header-bar"></header-bar>
-    <transition name="fade" mode="out-in" v-on:before-enter="beforeEnter" v-on:after-enter="afterEnter" appear>
-        <router-view></router-view>
-    </transition>
+      <transition name="fade" mode="out-in" v-on:before-enter="beforeEnter" v-on:after-enter="afterEnter" appear>
+          <router-view></router-view>
+      </transition>
     <footer-bar></footer-bar>
   </div>
 </template>
@@ -27,12 +27,12 @@ export default {
     // Router Event
     // -------------------------------------------------------
     afterEnter: function( el ) {
-      //alert(el.firstChild.firstChild.className +' Route entered' );
+      // alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
       // alert(el.firstChild.firstChild.className)
     },
     beforeEnter: function(el){
-      //alert(el.firstChild.firstChild.className +' Route entered' );
+      // alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
     }
   },
@@ -50,6 +50,7 @@ export default {
 .fade-enter-active, .fade-leave-active {
   transition: all 0.3s
 }
+
 
 .fade-enter, .fade-leave-active {
   opacity: 0;

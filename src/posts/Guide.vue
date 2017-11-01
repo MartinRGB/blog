@@ -3,6 +3,7 @@
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
+            <p><a href="https://github.com/MartinRGB/vue_shader_ghblog/" target="_blank">Repo on GitHub</a></p>
             <p>这是一个简单的、主要基于 Vue 和 ThreeJS 的着色器学习博客，之前在学习 OpenGL 的过程中，主要使用 Github Wiki 结合项目学习，但 Github Wiki 无法展示着色器效果，只能使用截图。因此决定自己动手学习制作一个能够结合 MWeb 的 GLES 学习环境。</p>
             <h2>简单结构介绍</h2>
             <p>本项目主要依托 ghpages，利用 <code>npm run deploy</code> 生成静态文件到根目录的 <code>docs</code> 中</p>
