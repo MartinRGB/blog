@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import List from '@/components/List'
 import Home from '@/components/Home'
-
 // Define yourself import above this
 // Use Shell Import article component here;
 import Guide from '@/posts/Guide' 
@@ -17,7 +15,7 @@ export default new Router({
       name: 'Home',
       component: Home,
       meta: {keepAlive: false}
-    }
+    },
     // Define yourself routes above this
     // Use Shell Export article component here;
    ,{path: '/Guide',name: 'Guide',component: Guide,meta: {keepAlive: true}} 

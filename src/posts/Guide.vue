@@ -25,8 +25,7 @@
 
             <h2>代码高亮 - SnippetComponent</h2>
             <strong><p>基于 <a href="https://highlightjs.org/" target="_blank">highlightjs</a> 请查看其使用指南或者 API 文档</p></strong>
-            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importSnippetComponent'></snippet-component></strong>
-
+            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importSnippetComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>在 <code>v-if</code> 中设置 <code>$route.meta.keepAlive</code> 是否缓存</p>
             <p>在 <code>lan</code> 中设置高亮语言类型</p>
             <p>在 <code>:bindUrl</code> 中设置绑定的代码文件</p>
@@ -46,7 +45,7 @@
 
             <h2>LaTex 数学公式 - MathjaxComponent</h2>
             <strong><p>基于 <a href="https://github.com/mathjax/MathJax" target="_blank">MathJax</a> 请查看其使用指南或者 API 文档</p></strong>
-            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importMathjaxComponent'></snippet-component></strong>
+            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importMathjaxComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>在 <code>:bindFunc</code> 中设置绑定的本地公式文件或字符串</p>
             <h3>使用本地文件</h3>
             <p>首先在单文件组件文章中导入本地代码文件 <code>import mathFile from 'src/static/xxx'</code></p>
@@ -60,7 +59,7 @@
 
             <h2>GLSLCanvas - GLSLComponent</h2>
             <strong><p>基于 <a href="https://github.com/patriciogonzalezvivo/glslCanvas" target="_blank">glslCanvas</a> 和 <a href="https://github.com/patriciogonzalezvivo/glslEditor" target="_blank">glslEditor</a> 请查看其使用指南或者 API 文档</p></strong>
-            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importGLSLComponent'></snippet-component></strong>
+            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importGLSLComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>在 <code>v-if</code> 中设置 <code>$route.meta.keepAlive</code> 是否缓存</p>
             <p>class 设置为 <code>simpleGraph</code> 生成图表 Canvas</p>
             <p>class 设置为 <code>simpleEditor</code> 生成编辑器带预览 Canvas</p>
@@ -85,8 +84,8 @@
 
             <h2>ThreeJS - ThreeComponent</h2>
             <strong><p>基于 <a href="https://github.com/mrdoob/three.js" target="_blank">threeJS</a> 请查看其使用指南或者 API 文档</p></strong>
-            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importThreeComponent'></snippet-component></strong>
-            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importThreeComponent2'></snippet-component></strong>
+            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importThreeComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
+            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importThreeComponent2' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>目前仅仅支持模型、材质、着色器自定义功能</p>
             <p>在 <code>v-if</code> 中设置 <code>$route.meta.keepAlive</code> 是否缓存</p>
             <p>在 <code>bindId</code> 中设置绑定Id (必须)</p>
@@ -122,7 +121,7 @@
 
             <h2>手机展示 - MockupComponent</h2>
             <strong><p>基于 <a href="https://github.com/pixelsign/html5-device-mockups" target="_blank">html5-device-mockups</a> 请查看其使用指南或者 API 文档</p></strong>
-            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importMockupComponent'></snippet-component></strong>
+            <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importMockupComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>在 <code>bindDevice</code> 中设置绑定机型为 <code>android</code> 还是 <code>iOS</code>，默认安卓</p>
             <p>首先在单文件组件文章中导入本地素材文件 <code>import assetFile from 'src/static/xxx'</code></p>
             <p>然后在 <code>data</code> 中绑定数据 <code>screenAsset:assetFile</code></p>

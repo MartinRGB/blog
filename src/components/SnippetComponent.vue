@@ -12,7 +12,7 @@
   import '../static/js/hljs-linenumbers.js'
 
   export default {
-    props: ['bindUrl','lan','bindCode'],
+    props: ['bindUrl','lan','bindCode','bindSpecial'],
     name: 'SnippetComponent',
     data () {
       return {
@@ -65,7 +65,15 @@
           codeElements[i].style.background = 'transparent';
           codeElements[i].style.whiteSpace = 'pre-line';
           codeElements[i].style.fontSize = '12px';
+          
+          if(this.bindSpecial !=null){
+            var str = this.bindSpecial.split(':')
+            codeElements[i].style[str[0]] = str[1];
+            codeElements[i].style.paddingLeft = '0px';
+          }
+
         }
+
       }
     }
   }
