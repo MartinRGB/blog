@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header-bar id="fsdaf"></header-bar>
+    <header-bar id="header-bar"></header-bar>
     <transition name="fade" mode="out-in" v-on:before-enter="beforeEnter" v-on:after-enter="afterEnter" appear>
         <router-view></router-view>
     </transition>
@@ -35,7 +35,11 @@ export default {
       //alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
     }
-  }
+  },
+  computed: {},
+  created: function () {},
+  mounted:function(){},
+  destroyed:function(){}
 }
     
 </script>

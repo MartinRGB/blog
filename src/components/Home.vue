@@ -3,7 +3,7 @@
     <div class="transition-container">
       <div class="center-container">
         <div id="list" class ="list-view">
-          <h2>Environment ,Style Test & Lab</h2>
+        
               <posts></posts>
         </div>
       </div>
