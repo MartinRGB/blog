@@ -1,6 +1,7 @@
 ## Introduction
 
-> A simple blog system based on ThreeJS & Vue
+> A simple blog system based on Vue & ThreeJS
+> 依赖 GitHub Pages，本地生成静态页的 GLES 学习博客
 
 Libraries I used:
 
