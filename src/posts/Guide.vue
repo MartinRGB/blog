@@ -156,8 +156,10 @@
   import ThreeComponent from '@/components/ThreeComponent'
   import * as THREE from 'three'
   import shader0 from '../static/shaders/brickwall.json'
+  import shader1 from '../static/shaders/perfrag_light.json'
   import texture0 from '../static/images/landscape.jpg'
   import texture1 from '../static/textures/metal.jpg'
+  import texture2 from '../static/textures/jade.jpg' 
   import model0 from '../static/models/teapot.json'
   import shaderExampleFile from '../static/codesnippets/shaderexample.js'
 
@@ -199,15 +201,18 @@
       threeImportSnippet4: "<three-component v-if=\"$route.meta.keepAlive\" bindId='threeContainer4' :bindModel='threeModel' :bindMaterial='threeTexture' :bindUniform='shaderUniform'></three-component>",
       threeModel:new THREE.BoxGeometry( 2, 2, 2 ),
       threeTexture:new THREE.MeshLambertMaterial( { color: 0xff004b, wireframe: false } ),
-      threeModel1:new THREE.SphereGeometry( 1, 16,16 ),
+      threeModel1:new THREE.SphereGeometry( 1, 32,32 ),
       threeTexture1:texture0,
       shaderExampleSnippet:shaderExampleFile,
       threeModel2:model0,
-      threeTexture2:shader0,
+      threeTexture2:shader1,
+      // shaderUniform:{
+      //   TextureMap:THREE.ImageUtils.loadTexture(texture1),
+      //   BrickPct:new THREE.Vector2(0.9,0.85),
+      //   BrickColor:new THREE.Vector3(1.,0.3,0.2)
+      // },
       shaderUniform:{
-        TextureMap:THREE.ImageUtils.loadTexture(texture1),
-        BrickPct:new THREE.Vector2(0.9,0.85),
-        BrickColor:new THREE.Vector3(1.,0.3,0.2)
+        u_texture:THREE.ImageUtils.loadTexture(texture2),
       },
       importMockupComponent:"import MockupComponent from '@/components/MockupComponent'",
       mockupImportSnippet: "<mockup-component bindDevice='iOS' :bindUrl='screenAsset'></mockup-component>",
