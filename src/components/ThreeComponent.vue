@@ -233,6 +233,7 @@
                 guiCam.add(camera.rotation, 'y', -1, 1).name('rotationY').listen();
                 guiCam.add(camera.rotation, 'z', -20, 20).name('rotationZ').listen();
 
+
                 gui.add(options, 'reset');
                 gui.close()
             },
@@ -277,10 +278,6 @@
                 Object.keys(PropKeys).forEach(function (index) {
                     shader['uniforms'][PropKeys[index]]['value'] = PropValues[index]
 
-
-                    console.log(PropValues[index].constructor.name)
-
-
                     if(PropValues[index].constructor.name == 'Vector2' || PropValues[index].constructor.name == 'r'){
                         guiUniform.add(PropValues[index],'x',-1,1).name(PropKeys[index]+'.v1').listen;
                         guiUniform.add(PropValues[index],'y',-1,1).name(PropKeys[index]+'.v2').listen;
@@ -302,6 +299,8 @@
                             });
                         }
                         else{
+
+
                             guiUniform.add(PropValues[index],'x',-1,1).name(PropKeys[index]+'.v1').listen;
                             guiUniform.add(PropValues[index],'y',-1,1).name(PropKeys[index]+'.v2').listen;
                             guiUniform.add(PropValues[index],'z',-1,1).name(PropKeys[index]+'.v3').listen;

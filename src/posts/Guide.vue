@@ -43,6 +43,13 @@
             <snippet-component v-if="$route.meta.keepAlive" lan='html' :bindCode ='codeImportSnippet2'></snippet-component>
             <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
             <p><caption>高亮示例</caption></p>
+            <h3>直接使用 hljs</h3>
+            <p>在 <code>html</code> 中直接利用 hljs的有关CSS类手动编写</p>
+            <!-- <snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importHTMLComponent' bindSpecial='fontSize:14px'></snippet-component> -->
+            <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet06" :bindUrl ='highLightSnippet'></snippet-component>
+            <p>在 <code>method</code> 中自定义 <code>highlight</code> 方法 (您也可以自定义选择规则)，重新高亮</p>
+            <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet07" :bindUrl ='highLightJSSnippet'></snippet-component>
+            <p>在 <code>mounted</code> 挂载后调用 <code>highlight</code> 方法</p>
 
             <h2>LaTex 数学公式 - MathjaxComponent</h2>
             <strong><p>基于 <a href="https://github.com/mathjax/MathJax" target="_blank">MathJax</a> 请查看其使用指南或者 API 文档</p></strong>
@@ -152,6 +159,8 @@
   import MathFile from '../static/codesnippets/mathfunc.txt'
   import GLSLComponent from '@/components/GLSLComponent'
   import graphFile from '../static/codesnippets/brickwallGraph.frag'
+  import highLightFile from 'file-loader!../static/codesnippets/highlightdirectly.html'
+  import highLightJSFile from '../static/codesnippets/highlightdirectly.js'
 
   import ThreeComponent from '@/components/ThreeComponent'
   import * as THREE from 'three'
@@ -179,6 +188,9 @@
     data: function () {return {
       articleTitle:'1.使用指南',
       imgImportSnippet: "<img src='../static/images/img0.jpeg' alt=\"img0\"/>",
+      highLightSnippet:highLightFile,
+      highLightJSSnippet:highLightJSFile,
+      importHTMLComponent:"import highLightFile from \'file-loader!../static/codesnippets/highlight.html\'",
       importSnippetComponent:"import SnippetComponent from '@/components/SnippetComponent'",
       codeImportSnippet0: "<snippet-component v-if=\"$route.meta.keepAlive\" lan='javascript' bindUrl ='HttpUrl'></snippet-component>",
       codeImportSnippet1: "<snippet-component v-if=\"$route.meta.keepAlive\" lan='glsl' :bindUrl ='vertSnippet'></snippet-component>",
@@ -213,6 +225,7 @@
       // },
       shaderUniform:{
         u_texture:THREE.ImageUtils.loadTexture(texture2),
+        lightPosition:new THREE.Vector3(100.,100.,1200.)
       },
       importMockupComponent:"import MockupComponent from '@/components/MockupComponent'",
       mockupImportSnippet: "<mockup-component bindDevice='iOS' :bindUrl='screenAsset'></mockup-component>",
