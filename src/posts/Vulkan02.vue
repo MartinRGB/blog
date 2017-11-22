@@ -159,31 +159,45 @@ int main() {
 <p>按 <strong>F5</strong> 编译运行项目，会看到如下命令弹窗:</p>
 <p><img src="../static/images/vulkan/02/vs_test_window.png" alt=""></p>
 <p>extensions 支持数为非0（我这里11）的话，那么恭喜，可以愉快玩耍 Vulkan 了。</p>
-<p>为了避免每次都添加库和头文件，你得创建个模板，2015 选择 <srong>File -&gt; Export Template...</srong>，2017 选择
-<srong>Project -&gt; Export Template...</srong>。然后选择
-<srong>Project template</srong> ，设置模板名称和描述。</p>
+<p>为了避免每次都添加库和头文件，你得创建个模板，2015 选择 <strong>File -&gt; Export Template...</strong>，2017 选择
+<strong>Project -&gt; Export Template...</strong>。然后选择
+<strong>Project template</strong> ，设置模板名称和描述。</p>
 <p><img src="../static/images/vulkan/02/vs_export_template.png" alt=""></p>
-<p>选择 <srong>Finish</srong> ，在新建项目 <srong>New Project</srong>
-便有了模板，用它来创建一个 <srong>Hello Triangle</srong> 作为预习。</p>
+<p>选择 <strong>Finish</strong> ，在新建项目 <strong>New Project</strong>
+便有了模板，用它来创建一个 <strong>Hello Triangle</strong> 作为预习。</p>
 <p><img src="../static/images/vulkan/02/vs_template.png" alt=""></p>
 <p>现在准备开始下一章 <a href="//vulkan-tutorial.com/Drawing_a_triangle/Setup/Base_code">the real adventure</a>。</p>
 <h2 id="page_Android">Android</h2>
+<h3 id="page_Vulkan_Wrapper">NDK with Vulkan 测试</h3>
 <p>这部分主要参考 LunarG Vulkan Github repo <a href="https://github.com/LunarG/VulkanSamples">VulkanSamples</a>.</p>
 <p>在这之前可以查看一下 NDK API Doc 中的 <a href="https://developer.android.com/ndk/guides/graphics/getting-started.html">Vulkan 设置</a>.</p>
 <ul>
-<li>Build shaderc source code inside NDK</li>
+<li>NDK下构建 shaderc 源码</li>
 </ul>
-<pre>$ cd ${ndk_root}<span class="pl-k">/</span>sources<span class="pl-k">/</span>third_party<span class="pl-k">/</span>shaderc
+<pre ref="cvglistbox">$ cd ${ndk_root}<span class="pl-k">/</span>sources<span class="pl-k">/</span>third_party<span class="pl-k">/</span>shaderc
 $ <span class="pl-c1">..</span><span class="pl-k">/</span><span class="pl-c1">..</span><span class="pl-k">/</span><span class="pl-c1">..</span><span class="pl-k">/</span>ndk<span class="pl-k">-</span>build <span class="pl-c1">NDK_PROJECT_PATH</span><span class="pl-k">=</span><span class="pl-c1">.</span> <span class="pl-c1">APP_BUILD_SCRIPT</span><span class="pl-k">=</span><span class="pl-smi">Android</span><span class="pl-k">.</span>mk <span class="pl-c1">APP_STL</span><span class="pl-k">:</span><span class="pl-k">=</span>gnustl_static <span class="pl-c1">APP_ABI</span><span class="pl-k">=</span>all <span class="pl-c1">NDK_TOOLCHAIN_VERSION</span><span class="pl-k">:</span><span class="pl-k">=</span>clang libshaderc_combined <span class="pl-k">-</span>j16</pre>
 <ul>
-<li>Generate Android Studio Projects</li>
+<li>生成 Android Studio 项目</li>
 </ul>
 <pre>$ cd <span class="pl-c1">YOUR_DEV_DIRECTORY</span><span class="pl-k">/</span><span class="pl-smi">VulkanSamples</span><span class="pl-k">/</span><span class="pl-c1">API</span><span class="pl-k">-</span><span class="pl-smi">Samples</span>
 $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span class="pl-k">=</span><span class="pl-c1">ON</span></pre>
+<p>会在 API-Samples 目录下生成一个 android 文件夹，结果如下：</p>
+<img src="../static/images/vulkan/02/mac_cmake_vulkansamples.png" alt="">
+<p>测试 <strong>immutable_sampler</strong> 项目:</p>
+<mockup-component bindDevice='android' class="mediumimg" :bindUrl='screenAsset'></mockup-component>
 <h3 id="page_Vulkan_Wrapper">Vulkan Wrapper</h3>
-<p>提取 Vulkan 包裹器 <a href="https://github.com/LunarG/VulkanSamples/tree/master/common">Vulkan Wrapper</a></p>
-
-<p>因为很大一部分 Mac 设备显卡因素，对 Vulkan 的支持不好，需要借助 MoltenVK 才能运行部分 Vulkan Demo，这里不做表述，可以参考我 fork 的 <a href="http://www.moltengl.com/moltenvk/" rel="nofollow">Vulkan</a> 主项目。同时个人较少使用 Linux ，因此也不翻译 Linux 部分 </p>
+<ul>
+  <li>
+    <p>提取 LunarG 的 <a href="https://github.com/LunarG/VulkanSamples/tree/master/common">Vulkan Wrapper</a>,或者直接从源头 Google 处提取 <a href="https://github.com/googlesamples/android-vulkan-tutorials/tree/master/common/vulkan_wrapper">Vulkan Wrapper</a></p>
+  </li>
+    <li>
+    <p>在 NDK 目录下胶水层目录 <strong>native_app_glue</strong> 外部新建 <strong>vulkan_wrapper</strong> 目录，并复制 vulkan_wrapper 文件</a></p>
+  </li>
+  <li>使用 Android Studio 的 无 Activity 模板新建 C++ 11 的 NDK 项目 </li>
+  <li>修改 <strong>AndroidManifest.xml</strong> 文件</li>
+</ul>
+<snippet-component v-if="$route.meta.keepAlive" lan='xml' id="CodeSnippet" :bindUrl ='xmlSnippet'></snippet-component>
+<p>因为很大一部分 Mac 设备显卡因素，对 Vulkan 的支持不好，需要借助 MoltenVK 才能运行部分 Vulkan Demo，这里暂时不做表述，今后有空的话可以补全一下 Mac 运行 Vulkan 的环节配置，可以参考我 fork 的 <a href="http://www.moltengl.com/moltenvk/" rel="nofollow">Vulkan</a> 主项目。同时个人较少使用 Linux ，因此也不翻译 Linux 部分 </p>
 <h2 id="page_Reference">参考</h2>
             <p>整理一些常用的 Vulkan repo 以及 tutorial 链接：</p>
             <ul>
@@ -196,6 +210,10 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
               <li>
                 <p><a href="https://github.com/MartinRGB/vulkan-basic-samples">vulkan-basic-samples
 </a> —— Google 提供的案例</p>
+              </li>
+              <li>
+                <p><a href="https://github.com/LunarG/VulkanSamples">VulkanSamples
+</a> —— LunarG Vulkan Samples</p>
               </li>
               <li>
                 <p><a href="http://jhenriques.net/development.html">Vulkan Tutorial - 101
@@ -213,13 +231,20 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
 
 <script>
   import SnippetComponent from '@/components/SnippetComponent'
+  import MockupComponent from '@/components/MockupComponent'
+  import assetFile from '../static/images/vulkan/02/mac_android_immutable.png'
+  import vertFile from '../static/codesnippets/brickwall.vert'
+  import xmlFile from '!file-loader!../static/codesnippets/vulkan/02/AndroidManifest.xml'
 
   export default {
     name: 'vulkan01',
     data: function () {return {
-      articleTitle:'4.[译] Vulkan 入门系列 —— 开发环境'
+      articleTitle:'4.[译] Vulkan 入门系列 —— 开发环境',
+      screenAsset:assetFile,
+      vertSnippet:xmlFile,
+      xmlSnippet:xmlFile
     }},
-    components: {},
+    components: {SnippetComponent,MockupComponent},
     methods: {
       goAnchor(selector) {
         var anchor = this.$el.querySelector(selector)
@@ -239,6 +264,8 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
     created: function () {},
     mounted:function(){
       this.highlight()
+    },
+    created:function(){
     },
     destroyed:function(){}
   }
