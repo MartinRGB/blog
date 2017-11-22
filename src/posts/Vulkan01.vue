@@ -168,8 +168,7 @@ createInfo.bar = ...;
 <p>前面提到，Vulkan 的设计目标是提供高性能和低硬件开销。因此它默认提供的错误检测和 debugging 功能有限，若果编写错误，驱动经常会突然崩溃而不返送错误代码，甚至可能可能更糟，可能会在显卡持续工作，最终影响其他使用。</p>
 <p>Vulkan 通过<em><strong>validation layers</strong></em> 来提供了种类广泛的错误检测。验证层代码插入到了 API 和显卡驱动中，在函数参数上进行错误检测，并跟踪内存管理问题。你可以在开发过程中开启，然后在开完完成后关闭，这样就完全消除了错误检测的性能开销。每个开发者都可以高度自定义验证层，但是 LunarG 提供的 Vulkan SDK 提供了一系列标准的验证层检测，本教程中将大量使用。需要通过注册回调函数的手段来接受 debug 信息。</p>
 <p>因为使用 Vulkan 需要清晰的定义每个操作，加上验证层的使用非常广泛，因此找 bug 相比 OpenGL 和 Direct3D更容易。</p>
-<p>在开始编程之前，我们需要先配置一下开发环境。<a href="//vulkan-tutorial.com/Development_environment">setting
-up the development environment</a></p>
+<p>在开始编程之前，我们需要先配置一下开发环境。查看<router-link to=Vulkan02><a href="//vulkan-tutorial.com/Development_environment">配置开发环境</a></router-link>。</p>
       </div>
     </div>
   </div>
@@ -177,13 +176,11 @@ up the development environment</a></p>
 
 <script>
   import SnippetComponent from '@/components/SnippetComponent'
-  import vulkanFile from '../static/codesnippets/vulkan/vulkan01.cpp'
 
   export default {
     name: 'vulkan01',
     data: function () {return {
       articleTitle:'3.[译] Vulkan 入门系列 —— 综述',
-      codeSnippetCpp:vulkanFile,
     }},
     components: {SnippetComponent},
     methods: {
