@@ -46,17 +46,22 @@ npm run deploy
 
 ## To do
 
+**Vue**
+
+- [ ] Clean generated code before `npm run deploy|dev`
+
 **Blog**
 
 - [ ] Create template
 
-~~- [x] Post & List rendering~~
+- [ ] Make Anchor Link Easier
 
-~~- [x] Read local folder & generate static files~~
+- [ ] Fixed Table Content
+
+- [ ] Windows Notebook | MBP Device Mockups
 
 **Three-Component**
 
-~~- [x] add shader uniforms with datGUI settings~~
 - [ ] Easy to extend
 - [ ] reset shader uniforms
 
@@ -73,25 +78,6 @@ npm run deploy
 
 - [ ] CORS (Access-Control-Allow-Origin)
 - [ ] Support HTTP Resource
-
-~~**Mathjax-Copmonent**~~
-
-~~- [x] Support HTTP Resource~~
-
-~~**GLSL-Componet**~~
-
-~~- [x] Support HTTP Resource~~
-
-~~- [x] Support Local Resource~~
-
-~~**Snippet-Componet**~~
-
-~~- [x] Support HTTP Resource~~
-
-~~- [x] Support Local Resource~~
-
-~~- [x] Modify project structs~~
-
 
 License
 --------
