@@ -69,75 +69,7 @@
 <p><img src="../static/images/vulkan/02/vs_new_item.png" alt=""></p>
 <p><img src="../static/images/vulkan/02/vs_new_source_file.png" alt=""></p>
 <p>先别担心不懂，添加下列代码。下一章会讲，这里先保证能编译运行 Vulkan。</p>
-<div class="top-box hide"><div class="alert-info"></div></div><pre data-original-code="#define GLFW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
-
-#define GLM_FORCE_RADIANS
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/vec4.hpp>
-#include <glm/mat4x4.hpp>
-
-#include <iostream>
-
-int main() {
-    glfwInit();
-
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    GLFWwindow* window = glfwCreateWindow(800, 600, &quot;Vulkan window&quot;, nullptr, nullptr);
-
-    uint32_t extensionCount = 0;
-    vkEnumerateInstanceExtensionProperties(nullptr, &amp;extensionCount, nullptr);
-
-    std::cout << extensionCount << &quot; extensions supported&quot; << std::endl;
-
-    glm::mat4 matrix;
-    glm::vec4 vec;
-    auto test = matrix * vec;
-
-    while(!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
-    }
-
-    glfwDestroyWindow(window);
-
-    glfwTerminate();
-
-    return 0;
-}"data-snippet-id="ext.bbc1dc49b97da82fd34a4d1a09933466" data-snippet-saved="false" data-codota-status="done"><code class="language-c++ hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GLFW_INCLUDE_VULKAN</span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;GLFW/glfw3.h&gt;</span></span>
-
-<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GLM_FORCE_RADIANS</span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GLM_FORCE_DEPTH_ZERO_TO_ONE</span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;glm/vec4.hpp&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;glm/mat4x4.hpp&gt;</span></span>
-
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    glfwInit();
-
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    GLFWwindow* window = glfwCreateWindow(<span class="hljs-number">800</span>, <span class="hljs-number">600</span>, <span class="hljs-string">"Vulkan window"</span>, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>);
-
-    <span class="hljs-keyword">uint32_t</span> extensionCount = <span class="hljs-number">0</span>;
-    <span class="hljs-function">vkEnumerateInstanceExtensionProperties</span>(<span class="hljs-literal">nullptr</span>, &amp;extensionCount, <span class="hljs-literal">nullptr</span>);
-
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; extensionCount &lt;&lt; <span class="hljs-string">" extensions supported"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
-
-    glm::mat4 matrix;
-    glm::vec4 vec;
-    <span class="hljs-keyword">auto</span> test = matrix * vec;
-
-    <span class="hljs-keyword">while</span>(!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
-    }
-
-    glfwDestroyWindow(window);
-
-    glfwTerminate();
-
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre>
+<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-4" bindSpecial='fontSize:14px' :bindCode ='winCPPSnippet'></snippet-component>
 <p>现在我们来配置项目，剔除错误。打开项目属性对话框，确保勾选 <strong>All Configurations</strong> （所有配置）。既能
  <strong>Debug</strong> 又能 <strong>Release</strong>。</p>
 <p><img class="mediumimg" src="../static/images/vulkan/02/vs_open_project_properties.png" alt=""></p>
@@ -165,6 +97,7 @@ int main() {
 <p>选择 <strong>Finish</strong> ，在新建项目 <strong>New Project</strong>
 便有了模板，用它来创建一个 <strong>Hello Triangle</strong> 作为预习。</p>
 <p><img src="../static/images/vulkan/02/vs_template.png" alt=""></p>
+<p><a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/0.VulkanTest(VS2015)">VS 2015 项目地址</a></p>
 <p>现在准备开始下一章 <a href="//vulkan-tutorial.com/Drawing_a_triangle/Setup/Base_code">the real adventure</a>。</p>
 <h2 id="page_Android">Android</h2>
 <h3 id="page_Vulkan_Wrapper">NDK with Vulkan 测试</h3>
@@ -173,13 +106,11 @@ int main() {
 <ul>
 <li>NDK下构建 shaderc 源码</li>
 </ul>
-<pre ref="cvglistbox">$ cd ${ndk_root}<span class="pl-k">/</span>sources<span class="pl-k">/</span>third_party<span class="pl-k">/</span>shaderc
-$ <span class="pl-c1">..</span><span class="pl-k">/</span><span class="pl-c1">..</span><span class="pl-k">/</span><span class="pl-c1">..</span><span class="pl-k">/</span>ndk<span class="pl-k">-</span>build <span class="pl-c1">NDK_PROJECT_PATH</span><span class="pl-k">=</span><span class="pl-c1">.</span> <span class="pl-c1">APP_BUILD_SCRIPT</span><span class="pl-k">=</span><span class="pl-smi">Android</span><span class="pl-k">.</span>mk <span class="pl-c1">APP_STL</span><span class="pl-k">:</span><span class="pl-k">=</span>gnustl_static <span class="pl-c1">APP_ABI</span><span class="pl-k">=</span>all <span class="pl-c1">NDK_TOOLCHAIN_VERSION</span><span class="pl-k">:</span><span class="pl-k">=</span>clang libshaderc_combined <span class="pl-k">-</span>j16</pre>
+<snippet-component v-if="$route.meta.keepAlive" lan='shell' id="CodeSnippet-5" bindSpecial='fontSize:14px' :bindCode ='shaderCSnippet'></snippet-component>
 <ul>
 <li>生成 Android Studio 项目</li>
 </ul>
-<pre>$ cd <span class="pl-c1">YOUR_DEV_DIRECTORY</span><span class="pl-k">/</span><span class="pl-smi">VulkanSamples</span><span class="pl-k">/</span><span class="pl-c1">API</span><span class="pl-k">-</span><span class="pl-smi">Samples</span>
-$ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span class="pl-k">=</span><span class="pl-c1">ON</span></pre>
+<snippet-component v-if="$route.meta.keepAlive" lan='shell' id="CodeSnippet-6" bindSpecial='fontSize:14px' :bindCode='cmakeAndroidSnippet'></snippet-component>
 <p>会在 API-Samples 目录下生成一个 android 文件夹，结果如下：</p>
 <img src="../static/images/vulkan/02/mac_cmake_vulkansamples.png" alt="">
 <p>测试 <strong>immutable_sampler</strong> 项目:</p>
@@ -194,8 +125,18 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
   </li>
   <li>使用 Android Studio 的 无 Activity 模板新建 C++ 11 的 NDK 项目 </li>
   <li>修改 <strong>AndroidManifest.xml</strong> 文件</li>
+  <snippet-component v-if="$route.meta.keepAlive" lan='xml' id="CodeSnippet" :bindUrl ='xmlSnippet'></snippet-component>
+  <li>修改 <strong>CMakelist.txt</strong> 文件，链接胶水层和包裹器静态库</li>
+  <snippet-component v-if="$route.meta.keepAlive" lan='txt' id="CodeSnippet-2" :bindUrl ='cmakeSnippet'></snippet-component>
+  <li>注意调整文件结构，注意 <strong>build.gradle(Module:app)</strong> 中使用 <strong>CMakelist.txt</strong> 的路径位置</li>
+  <li>注意调整文件结构，注意 <strong>CMakelist.txt</strong> 中使用项目内共享库的位置</li>
+  <li>编写 cpp 主文件，这里使用 Google 提供的 <strong>load vulkan</strong> 案例</li>
+  <snippet-component v-if="$route.meta.keepAlive" lan='txt' id="CodeSnippet-3" :bindUrl ='cppSnippet'></snippet-component>
+  <li>编译运行，结果如下：</li>
+  <img src="../static/images/vulkan/02/mac_android_loadvulkan.jpg" alt="">
 </ul>
-<snippet-component v-if="$route.meta.keepAlive" lan='xml' id="CodeSnippet" :bindUrl ='xmlSnippet'></snippet-component>
+<p><a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/0.VulkanTest(AS2.3)">Android Studio 2.3 项目地址</a></p>
+<h2>Mac &amp; Linux</h2>
 <p>因为很大一部分 Mac 设备显卡因素，对 Vulkan 的支持不好，需要借助 MoltenVK 才能运行部分 Vulkan Demo，这里暂时不做表述，今后有空的话可以补全一下 Mac 运行 Vulkan 的环节配置，可以参考我 fork 的 <a href="http://www.moltengl.com/moltenvk/" rel="nofollow">Vulkan</a> 主项目。同时个人较少使用 Linux ，因此也不翻译 Linux 部分 </p>
 <h2 id="page_Reference">参考</h2>
             <p>整理一些常用的 Vulkan repo 以及 tutorial 链接：</p>
@@ -209,6 +150,10 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
               <li>
                 <p><a href="https://github.com/MartinRGB/vulkan-basic-samples">vulkan-basic-samples
 </a> —— Google 提供的案例</p>
+              </li>
+              <li>
+                <p><a href="https://github.com/googlesamples/android-vulkan-tutorials">android-vulkan-tutorials
+</a> —— Google 提供的案例2</p>
               </li>
               <li>
                 <p><a href="https://github.com/LunarG/VulkanSamples">VulkanSamples
@@ -232,15 +177,57 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
   import SnippetComponent from '@/components/SnippetComponent'
   import MockupComponent from '@/components/MockupComponent'
   import assetFile from '../static/images/vulkan/02/mac_android_immutable.png'
-  import vertFile from '../static/codesnippets/brickwall.vert'
   import xmlFile from 'file-loader!../static/codesnippets/vulkan/02/AndroidManifest.xml'
+  import cmakeFile from '../static/codesnippets/vulkan/02/CMakeLists.txt'
+  import cppFile from '../static/codesnippets/vulkan/02/native-lib.cpp'
 
   export default {
     name: 'vulkan01',
     data: function () {return {
       articleTitle:'4.[译] Vulkan 入门系列 —— 开发环境',
       screenAsset:assetFile,
-      xmlSnippet:xmlFile
+      xmlSnippet:xmlFile,
+      shaderCSnippet:"$ ${ndk_root}" + `/sources/third_party/shaderc
+$ ../../../ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk APP_STL:=gnustl_static APP_ABI=all NDK_TOOLCHAIN_VERSION:=clang libshaderc_combined -j16`,
+      cmakeAndroidSnippet:`$ cd YOUR_DEV_DIRECTORY/VulkanSamples/API-Samples
+$ cmake -DANDROID=ON`,
+      winCPPSnippet:String.raw`#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+
+#define GLM_FORCE_RADIANS
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#include <glm/vec4.hpp>
+#include <glm/mat4x4.hpp>
+
+#include <iostream>
+
+int main() {
+    glfwInit();
+
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Vulkan window", nullptr, nullptr);
+
+    uint32_t extensionCount = 0;
+    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+
+    std::cout << extensionCount << " extensions supported" << std::endl;
+
+    glm::mat4 matrix;
+    glm::vec4 vec;
+    auto test = matrix * vec;
+
+    while(!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
+    }
+
+    glfwDestroyWindow(window);
+
+    glfwTerminate();
+
+    return 0;
+}`,
+      cmakeSnippet:cmakeFile,
+      cppSnippet:cppFile
     }},
     components: {SnippetComponent,MockupComponent},
     methods: {
@@ -249,19 +236,11 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
         var navbarHeight = 68;
         //document.body.scrollTo = anchor.offsetTop
         window.scrollTo(0, anchor.offsetTop - anchor.offsetHeight - 68);
-      },
-      highlight:function(){
-            var aCodes = this.$el.getElementsByTagName('pre');
-            for (var i=0; i < aCodes.length; i++) {
-                hljs.highlightBlock(aCodes[i]);
-                hljs.lineNumbersBlock(aCodes[i]);
-            }
       }
     },
     computed: {},
     created: function () {},
     mounted:function(){
-      //this.$nextTick(function () { this.highlight() })  
     },
     destroyed:function(){}
   }

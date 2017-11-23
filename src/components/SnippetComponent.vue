@@ -43,6 +43,7 @@
           }, (response) => {
             // 响应错误回调
             this.codeInfo = this.bindCode
+            this.$nextTick(function () { this.highlight() })  
           });
         },
         // ----------------------------------------
