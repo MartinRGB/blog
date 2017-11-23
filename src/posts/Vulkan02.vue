@@ -32,6 +32,15 @@
               </ul>
               </li>
               <li>
+                <p><a href="javascript:void(0)" @click="goAnchor('#page_MacOS')">MacOS</a></p>
+              </li>
+              <li>
+                <p><a href="javascript:void(0)" @click="goAnchor('#page_iOS')">iOS</a></p>
+              </li>
+              <li>
+                <p><a href="javascript:void(0)" @click="goAnchor('#page_Linux')">Linux</a></p>
+              </li>
+              <li>
                 <p><a href="javascript:void(0)" @click="goAnchor('#page_Reference')">参考</a></p>
               </li>
             </ul>
@@ -136,8 +145,11 @@
   <img src="../static/images/vulkan/02/mac_android_loadvulkan.jpg" alt="">
 </ul>
 <p><a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/0.VulkanTest(AS2.3)">Android Studio 2.3 项目地址</a></p>
-<h2>Mac &amp; Linux</h2>
-<p>因为很大一部分 Mac 设备显卡因素，对 Vulkan 的支持不好，需要借助 MoltenVK 才能运行部分 Vulkan Demo，这里暂时不做表述，今后有空的话可以补全一下 Mac 运行 Vulkan 的环节配置，可以参考我 fork 的 <a href="http://www.moltengl.com/moltenvk/" rel="nofollow">Vulkan</a> 主项目。同时个人较少使用 Linux ，因此也不翻译 Linux 部分 </p>
+<h2 id="page_MacOS">MacOS</h2>
+<p>因为很大一部分 Mac 设备显卡因素，对 Vulkan 的支持不好，需要借助 MoltenVK 才能运行部分 Vulkan Demo，这里暂时不做表述，今后有空的话可以补全一下 Mac 运行 Vulkan 的环节配置，可以参考我 fork 的 <a href="https://github.com/MartinRGB/Vulkan" rel="nofollow">Vulkan</a> 主项目。</p>
+<h2 id="page_iOS">iOS</h2>
+<h2 id="page_Linux">Linux</h2>
+<p>个人较少使用 Linux ，因此也不翻译 Linux 部分 </p>
 <h2 id="page_Reference">参考</h2>
             <p>整理一些常用的 Vulkan repo 以及 tutorial 链接：</p>
             <ul>
