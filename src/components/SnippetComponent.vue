@@ -27,26 +27,31 @@
           this.$http.get(this.bindUrl).then((response) => {
             // 响应成功回调
             this.codeInfo = response.data
+            //nextTick 是等 响应式的数据对应的视图更新完毕之后再触发。
+            this.$nextTick(function () { this.highlight() })  
           }, (response) => {
             // 响应错误回调
             this.codeInfo = 'Request Failed'
-          }).then(this.highlight);       
+          });       
         
         },
         localBind:function() {
           this.$http.get(this.bindCode).then((response) => {
             // 响应成功回调
             this.codeInfo = this.bindCode
+            this.$nextTick(function () { this.highlight() })  
           }, (response) => {
             // 响应错误回调
             this.codeInfo = this.bindCode
-          }).then(this.highlight);
+          });
         },
         // ----------------------------------------
         // HighLight Snippet
         // ----------------------------------------
         highlight:function(){
+          
             var aCodes = this.$el.getElementsByTagName('pre');
+            console.log(aCodes)
             for (var i=0; i < aCodes.length; i++) {
                 hljs.highlightBlock(aCodes[i]);
                 hljs.lineNumbersBlock(aCodes[i]);

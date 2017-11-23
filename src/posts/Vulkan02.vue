@@ -103,7 +103,7 @@ int main() {
     glfwTerminate();
 
     return 0;
-}" data-snippet-id="ext.bbc1dc49b97da82fd34a4d1a09933466" data-snippet-saved="false" data-codota-status="done"><code class="language-c++ hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GLFW_INCLUDE_VULKAN</span>
+}"data-snippet-id="ext.bbc1dc49b97da82fd34a4d1a09933466" data-snippet-saved="false" data-codota-status="done"><code class="language-c++ hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GLFW_INCLUDE_VULKAN</span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;GLFW/glfw3.h&gt;</span></span>
 
 <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GLM_FORCE_RADIANS</span>
@@ -137,8 +137,7 @@ int main() {
     glfwTerminate();
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}
-</code></pre>
+}</code></pre>
 <p>现在我们来配置项目，剔除错误。打开项目属性对话框，确保勾选 <strong>All Configurations</strong> （所有配置）。既能
  <strong>Debug</strong> 又能 <strong>Release</strong>。</p>
 <p><img class="mediumimg" src="../static/images/vulkan/02/vs_open_project_properties.png" alt=""></p>
@@ -234,14 +233,13 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
   import MockupComponent from '@/components/MockupComponent'
   import assetFile from '../static/images/vulkan/02/mac_android_immutable.png'
   import vertFile from '../static/codesnippets/brickwall.vert'
-  import xmlFile from '!file-loader!../static/codesnippets/vulkan/02/AndroidManifest.xml'
+  import xmlFile from 'file-loader!../static/codesnippets/vulkan/02/AndroidManifest.xml'
 
   export default {
     name: 'vulkan01',
     data: function () {return {
       articleTitle:'4.[译] Vulkan 入门系列 —— 开发环境',
       screenAsset:assetFile,
-      vertSnippet:xmlFile,
       xmlSnippet:xmlFile
     }},
     components: {SnippetComponent,MockupComponent},
@@ -263,9 +261,7 @@ $ cmake <span class="pl-k">-</span><span class="pl-c1">DANDROID</span><span clas
     computed: {},
     created: function () {},
     mounted:function(){
-      this.highlight()
-    },
-    created:function(){
+      //this.$nextTick(function () { this.highlight() })  
     },
     destroyed:function(){}
   }
