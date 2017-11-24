@@ -17,6 +17,9 @@
             <h2>设置标题</h2>
             <p>因为使用了 Shell 脚本来填充列表和排序，所以若想文章有序，必须在单文件组件文章中设置<p style="display: inline;"><code>article<p style="text-transform: capitalize;display: inline;">t</p>itle:</code> 数字.名称</p></p>
 
+            <h2>锚点链接</h2>
+            <strong><snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet-3" :bindCode ='anchorSnippet' bindSpecial='fontSize:14px' ></snippet-component></strong>
+            <a href="javascript:void(0)" @click="goAnchor('#component_LaTex')">LaTex 组件</a>
 
             <h2>导入图片</h2>
             <p>本地图片需要放置到 <code>src/static/xxxx</code> 中：</p>
@@ -51,7 +54,7 @@
             <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet07" :bindUrl ='highLightJSSnippet'></snippet-component>
             <p>在 <code>mounted</code> 挂载后调用 <code>highlight</code> 方法</p>
 
-            <h2>LaTex 数学公式 - MathjaxComponent</h2>
+            <h2 id='component_LaTex'>LaTex 数学公式 - MathjaxComponent</h2>
             <strong><p>基于 <a href="https://github.com/mathjax/MathJax" target="_blank">MathJax</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importMathjaxComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>在 <code>:bindFunc</code> 中设置绑定的本地公式文件或字符串</p>
@@ -223,6 +226,7 @@
       //   BrickPct:new THREE.Vector2(0.9,0.85),
       //   BrickColor:new THREE.Vector3(1.,0.3,0.2)
       // },
+      anchorSnippet:`<a href="javascript:void(0)" @click="goAnchor('#component_LaTex')">LaTex 组件</a>`,
       shaderUniform:{
         u_texture:THREE.ImageUtils.loadTexture(texture2),
         lightPosition:new THREE.Vector3(100.,100.,1200.)

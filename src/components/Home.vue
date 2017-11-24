@@ -18,6 +18,8 @@ export default {
   name: 'home',
   components: {
     'posts': createPosts("posts")
+  },
+  methods:{
   }
 }
 </script>

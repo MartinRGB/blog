@@ -52,7 +52,6 @@
         highlight:function(){
           
             var aCodes = this.$el.getElementsByTagName('pre');
-            console.log(aCodes)
             for (var i=0; i < aCodes.length; i++) {
                 hljs.highlightBlock(aCodes[i]);
                 hljs.lineNumbersBlock(aCodes[i]);

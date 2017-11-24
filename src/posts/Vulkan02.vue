@@ -269,14 +269,7 @@ int main() {
       cppSnippet:cppFile
     }},
     components: {SnippetComponent,MockupComponent},
-    methods: {
-      goAnchor(selector) {
-        var anchor = this.$el.querySelector(selector)
-        var navbarHeight = 68;
-        //document.body.scrollTo = anchor.offsetTop
-        window.scrollTo(0, anchor.offsetTop - anchor.offsetHeight - 68);
-      }
-    },
+    methods: {},
     computed: {},
     created: function () {},
     mounted:function(){

@@ -160,7 +160,7 @@ createInfo.bar = ...;
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"failed to create object"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 }</code></pre>
-
+<!-- <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-0" bindSpecial='fontSize:14px' :bindCode ='cppSnippet'></snippet-component> -->
 <p>Vulkan 中很多结构体都需要你清晰的描述 <strong>sType</strong> 成员变量.  <strong>pNext</strong> 成员变量将指向拓展结构。 
 在本教程中，将一直为 <strong>nullptr</strong> 。 创建销毁对象的函数会带有 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkAllocationCallbacks.html"><strong>VkAllocationCallbacks</strong></a> 参数，通过这个接口可以分配驱动内存，本教程中，也设置为 <strong>nullptr</strong></p>
 <p>几乎所有的函数都会返回一个 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkResult.html"><strong>VkResult</strong></a> ，要么就是 <strong>VK_SUCCESS</strong> 或者提示错误。通过自定义设置可以展示每个函数返回的错误代码，并展示其含义。</p>
@@ -181,15 +181,20 @@ createInfo.bar = ...;
     name: 'vulkan01',
     data: function () {return {
       articleTitle:'3.[译] Vulkan 入门系列 —— 综述',
+      cppSnippet:`VkXXXCreateInfo createInfo = {};
+createInfo.sType = VK_STRUCTURE_TYPE_XXX_CREATE_INFO;
+createInfo.pNext = nullptr;
+createInfo.foo = ...;
+createInfo.bar = ...;
+ 
+VkXXX object;
+if (vkCreateXXX(&createInfo, nullptr, &object) != VK_SUCCESS) {
+    std::cerr << "failed to create object" << std::endl;
+    return false;
+}`
     }},
     components: {SnippetComponent},
     methods: {
-      goAnchor(selector) {
-        var anchor = this.$el.querySelector(selector)
-        var navbarHeight = 68;
-        //document.body.scrollTo = anchor.offsetTop
-        window.scrollTo(0, anchor.offsetTop - anchor.offsetHeight - 68);
-      },
       highlight:function(){
             var aCodes = this.$el.getElementsByTagName('pre');
             for (var i=0; i < aCodes.length; i++) {
