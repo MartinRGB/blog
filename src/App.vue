@@ -7,7 +7,7 @@
           </router-view>
       </transition>
       <back-to-top text="Back to top" visibleOffset="500"></back-to-top>
-    <footer-bar></footer-bar>
+    <footer-bar :bindRouteName='thisRouteName'></footer-bar>
   </div>
 </template>
 
@@ -22,10 +22,13 @@ Vue.use(UtilPlugin)
 
 
 var count = 0;
+var curRouteId,curRouteName;
 
 export default {
   name: 'app',
   data: function () {return {
+    thisRouteId:curRouteId,
+    thisRouteName:curRouteName
   }},
   components: {
     FooterBar,
@@ -37,16 +40,18 @@ export default {
     // -------------------------------------------------------
     afterEnter: function( el ) {
       // alert(el.firstChild.firstChild.className +' Route entered' );
+      // alert(el.firstChild.firstChild.className)
       window.scrollTo(0, 0);
       //alert(this.$route.name)
 
-      // alert(el.firstChild.firstChild.className)
     },
     beforeEnter: function(el){
       // alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
+      curRouteName = this.$route.name
     },
     routeChange: function(){
+      //alert(this.$route.name)
     }
   },
   computed: {},

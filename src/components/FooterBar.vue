@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    props:['bindRouterId'],
+    props:['bindRouteId','bindRouteName'],
     name: 'footer',
     data () {
       return {
@@ -22,17 +22,25 @@
     },
     mounted:function(){
 
-      if(this.$route.name == 'Home'){
-        var nav = this.$el.getElementsByTagName('ul')[0]
-        nav.style.display = 'none';
-      }
-
-
+      // if(this.$route.name == 'Home'){
+      //   var nav = this.$el.getElementsByTagName('ul')[0]
+      //   nav.style.display = 'none';
+      // }
+      
     },
     methods:{
-      routeChange: function(){
+      afterEnter: function( el ) {
+        // alert(el.firstChild.firstChild.className +' Route entered' );
+        // alert(el.firstChild.firstChild.className)
         //alert(this.$route.name)
 
+      },
+      beforeEnter: function(el){
+        // alert(el.firstChild.firstChild.className +' Route entered' );
+       
+      },
+      routeChange: function(){
+        alert(this.$route.name)
       }
     },
   }
