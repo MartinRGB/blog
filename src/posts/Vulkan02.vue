@@ -221,6 +221,7 @@
   import cppFile from '../static/codesnippets/vulkan/02/native-lib.cpp'
 
   export default {
+    id:123,
     name: 'vulkan01',
     data: function () {return {
       articleTitle:'4.[译] Vulkan 入门系列 —— 开发环境',
@@ -273,6 +274,8 @@ int main() {
     computed: {},
     created: function () {},
     mounted:function(){
+      alert(this.$route.params.name)
+      alert(this.$route.name)
     },
     destroyed:function(){}
   }

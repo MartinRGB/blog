@@ -2,10 +2,10 @@
   <div id="app">
     <header-bar id="header-bar"></header-bar>
       <transition name="fade" mode="out-in" v-on:before-enter="beforeEnter" v-on:after-enter="afterEnter" appear>
+
           <router-view>
           </router-view>
       </transition>
-
       <back-to-top text="Back to top" visibleOffset="500"></back-to-top>
     <footer-bar></footer-bar>
   </div>
@@ -38,6 +38,7 @@ export default {
     afterEnter: function( el ) {
       // alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
+      //alert(this.$route.name)
 
       // alert(el.firstChild.firstChild.className)
     },

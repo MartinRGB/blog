@@ -3,7 +3,6 @@
     <div class="transition-container">
       <div class="center-container">
         <div id="list" class ="list-view">
-        
               <posts></posts>
         </div>
       </div>

@@ -20,7 +20,7 @@ export default new Router({
     },
     // Define yourself routes above this
     // Use Shell Export article component here;
-   ,{path: '/Vulkan02',name: 'Vulkan02',component: Vulkan02,meta: {keepAlive: true}} 
+   ,{path: '/Vulkan02/:id/:name',name: 'Vulkan02',component: Vulkan02,meta: {keepAlive: true}} 
    ,{path: '/Vulkan01',name: 'Vulkan01',component: Vulkan01,meta: {keepAlive: true}} 
    ,{path: '/Guide',name: 'Guide',component: Guide,meta: {keepAlive: true}} 
    ,{path: '/Brick',name: 'Brick',component: Brick,meta: {keepAlive: true}} 
