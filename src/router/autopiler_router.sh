@@ -3,10 +3,15 @@ jsfilename="index.js"
 vuefilename="../postjs/list.vue"
 filepath="../posts/*"
 
+num=0
+
 for file in $filepath
 do
     a=${file:9}
     a=${a/.vue/}
+
+    resultSecond=$(grep -w "articleTitle:"  ${file} | cut -f2 -d\' | cut -f1 -d".")
+    #echo ${resultSecond}
 
     # clean
     sed -i.bak "/${a}/d" index.js
@@ -21,6 +26,6 @@ do
     sed -i.bak '/Use Shell Export/a\
     exportholder \
     ' index.js
-    sed -i.bak "s|exportholder|   ,{path: '/${a}',name: '${a}',component: ${a},meta: {keepAlive: true}}|g" index.js
+    sed -i.bak "s|exportholder|    ,{path: '/${a}',name: 'Article${resultSecond}',component: ${a},meta: {keepAlive: true}}|g" index.js
 done
 

@@ -1,6 +1,7 @@
 #! /bin/bash
 jsfilename="list.js"
 vuefilename="list.vue"
+appvuefilename="../App.vue"
 filepath="../posts/*"
 
 # index.js - Create new
@@ -54,9 +55,11 @@ echo export default "["$all"]" >> $jsfilename
 
 
 # list.vue - Replacement
+num=0;
 results=()
 for file in $filepath
 do
+    num=$(( $num + 1 ))
 
     a=${file:9}
     a=${a/.vue/}
@@ -69,21 +72,35 @@ do
     # list_place_holder \
     # ' list.vue
     # sed -i.bak "s|list_place_holder|<router-link to="${a}"><li><a>${resultFirst#*:}</a></li></router-link>|g" list.vue
-    results+="<router-link to="${a}"><\li><a>${resultFirst#*:}<\/a><\/li><\/router-link> \n"
+    results+="<router-link to="${a}"><\li><a>${resultFirst#*:}<\/a><\/li><\/router-link>\n"
     # echo "<router-link to="${a}"><li><a>${resultFirst#*:}</a></li></router-link>" >> $vuefilename
     # echo "<router-link to="{path:"/"+"${a}",name:"${a}",component:"${a}"}"><li><"${a}"><
     # echo "<div>tester</div>" >> $vuefilename
 done
 
+# clean
+sed -i.bak "/router-link/d" "../App.vue"
 # breaker
 IFS=$'\n' breaker="${results[*]}"
 # sorter
 sorter=$(printf "${breaker}" | sort -t '>' -n -k4)
 # reorder
 reorder=$(printf "%s" $sorter)
-echo "$reorder"
+echo "$breaker"
 # Add into File
 sed -i.bak '/Add List Here/a\
 list_place_holder \
 ' list.vue
-sed -i.bak "s|list_place_holder|$reorder|g" list.vue
+sed -i.bak "s|list_place_holder|    $reorder|g" list.vue
+
+# App.vue
+results2="listNum:"${num}""
+# clean
+sed -i.bak "/listNum:/d" "../App.vue"
+
+# check PlaceHolder
+sed -i.bak '/Add Num Here/a\
+num_place_holder  \
+'  "../App.vue"
+
+sed -i.bak "s|num_place_holder|    $results2|g"  "../App.vue"

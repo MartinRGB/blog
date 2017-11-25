@@ -1,6 +1,7 @@
+
 <template>
-        <ul>
-<!-- Add List Here --> 
+<ul>
+    <!-- Add List Here -->
 list_place_holder 
-        </ul>
+</ul>
 </template>

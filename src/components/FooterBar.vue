@@ -1,18 +1,21 @@
 <template>
 
   <footer id="footer" class="footer">
-    <ul class="pager">
-        <li id="pager-left" ref="pager-left" class="pager-left"><router-link to=Guide>上一篇</router-link></li>            
-        <li id="pager-rogjt" ref="pager-right" class="pager-right"><router-link to=Guide>下一篇</router-link></li>        
+    <ul class="pager" v-show='this.bindNavShow'>
+        <li id="pager-left"  v-show='this.bindPrevShow' ref="pager-left" class="pager-left"><a href="javascript:void(0)" @click="clickPrevious()">上一篇</a></li> 
+        <li id="pager-center"  ref="pager-center" class="pager-center"><a href="javascript:void(0)" @click="clickContent()">目录</a></li>           
+        <li id="pager-right" v-show='this.bindNextShow' ref="pager-right" class="pager-right"><a href="javascript:void(0)" @click="clickNext()">下一篇</a></li>        
     </ul>
     Copyright © {{ thisYear }} {{userName}} | Powered by <a href='https://github.com/viko16/vue-ghpages-blog' target="_blank">{{projectName}}</a>
   </footer>
 </template>
 
 <script>
+import Vue from 'vue'
+import Router from 'vue-router'
   export default {
-    props:['bindRouteId','bindRouteName'],
     name: 'footer',
+    props:['bindListNum','bindNavShow','bindPrevShow','bindNextShow'],
     data () {
       return {
         thisYear: new Date().getFullYear(),
@@ -20,27 +23,38 @@
         projectName: 'vue-ghpages-blog' 
       }
     },
-    mounted:function(){
-
-      // if(this.$route.name == 'Home'){
-      //   var nav = this.$el.getElementsByTagName('ul')[0]
-      //   nav.style.display = 'none';
-      // }
-      
-    },
+    mounted:function(){},
     methods:{
-      afterEnter: function( el ) {
-        // alert(el.firstChild.firstChild.className +' Route entered' );
-        // alert(el.firstChild.firstChild.className)
-        //alert(this.$route.name)
+      clickPrevious(){
+        //this.$router.push({ name: 'Brick'})
+        var curId = this.$route.name.replace('Article','')
+        if(curId != 'Home'){
+
+          if(curId>1){
+            this.$router.push({ name: 'Article'+(Number(curId)-1).toString()})
+          }
+          else{
+            alert('到头了')
+          }
+          
+        }
 
       },
-      beforeEnter: function(el){
-        // alert(el.firstChild.firstChild.className +' Route entered' );
-       
+
+      clickNext(){
+        var curId = this.$route.name.replace('Article','')
+        if(curId != 'Home'){
+          if(curId<this.bindListNum){
+            this.$router.push({ name: 'Article'+(Number(curId)+1).toString()})
+          }
+          else{
+            alert('到尾了')
+          }
+        }
       },
-      routeChange: function(){
-        alert(this.$route.name)
+
+      clickContent(){
+        this.$router.push({ name: 'Home'})
       }
     },
   }
@@ -62,6 +76,13 @@
 
 .pager-right{
   float: right;
+  list-style-type: none;
+}
+
+.pager-center{
+  float: left;
+  left: 50%;
+  position: absolute;
   list-style-type: none;
 }
 

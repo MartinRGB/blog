@@ -2,12 +2,11 @@
   <div id="app">
     <header-bar id="header-bar"></header-bar>
       <transition name="fade" mode="out-in" v-on:before-enter="beforeEnter" v-on:after-enter="afterEnter" appear>
-
           <router-view>
           </router-view>
       </transition>
-      <back-to-top text="Back to top" visibleOffset="500"></back-to-top>
-    <footer-bar :bindRouteName='thisRouteName'></footer-bar>
+    <footer-bar :bindNavShow='this.navShow' :bindPrevShow='this.prevShow' :bindNextShow='this.nextShow' :bindListNum='this.listNum'></footer-bar>
+    <back-to-top text="↑" visibleOffset="500"></back-to-top>
   </div>
 </template>
 
@@ -20,16 +19,19 @@ import Vue from 'vue'
 import UtilPlugin from './static/js/global-util-plugin.js'
 Vue.use(UtilPlugin)
 
-
 var count = 0;
-var curRouteId,curRouteName;
 
 export default {
   name: 'app',
-  data: function () {return {
-    thisRouteId:curRouteId,
-    thisRouteName:curRouteName
-  }},
+  data: function () {
+    return {
+    navShow:false,
+    prevShow:false,
+    nextShow:false,
+    //Add Num Here
+    listNum:4  
+    }
+  },
   components: {
     FooterBar,
     HeaderBar
@@ -42,13 +44,33 @@ export default {
       // alert(el.firstChild.firstChild.className +' Route entered' );
       // alert(el.firstChild.firstChild.className)
       window.scrollTo(0, 0);
-      //alert(this.$route.name)
 
     },
     beforeEnter: function(el){
       // alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
-      curRouteName = this.$route.name
+      if(this.$route.name == 'Home'){
+        this.navShow = false;
+      }
+      else{
+        this.navShow = true;
+      }
+
+
+      var curId = this.$route.name.replace('Article','')
+      if(curId == 1){
+        this.prevShow = false;
+        this.nextShow = true;
+      }
+      else if (curId == this.listNum){
+        this.prevShow = true;
+        this.nextShow = false;
+      }
+      else{
+        this.prevShow = true;
+        this.nextShow = true;
+      }
+      
     },
     routeChange: function(){
       //alert(this.$route.name)
