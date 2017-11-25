@@ -54,9 +54,7 @@ npm run deploy
 
 - [ ] Create template
 
-- [ ] Make Anchor Link Easier
-
-- [ ] Fixed Table Content
+- [ ] Make Router Transition for Footer
 
 - [ ] Windows Notebook | MBP Device Mockups
 
