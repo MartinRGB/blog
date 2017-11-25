@@ -162,11 +162,11 @@ createInfo.bar = ...;
 }</code></pre>
 <!-- <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-0" bindSpecial='fontSize:14px' :bindCode ='cppSnippet'></snippet-component> -->
 <p>Vulkan 中很多结构体都需要你清晰的描述 <strong>sType</strong> 成员变量.  <strong>pNext</strong> 成员变量将指向拓展结构。 
-在本教程中，将一直为 <strong>nullptr</strong> 。 创建销毁对象的函数会带有 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkAllocationCallbacks.html"><strong>VkAllocationCallbacks</strong></a> 参数，通过这个接口可以分配驱动内存，本教程中，也设置为 <strong>nullptr</strong></p>
+在本教程中，将一直为 <strong>nullptr</strong>。创建销毁对象的函数会带有 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkAllocationCallbacks.html"><strong>VkAllocationCallbacks</strong></a> 参数，通过这个接口可以分配驱动内存，本教程中，也设置为 <strong>nullptr</strong></p>
 <p>几乎所有的函数都会返回一个 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkResult.html"><strong>VkResult</strong></a> ，要么就是 <strong>VK_SUCCESS</strong> 或者提示错误。通过自定义设置可以展示每个函数返回的错误代码，并展示其含义。</p>
 <h3 id="page_Validation_layers">验证层 (Validation layers)</h3>
 <p>前面提到，Vulkan 的设计目标是提供高性能和低硬件开销。因此它默认提供的错误检测和 debugging 功能有限，若果编写错误，驱动经常会突然崩溃而不返送错误代码，甚至可能可能更糟，可能会在显卡持续工作，最终影响其他使用。</p>
-<p>Vulkan 通过<em><strong>validation layers</strong></em> 来提供了种类广泛的错误检测。验证层代码插入到了 API 和显卡驱动中，在函数参数上进行错误检测，并跟踪内存管理问题。你可以在开发过程中开启，然后在开完完成后关闭，这样就完全消除了错误检测的性能开销。每个开发者都可以高度自定义验证层，但是 LunarG 提供的 Vulkan SDK 提供了一系列标准的验证层检测，本教程中将大量使用。需要通过注册回调函数的手段来接受 debug 信息。</p>
+<p>Vulkan 通过 <em><strong>validation layers</strong></em> 来提供了种类广泛的错误检测。验证层代码插入到了 API 和显卡驱动中，在函数参数上进行错误检测，并跟踪内存管理问题。你可以在开发过程中开启，然后在开完完成后关闭，这样就完全消除了错误检测的性能开销。每个开发者都可以高度自定义验证层，但是 LunarG 提供的 Vulkan SDK 提供了一系列标准的验证层检测，本教程中将大量使用。需要通过注册回调函数的手段来接受 debug 信息。</p>
 <p>因为使用 Vulkan 需要清晰的定义每个操作，加上验证层的使用非常广泛，因此找 bug 相比 OpenGL 和 Direct3D更容易。</p>
 <p>在开始编程之前，我们需要先配置一下开发环境。查看<router-link to=Vulkan02><a href="//vulkan-tutorial.com/Development_environment">配置开发环境</a></router-link>。</p>
       </div>
