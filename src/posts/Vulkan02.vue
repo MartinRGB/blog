@@ -82,7 +82,7 @@
 <p>点击 <strong>Finish</strong> 创建项目，然后添加 C++ 文件。</p>
 <p><img src="../static/images/vulkan/02/vs_new_item.png" alt=""></p>
 <p><img src="../static/images/vulkan/02/vs_new_source_file.png" alt=""></p>
-<p>先别担心不懂，添加下列代码。下一章会讲，这里先保证能编译运行 Vulkan。</p>
+<p id="CodeSnippet-before4">先别担心不懂，添加下列代码。下一章会讲，这里先保证能编译运行 Vulkan。</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-4" bindSpecial='fontSize:14px' :bindCode ='winCPPSnippet'></snippet-component>
 <p>现在我们来配置项目，剔除错误。打开项目属性对话框，确保勾选 <strong>All Configurations</strong> （所有配置）。既能
  <strong>Debug</strong> 又能 <strong>Release</strong>。</p>
@@ -173,7 +173,37 @@
   <li>
     <p>查阅 MoltenVK 项目中的 API-Samples。</p>
   </li>
+  <li>
+    <p>参考 <a href="http://tatsyblog.sakura.ne.jp/wordpress/applications/graphics/1609/"> MacでVulkanを使う方法  </a></p>
+  </li>
 </ul>
+<p>首先编译安装 glfw-3.2</p>
+<snippet-component v-if="$route.meta.keepAlive" lan='shell' id="CodeSnippet-18" bindSpecial='fontSize:14px' :bindCode='glfwComplieSnippet'></snippet-component>
+<p>可以在项目的外部目录新建一个 <strong>lib</strong>存放库文件，一个 <strong>external</strong> 存放头文件。</p>
+<p>新建一个 macOS Cocoa 应用</p>
+<img src="../static/images/vulkan/02/mac_cocoa_app.png" alt="">
+<p>在 <strong>Project</strong> 中搜索 <strong>Serach Path</strong>，添加头文件和库文件的搜索路径：</p>
+<img src="../static/images/vulkan/02/mac_linked_libraried.png" alt="">
+<p>当然你也可以在 <strong>Preference -> Location -> Custom Paths</strong> 中，设置系统默认库位置</p>
+<img src="../static/images/vulkan/02/mac_custom_location.png" alt="">
+<p>在 <strong>Targets -> Linked Frameworks and Libraries</strong> 中，添加 <strong>libglfw.3.x.dylib</strong> | <strong>CoreVideo</strong> | <strong>OpenGL</strong> | <strong>Cocoa</strong> | <strong>IOKit</strong> 框架或动态库</p>
+<img src="../static/images/vulkan/02/mac_linked_libraried.png" alt="">
+<p>删除 <strong>AppDelegate.h | AppDelegate.m | main.m(in Supporting Files) | ViewController.h | ViewController.m</strong> 文件</p>
+<p>创建一个文件，命名为 <strong>main.cpp</strong></p>
+<p>我们试着运行一下下一章的 HelloWorldApplication</p>
+<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-9" bindSpecial='fontSize:14px' :bindCode ='macCPPSnippet'></snippet-component>
+<p>效果如下，为了保证项目整洁，我搜索库和头文件位置为 <strong>/usr/local/xxx/</strong></p>
+<img src="../static/images/vulkan/02/mac_glfw_test.png" alt="">
+<p>然而这这是搞定了 GLFW,我们现在需要搞掂 <a href="https://moltengl.com/moltenvk/">MoltenVK</a>,首先下载，重命名为 Molten，然后把解压文件放置入 <strong>/usr/local/include/</strong> </p>
+<p>重新新建一个 macOS Cocoa 应用，重复上面 OpenGL 的步骤。不同的地方是，在 <strong>Linked Frameworks and Libraries</strong> 里面，我们还需要添加一个 <strong>IOSurface</strong> 框架，然后在 <strong>/usr/local/include/Molten/MoltenVK/macOS/</strong> 下找到 <strong> MoltenVK.framework</strong>,进行添加，结果如下：</p>
+<img src="../static/images/vulkan/02/mac_vulkan_framework.png" alt="">
+<p>在 Project 的 Build Setting 搜索 <strong>Other Linker Flags</strong>，填写-lgfw3</p>
+<img src="../static/images/vulkan/02/Other_Linker_Flags.png" alt="">
+<p>在 main.cpp 中一定要添加 <strong>#include &lt;Molten/MoltenVK/include/MoltenVK/mvk_vulkan.h&gt;</strong></p>
+
+<p>现在我们回头试一下 Windows 的 <a href="javascript:void(0)" @click="goAnchor('#CodeSnippet-before4')">案例</a></p>
+<img src="../static/images/vulkan/02/mac_vulakn_final1.png" alt="">
+
 <h2 id="page_Linux">Linux</h2>
 <p>个人较少使用 Linux ，因此也不翻译 Linux 部分 </p>
 <h2 id="page_Reference">参考</h2>
@@ -230,6 +260,15 @@
 $ ../../../ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk APP_STL:=gnustl_static APP_ABI=all NDK_TOOLCHAIN_VERSION:=clang libshaderc_combined -j16`,
       cmakeAndroidSnippet:`$ cd YOUR_DEV_DIRECTORY/VulkanSamples/API-Samples
 $ cmake -DANDROID=ON`,
+      glfwComplieSnippet:`$ cd YOUR_DEV_DIRECTORY/glfw-x.x
+$ mkdir glfw-build
+$ cd glfw-build
+$ cmake ../
+$ make
+$ make install
+$ cmake -DBUILD_SHARED_LIBS=ON .
+$ make
+$ make install`,
       winCPPSnippet:String.raw`#define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
@@ -264,6 +303,65 @@ int main() {
     glfwTerminate();
 
     return 0;
+}`,
+      macCPPSnippet:String.raw`#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+
+#include <iostream>
+#include <stdexcept>
+
+const int WIDTH = 800;
+const int HEIGHT = 600;
+
+class HelloTriangleApplication {
+public:
+    void run() {
+        initWindow();
+        initVulkan();
+        mainLoop();
+        cleanup();
+    }
+
+private:
+    GLFWwindow* window;
+
+    void initWindow() {
+        glfwInit();
+
+        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
+        window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+    }
+
+    void initVulkan() {
+
+    }
+
+    void mainLoop() {
+        while (!glfwWindowShouldClose(window)) {
+            glfwPollEvents();
+        }
+    }
+
+    void cleanup() {
+        glfwDestroyWindow(window);
+
+        glfwTerminate();
+    }
+};
+
+int main() {
+    HelloTriangleApplication app;
+
+    try {
+        app.run();
+    } catch (const std::runtime_error& e) {
+        std::cerr << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
 }`,
       cmakeSnippet:cmakeFile,
       cppSnippet:cppFile
