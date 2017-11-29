@@ -91,7 +91,7 @@ echo "$breaker"
 sed -i.bak '/Add List Here/a\
 list_place_holder \
 ' list.vue
-sed -i.bak "s|list_place_holder|    $reorder|g" list.vue
+sed -i.bak "s|list_place_holder|$reorder|g" list.vue
 
 # App.vue
 results2="listNum:"${num}""

@@ -251,7 +251,7 @@
   import cppFile from '../static/codesnippets/vulkan/02/native-lib.cpp'
 
   export default {
-    name: 'vulkan01',
+    name: 'vulkan02',
     data: function () {return {
       articleTitle:'4.[译] Vulkan 入门系列 —— 开发环境',
       screenAsset:assetFile,
