@@ -186,6 +186,7 @@ private:
 }</code></pre>
 <p>运行程序，你会发现有一个窗口，标题为 <strong>Vulkan</strong> ，现在我们有了 Vulkan 应用的骨架，试着运行你的第一个 Vulkan 项目吧。
 <p></p>
+
 <code-modal>
   <a slot="link">C++ code</a>
   <div slot="header"></div>
@@ -248,13 +249,26 @@ private:
     }
 
     <span class="hljs-keyword">return</span> EXIT_SUCCESS;
-}
-</code></pre>
+}</code></pre>
 
 
   </div>
 </code-modal>
 
+
+<code-modal>
+  <a slot="link">2333 code</a>
+  <div slot="header"></div>
+  <div slot="body">
+      <snippet-component v-if="$route.meta.keepAlive" lan='cpp' id="CodeSnippet-13" :bindUrl ='cppSnippet'></snippet-component>
+  </div>
+</code-modal>
+
+<div  id="btn-close-modal" class="close-animatedModal" @click="highlight()"> 
+              <span class="modal-default-button">
+                ✕
+              </span>
+          </div>
 
       </div>
     </div>
@@ -265,25 +279,30 @@ private:
   import SnippetComponent from '@/components/SnippetComponent'
   import MockupComponent from '@/components/MockupComponent'
   import CodeModal from '@/components/CodeModal'
+  import cppFile from '../static/codesnippets/vulkan/02/native-lib.cpp'
   export default {
     name: 'vulkan03',
     data: function () {return {
-      articleTitle:'5.[译] Vulkan 入门系列 —— 绘制三角形(设置)'
+      articleTitle:'5.[译] Vulkan 入门系列 —— 绘制三角形(设置)',
+      cppSnippet:cppFile
     }},
     components: {SnippetComponent,MockupComponent,CodeModal},
     methods: {
       highlight:function(){
-          var aCodes = this.$el.getElementsByTagName('pre');
-          for (var i=0; i < aCodes.length; i++) {
-              hljs.highlightBlock(aCodes[i]);
-              hljs.lineNumbersBlock(aCodes[i]);
-              aCodes[i].style.fontWeight = '400';
-          }
-      }
+
+        var aCodes = this.$el.getElementsByTagName('pre');
+            for (var i=0; i < aCodes.length; i++) {
+                hljs.highlightBlock(aCodes[i]);
+                hljs.lineNumbersBlock(aCodes[i]);
+                aCodes[i].style.fontWeight = '400';
+            }
+        },
     },
     computed: {},
     created: function () {},
-    mounted:function(){this.highlight()},
+    mounted:function(){
+        //this.highlight()
+    },
     destroyed:function(){}
   }
 

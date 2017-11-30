@@ -1,6 +1,6 @@
 <template>
         <div>
-          <pre v-bind:class='lan'><code>{{ codeInfo }}</code></pre>
+          <pre ref="snippets" v-bind:class='lan'><code>{{ codeInfo }}</code></pre>
         </div>
 </template>
 
@@ -16,7 +16,7 @@
     name: 'SnippetComponent',
     data () {
       return {
-        codeInfo: '',
+        codeInfo: '123',
       }
     },
     methods: {
@@ -59,6 +59,7 @@
         }
     },
     mounted:function(){
+
       if(this.bindUrl !=null){
         this.request()
       }

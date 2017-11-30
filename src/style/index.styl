@@ -115,6 +115,7 @@ a
   width: 40px !important
   height: 40px;
   box-shadow: 0 4px 20px rgba(0,0,0,.22);
+  transition:all 0.2s;
 }
 
 .vue-back-to-top:hover{
@@ -122,6 +123,7 @@ a
   border 1px solid rgba(0,0,0,.0);
   //box-shadow: 0 5px 36px rgba(136,136,136,.7);
   box-shadow: 0 6px 20px rgba(0,0,0,.15);
+  transform: scale(1.1);
 }
 
 .vue-back-to-top:hover > span{
@@ -135,6 +137,7 @@ a
     display: block;
     font-size: 20px;
     font-weight: 500;
+    transition:all 0.2s;
 }
 
 //
@@ -375,6 +378,21 @@ blockquote p
 
 .hljs-ln-code  {
   padding-left: 11px !important;
+}
+
+.mainModal pre{
+  width: 100%;
+}
+
+.mainModal tr{
+  transition:all 0.3s;
+  transform: translateY(1rem);
+  opacity: 0;
+}
+
+.mainModal .hljs-animated{
+  opacity: 1;
+  transform: translateY(0rem);
 }
 
 .hljs-ln-line code
