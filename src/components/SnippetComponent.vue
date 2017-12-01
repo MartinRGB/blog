@@ -16,7 +16,7 @@
     name: 'SnippetComponent',
     data () {
       return {
-        codeInfo: '123',
+        codeInfo: '',
       }
     },
     methods: {
@@ -56,6 +56,11 @@
                 hljs.highlightBlock(aCodes[i]);
                 hljs.lineNumbersBlock(aCodes[i]);
             }
+
+            // aCodes.forEach((aCode) => {
+            //   hljs.highlightBlock(aCode);
+            //   hljs.lineNumbersBlock(aCode);
+            // })
         }
     },
     mounted:function(){

@@ -47,6 +47,7 @@
             <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
             <p><caption>高亮示例</caption></p>
             <h3>直接使用 hljs</h3>
+            <p><strong>如果想要在文章里面直接使用 hljs，那么仅仅导入SnippetComponent即可，不要使用，否则容易引起冲突。</strong></p>
             <p>在 <code>html</code> 中直接利用 hljs的有关CSS类手动编写</p>
             <!-- <snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importHTMLComponent' bindSpecial='fontSize:14px'></snippet-component> -->
             <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet06" :bindUrl ='highLightSnippet'></snippet-component>
