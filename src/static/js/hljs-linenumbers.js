@@ -61,7 +61,7 @@
 
 		var lines = getLines(element.innerHTML);
 
-		if (lines.length > 1) {
+		if (lines.length > 0) {
 			var html = '';
 
 			for (var i = 0; i < lines.length; i++) {
