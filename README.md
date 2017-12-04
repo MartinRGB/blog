@@ -18,6 +18,7 @@ Libraries I used:
 * highlight-linenumbers.js
 * GSAP
 * Rebound.js
+* medium-zoom
 * HTML5 device mockups
 * MathJax
 * Babel 
