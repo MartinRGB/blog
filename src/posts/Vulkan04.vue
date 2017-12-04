@@ -53,7 +53,7 @@
 <p>如果一切正常，那么实例的句柄会保存到 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkInstance.html"><strong>VkInstance</strong></a> 类成员中。几乎所有的 Vulkan 函数都会返回类型为 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkResult.html"><strong>VkResult</strong></a> 的值，要么是 <strong>VK_SUCCESS</strong> ，要么是错误代码。为了检测实例创建的结果，我们将使用以下的方法，不用存储结果，只是检测：</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-20" bindSpecial='fontSize:14px' :bindCode ='snippet20'></snippet-component>
 <p>现在运行程序，确保实例创建成功，查看结果：</p>
-<img src="../static/images/vulkan/04/04_mac_create_instance.png" alt=""></img>
+<img data-action="zoom" src="../static/images/vulkan/04/04_mac_create_instance.png" alt=""></img>
 
 
 
@@ -70,7 +70,7 @@
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-24" bindSpecial='fontSize:14px' :bindCode ='snippet24'></snippet-component>
 <p>如果你想为 Vulkan 支持提供更多的细节，你可以把上述代码添加到 <strong>createInstance</strong> 中。作为挑战，你可以试着写一个函数，来检查 <strong>glfwGetRequiredInstanceExtensions</strong> 返回的拓展是否在支持列表中。</p>
 <p>结果如下:</p>
-<img src="../static/images/vulkan/04/04_mac_check_extensions.png" alt=""></img>
+<img data-action="zoom" src="../static/images/vulkan/04/04_mac_check_extensions.png" alt=""></img>
 <h2 id="page_Cleaning_up">清理</h2>
 <p>在程序退出之前，应该销毁 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkInstance.html"><strong>VkInstance</strong></a> ，可以在 <strong>cleanup</strong> 中调用 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkDestroyInstance.html"><strong>vkDestroyInstance</strong></a> 函数:</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-25" bindSpecial='fontSize:14px' :bindCode ='snippet25'></snippet-component>
@@ -85,7 +85,7 @@
 </code-modal>
 <a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/2.Instance(Xcode)">XCode 项目地址</a>
 <p>最终结果:</p>
-<img src="../static/images/vulkan/04/04_mac_final_result.png" alt=""></img>
+<img data-action="zoom" src="../static/images/vulkan/04/04_mac_final_result.png" alt=""></img>
 
 
 
@@ -254,7 +254,6 @@ int main() {
     computed: {},
     created: function () {},
     mounted:function(){
-        
     },
     destroyed:function(){}
   }

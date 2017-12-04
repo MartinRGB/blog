@@ -4,8 +4,11 @@
 import Vue from 'vue'
 import BackToTop from 'vue-backtotop'
 import SmoothScroll from 'smooth-scroll'
+import mediumZoom from 'medium-zoom'
 var scroll = new SmoothScroll();
 Vue.use(BackToTop);
+
+var prevImg=null;
 
 const UtilPlugin = {
   // The install method is all that needs to exist on the plugin object.
@@ -26,6 +29,22 @@ const UtilPlugin = {
           //window.scroll(0,distanceY)
           //window.scroll({ top: distanceY, left: 0, behavior: 'fast' });
         },
+
+        addZoom(){
+          if(prevImg !=null){
+            const zoom = mediumZoom(prevImg)
+            zoom.detach()
+          }
+
+          var nowImg = this.$el.querySelectorAll('[data-action="zoom"]')
+          if(nowImg.length !=0){
+            mediumZoom(nowImg)
+            prevImg = nowImg
+          }
+          else{
+            prevImg=null
+          }
+        }
 
       }
     });

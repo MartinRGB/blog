@@ -24,8 +24,14 @@
             <h2>导入图片</h2>
             <p>本地图片需要放置到 <code>src/static/xxxx</code> 中：</p>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' :bindCode ='imgImportSnippet'></snippet-component>
-            <img src='../static/images/img0.jpeg' alt="img0"/>
+            <img src='../static/images/guide/img0.jpg' alt="img0"/>
             <p><caption>图片示例</caption></p>
+
+            <p>如果图片想要放大，那么添加 `data-action="zoom"`：</p>
+            <strong><p>基于 <a href="https://github.com/francoischalifour/medium-zoom" target="_blank">medium-zoom</a> 请查看其使用指南或者 API 文档，本项目中放置于全局插件 UtilPlugin。</p></strong>
+            <snippet-component v-if="$route.meta.keepAlive" lan='html' :bindCode ='imgImportSnippet2'></snippet-component>
+            <img data-action="zoom" src='../static/images/guide/img1.jpg' alt="img1"/>
+            <p><caption>图片示例2</caption></p>
 
             <h2>代码高亮 - SnippetComponent</h2>
             <strong><p>基于 <a href="https://highlightjs.org/" target="_blank">highlightjs</a> 请查看其使用指南或者 API 文档</p></strong>
@@ -170,7 +176,7 @@
   import * as THREE from 'three'
   import shader0 from '../static/shaders/brickwall.json'
   import shader1 from '../static/shaders/perfrag_light.json'
-  import texture0 from '../static/images/landscape.jpg'
+  import texture0 from '../static/images/guide/landscape.jpg'
   import texture1 from '../static/textures/metal.jpg'
   import texture2 from '../static/textures/jade.jpg' 
   import model0 from '../static/models/teapot.json'
@@ -191,7 +197,8 @@
     name: 'three',
     data: function () {return {
       articleTitle:'1.使用指南',
-      imgImportSnippet: "<img src='../static/images/img0.jpeg' alt=\"img0\"/>",
+      imgImportSnippet: "<img src='../static/images/guide/img0.jpg' alt=\"img0\"/>",
+      imgImportSnippet2: "<img data-action=\"zoom\" src='../static/images/guide/img1.jpg' alt=\"img1\"/>",
       highLightSnippet:highLightFile,
       highLightJSSnippet:highLightJSFile,
       importHTMLComponent:"import highLightFile from \'file-loader!../static/codesnippets/highlight.html\'",

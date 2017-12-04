@@ -51,7 +51,7 @@
     name: 'reboundtest',
     data: function () {return {
        defaultPics: {
-            background: "url(" + require('../../static/images/landscape.jpg') + ")",
+            background: "url(" + require('../../static/images/guide/landscape.jpg') + ")",
         },
     }},
     components: {},

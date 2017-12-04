@@ -12,7 +12,7 @@
           </ul>
           <h2 id="toc_2">基础概念：</h2>
             <p>顶点着色器中的光照模型：</p>
-            <p><img src='../static/images/bricks_light.jpg' alt="fig06-02-partialbricks"/>
+            <p><img data-action="zoom" src='../static/images/bricks_light.jpg' alt="fig06-02-partialbricks"/>
             <caption>Lighting Model Concept - 光照模型</caption></p>
             <!-- <p><img src='http://cse.csusb.edu/tongyu/courses/cs520/images/glsl/brick-light.png' alt="fig06-02-partialbricks"/></p>
             <caption>Lighting Model Concept - 光照模型</caption></p> -->

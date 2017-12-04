@@ -66,7 +66,7 @@
 </code-modal>
 <a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/1.BaseCode(XCode_Vulkan)">XCode 项目地址</a>
 <p>运行后结果如下:</p>
-<img src="../static/images/vulkan/03/03_mac_final_result.png" alt=""></img>
+<img  data-action="zoom" src="../static/images/vulkan/03/03_mac_final_result.png" alt=""></img>
 
 
       </div>

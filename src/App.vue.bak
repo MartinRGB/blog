@@ -17,6 +17,7 @@ import FooterBar from './components/FooterBar.vue'
 import HeaderBar from './components/HeaderBar.vue'
 import Vue from 'vue'
 import UtilPlugin from './static/js/global-util-plugin.js'
+import mediumZoom from 'medium-zoom'
 Vue.use(UtilPlugin)
 
 var count = 0;
@@ -43,19 +44,19 @@ num_place_holder
     afterEnter: function( el ) {
       // alert(el.firstChild.firstChild.className +' Route entered' );
       // alert(el.firstChild.firstChild.className)
-      window.scrollTo(0, 0);
-
+      this.addZoom()
     },
     beforeEnter: function(el){
       // alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
+
+      //  navigation Part
       if(this.$route.name == 'Home'){
         this.navShow = false;
       }
       else{
         this.navShow = true;
       }
-
 
       var curId = this.$route.name.replace('Article','')
       if(curId == 1){
@@ -70,6 +71,7 @@ num_place_holder
         this.prevShow = true;
         this.nextShow = true;
       }
+
       
     },
     routeChange: function(){
@@ -79,8 +81,11 @@ num_place_holder
   computed: {},
   created: function () {},
   mounted:function(){
+
+
   },
-  destroyed:function(){},
+  destroyed:function(){
+  },
   watch: {
     // 如果路由有变化，会再次执行该方法
     "$route": "routeChange"
