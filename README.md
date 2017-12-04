@@ -54,7 +54,9 @@ npm run deploy
 
 - [ ] Create template
 
-- [ ] Make Router Transition for Footer
+- [ ] Make `the right` Router Transition for Footer 
+
+- [ ] Make a image viewer component
 
 - [ ] Windows Notebook | MBP Device Mockups
 
