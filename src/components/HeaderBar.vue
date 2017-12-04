@@ -1,7 +1,7 @@
 <template>
   <div id="header" class="header">
     <div class="linkCon">
-      <router-link to="/"><a class="link">{{title}}</a></router-link>
+      <router-link to="/"><a class="link">Martin‘s Graphic Notes</a></router-link>
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@
     name: 'header',
     data () {
       return {
-        title: 'OpenGL Online Notes'
+        // title: 'MartinRGB' + &#39; + 's Graphic Notes '
       }
     }
   }

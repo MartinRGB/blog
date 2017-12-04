@@ -66,7 +66,6 @@ do
     resultFirst=$(grep -w "articleTitle:"  ${file} | cut -f2 -d\')
     # clean
     sed -i.bak "/${a}/d" list.vue
-
     #import part
     # sed -i.bak '/Add List Here/a\
     # list_place_holder \
@@ -87,12 +86,12 @@ sorter=$(printf "${breaker}" | sort -t '>' -n -k4)
 # reorder
 reorder=$(printf "%s" $sorter)
 echo "$breaker"
+
 # Add into File
 sed -i.bak '/Add List Here/a\
 list_place_holder \
 ' list.vue
-sed -i.bak "s|list_place_holder|$reorder|g" list.vue
-
+sed -i.bak "s%list_place_holder%$reorder%g" list.vue
 # App.vue
 results2="listNum:"${num}""
 # clean

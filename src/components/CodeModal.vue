@@ -132,7 +132,7 @@
   border-radius: 41px;
   height: 41px;
   box-shadow: 0 4px 20px rgba(0,0,0,.22);
-  transition:all 0.2s;
+  transition:all 0.3s ease;
   position: sticky;
   top: 35px;
   left: calc(100vw - 128px);
@@ -145,6 +145,10 @@
   border: 1px solid rgba(0,0,0,.0);
   box-shadow: 0 5px 36px rgba(136,136,136,.7);
   box-shadow: 0 6px 20px rgba(0,0,0,.15);
+}
+
+.close-animatedModal:active{
+  transform: scale(0.75);
 }
 
 
@@ -209,8 +213,9 @@
 } */
 
 .modal-leave-active .modal-container{
-  animation-duration: 0.4s;
+  animation-duration: 0.3s;
   /* opacity: 0; */
+  animation-delay: 0.2s;
   animation-fill-mode: both;
   animation-name: slideOutDown;
 }

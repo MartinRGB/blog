@@ -10,4 +10,6 @@ import Vulkan02 from '../posts/Vulkan02.vue'
 Vue.component('Vulkan02', Vulkan02)
 import Vulkan03 from '../posts/Vulkan03.vue'
 Vue.component('Vulkan03', Vulkan03)
-export default [Brick, Guide, Vulkan01, Vulkan02, Vulkan03]
+import Vulkan04 from '../posts/Vulkan04.vue'
+Vue.component('Vulkan04', Vulkan04)
+export default [Brick, Guide, Vulkan01, Vulkan02, Vulkan03, Vulkan04]

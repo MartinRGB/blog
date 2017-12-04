@@ -115,7 +115,7 @@ a
   width: 40px !important
   height: 40px;
   box-shadow: 0 4px 20px rgba(0,0,0,.22);
-  transition:all 0.2s;
+  transition:all 0.3s ease;
 }
 
 .vue-back-to-top:hover{
@@ -124,6 +124,10 @@ a
   //box-shadow: 0 5px 36px rgba(136,136,136,.7);
   box-shadow: 0 6px 20px rgba(0,0,0,.15);
   transform: scale(1.1);
+}
+
+.vue-back-to-top:active{
+  transform: scale(0.75);
 }
 
 .vue-back-to-top:hover > span{

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 // Define yourself import above this
 // Use Shell Import article component here;
+import Vulkan04 from '@/posts/Vulkan04' 
 import Vulkan03 from '@/posts/Vulkan03' 
 import Vulkan02 from '@/posts/Vulkan02' 
 import Vulkan01 from '@/posts/Vulkan01' 
@@ -21,6 +22,7 @@ export default new Router({
     }
     // Define yourself routes above this
     // Use Shell Export article component here;
+    ,{path: '/Vulkan04',name: 'Article6',component: Vulkan04,meta: {keepAlive: true}} 
     ,{path: '/Vulkan03',name: 'Article5',component: Vulkan03,meta: {keepAlive: true}} 
     ,{path: '/Vulkan02',name: 'Article4',component: Vulkan02,meta: {keepAlive: true}} 
     ,{path: '/Vulkan01',name: 'Article3',component: Vulkan01,meta: {keepAlive: true}} 

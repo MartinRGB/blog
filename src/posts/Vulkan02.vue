@@ -195,7 +195,7 @@
 <p>效果如下，为了保证项目整洁，我搜索库和头文件位置为 <strong>/usr/local/xxx/</strong></p>
 <img src="../static/images/vulkan/02/mac_glfw_test.png" alt="">
 <p>然而这这是搞定了 GLFW,我们现在需要搞掂 <a href="https://moltengl.com/moltenvk/">MoltenVK</a>,首先下载，重命名为 Molten，然后把解压文件放置入 <strong>/usr/local/include/</strong> </p>
-<p>重新新建一个 macOS Cocoa 应用，重复上面 OpenGL 的步骤。不同的地方是，在 <strong>Linked Frameworks and Libraries</strong> 里面，我们还需要添加一个 <strong>IOSurface</strong> 框架，然后在 <strong>/usr/local/include/Molten/MoltenVK/macOS/</strong> 下找到 <strong> MoltenVK.framework</strong>,进行添加，结果如下：</p>
+<p>重新新建一个 macOS Cocoa 应用，重复上面 OpenGL 的步骤。不同的地方是，在 <strong>Linked Frameworks and Libraries</strong> 里面，我们还需要添加 <strong>IOSurface | Metal | QuartzCore</strong> 框架(否则 vulkan 相关引用会报错），然后在 <strong>/usr/local/include/Molten/MoltenVK/macOS/</strong> 下找到 <strong> MoltenVK.framework</strong>,进行添加，结果如下：</p>
 <img src="../static/images/vulkan/02/mac_vulkan_framework.png" alt="">
 <p>在 Project 的 Build Setting 搜索 <strong>Other Linker Flags</strong>，填写-lgfw3</p>
 <img src="../static/images/vulkan/02/Other_Linker_Flags.png" alt="">
@@ -206,6 +206,14 @@
 
 <h2 id="page_Linux">Linux</h2>
 <p>个人较少使用 Linux ，因此也不翻译 Linux 部分 </p>
+
+<a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/0.VulkanTest(AS2.3)">Android Studio 项目地址</a>
+<br>
+<a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/0.VulkanTest(VS2015)">VS 2015 项目地址</a>
+<br>
+<a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/0.VulkanTest(XCode)">XCode 项目地址</a>
+
+
 <h2 id="page_Reference">参考</h2>
             <p>整理一些常用的 Vulkan repo 以及 tutorial 链接：</p>
             <ul>

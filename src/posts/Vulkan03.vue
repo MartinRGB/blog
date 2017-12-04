@@ -1,19 +1,11 @@
 <template>
   <div class="transition-container">
     <img class="hero-image" src='../static/images/vulkan/01.overview.jpg' alt='hero image'/>
-    <!-- <main>
-        <div class="content">
-            <canvas class="scene scene--full" id="scene"></canvas>
-            <div class="content__inner">
-                <p class="content__title">Vulkan Tutorial</p>
-            </div>
-        </div>
-    </main> -->
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
             <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Drawing_a_triangle/Setup" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
-            <h2>I.基础代码测试</h2>
+            <h2>基础代码测试</h2>
     
     <ul class="TableOfContents">
         <li>
@@ -72,121 +64,9 @@
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-12" bindSpecial='fontSize:14px' :bindCode ='snippet12'></snippet-component>
   </div>
 </code-modal>
-
-            <h2>II.实例化</h2>
-    
-    <ul class="TableOfContents">
-<li>
-<p><a href="javascript:void(0)" @click="goAnchor('#page_Creating_an_instance')">创建实例</a></p>
-</li>
-<li>
-<p><a href="javascript:void(0)" @click="goAnchor('#page_Checking_for_extension_support')">检测拓展支持</a></p>
-</li>
-<li>
-<p><a href="javascript:void(0)" @click="goAnchor('#page_Cleaning_up')">清理</a></p>
-</li>
-</ul>
-<h2 id="page_Creating_an_instance">创建实例</h2>
-<p>The very first thing you need to do is initialize the Vulkan library by creating
-an <em>instance</em>. The instance is the connection between your application and the
-Vulkan library and creating it involves specifying some details about your
-application to the driver.</p>
-<p>Start by adding a <code>createInstance</code> function and add a call to it in the
-<code>initVulkan</code> function.</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-13" bindSpecial='fontSize:14px' :bindCode ='snippet13'></snippet-component>
-<p>Additionally add a class member to hold the handle to the instance:</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-14" bindSpecial='fontSize:14px' :bindCode ='snippet14'></snippet-component>
-<p>Now, to create an instance we'll first have to fill in a struct with some
-information about our application. This data is technically optional, but it may
-provide some useful information to the driver to optimize for our specific
-application, for example because it uses a well-known graphics engine with
-certain special behavior. This struct is called <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkApplicationInfo.html"><code>VkApplicationInfo</code></a>:</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-15" bindSpecial='fontSize:14px' :bindCode ='snippet15'></snippet-component>
-<p>As mentioned before, many structs in Vulkan require you to explicitly specify
-the type in the <code>sType</code> member. This is also one of the many structs with a
-<code>pNext</code> member that can point to extension information in the future. We're
-using default initialization here to leave it as <code>nullptr</code>.</p>
-<p>A lot of information in Vulkan is passed through structs instead of function
-parameters and we'll have to fill in one more struct to provide sufficient
-information for creating an instance. This next struct is not optional and tells
-the Vulkan driver which global extensions and validation layers we want to use.
-Global here means that they apply to the entire program and not a specific
-device, which will become clear in the next few chapters.</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-16" bindSpecial='fontSize:14px' :bindCode ='snippet16'></snippet-component>
-<p>The first two parameters are straightforward. The next two layers specify the
-desired global extensions. As mentioned in the overview chapter, Vulkan is a
-platform agnostic API, which means that you need an extension to interface with
-the window system. GLFW has a handy built-in function that returns the
-extension(s) it needs to do that which we can pass to the struct:</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-17" bindSpecial='fontSize:14px' :bindCode ='snippet17'></snippet-component>
-<p>The last two members of the struct determine the global validation layers to
-enable. We'll talk about these more in-depth in the next chapter, so just leave
-these empty for now.</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-18" bindSpecial='fontSize:14px' :bindCode ='snippet18'></snippet-component>
-<p>We've now specified everything Vulkan needs to create an instance and we can
-finally issue the <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkCreateInstance.html"><code>vkCreateInstance</code></a> call:</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-19" bindSpecial='fontSize:14px' :bindCode ='snippet19'></snippet-component>
-<p>As you'll see, the general pattern that object creation function parameters in
-Vulkan follow is:</p>
-<ul>
-<li>Pointer to struct with creation info</li>
-<li>Pointer to custom allocator callbacks, always <code>nullptr</code> in this tutorial</li>
-<li>Pointer to the variable that stores the handle to the new object</li>
-</ul>
-<p>If everything went well then the handle to the instance was stored in the
-<a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkInstance.html"><code>VkInstance</code></a> class member. Nearly all Vulkan functions return a value of type
-<a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkResult.html"><code>VkResult</code></a> that is either <code>VK_SUCCESS</code> or an error code. To check if the
-instance was created successfully, we don't need to store the result and can
-just use a check for the success value instead:</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-20" bindSpecial='fontSize:14px' :bindCode ='snippet20'></snippet-component>
-<p>Now run the program to make sure that the instance is created successfully.</p>
-<h2 id="page_Checking_for_extension_support">检测拓展支持</h2>
-<p>If you look at the <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkCreateInstance.html"><code>vkCreateInstance</code></a> documentation then you'll see that one of
-the possible error codes is <code>VK_ERROR_EXTENSION_NOT_PRESENT</code>. We could simply
-specify the extensions we require and terminate if that error code comes back.
-That makes sense for essential extensions like the window system interface, but
-what if we want to check for optional functionality?</p>
-<p>To retrieve a list of supported extensions before creating an instance, there's
-the <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkEnumerateInstanceExtensionProperties.html"><code>vkEnumerateInstanceExtensionProperties</code></a> function. It takes a pointer to a
-variable that stores the number of extensions and an array of
-<a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkExtensionProperties.html"><code>VkExtensionProperties</code></a> to store details of the extensions. It also takes an
-optional first parameter that allows us to filter extensions by a specific
-validation layer, which we'll ignore for now.</p>
-<p>To allocate an array to hold the extension details we first need to know how
-many there are. You can request just the number of extensions by leaving the
-latter parameter empty:</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-21" bindSpecial='fontSize:14px' :bindCode ='snippet21'></snippet-component>
-<p>Now allocate an array to hold the extension details (<code>include &lt;vector&gt;</code>):</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-22" bindSpecial='fontSize:14px' :bindCode ='snippet22'></snippet-component>
-<p>Finally we can query the extension details:</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-23" bindSpecial='fontSize:14px' :bindCode ='snippet23'></snippet-component>
-<p>Each <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkExtensionProperties.html"><code>VkExtensionProperties</code></a> struct contains the name and version of an
-extension. We can list them with a simple for loop (<code>\t</code> is a tab for
-indentation):</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-24" bindSpecial='fontSize:14px' :bindCode ='snippet24'></snippet-component>
-<p>You can add this code to the <code>createInstance</code> function if you'd like to provide
-some details about the Vulkan support. As a challenge, try to create a function
-that checks if all of the extensions returned by
-<code>glfwGetRequiredInstanceExtensions</code> are included in the supported extensions
-list.</p>
-<h2 id="page_Cleaning_up">清理</h2>
-<p>The <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkInstance.html"><code>VkInstance</code></a> should be only destroyed right before the program exits. It can
-be destroyed in <code>cleanup</code> with the <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkDestroyInstance.html"><code>vkDestroyInstance</code></a> function:</p>
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-25" bindSpecial='fontSize:14px' :bindCode ='snippet25'></snippet-component>
-<p>The parameters for the <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkDestroyInstance.html"><code>vkDestroyInstance</code></a> function are straightforward. As
-mentioned in the previous chapter, the allocation and deallocation functions
-in Vulkan have an optional allocator callback that we'll ignore by passing
-<code>nullptr</code> to it. All of the other Vulkan resources that we'll create in the
-following chapters should be cleaned up before the instance is destroyed.</p>
-<p>Before continuing with the more complex steps after instance creation, it's time
-to evaluate our debugging options by checking out <a href="//vulkan-tutorial.com/Drawing_a_triangle/Setup/Validation_layers">validation layers</a>.</p>
-<code-modal>
-  <a slot="link">C++ code</a>
-  <div slot="header"></div>
-  <div slot="body">
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-26" bindSpecial='fontSize:14px' :bindCode ='snippet26'></snippet-component>
-  </div>
-</code-modal>
+<a href="https://github.com/MartinRGB/100ProjectsVulkan/tree/master/1.BaseCode(XCode_Vulkan)">XCode 项目地址</a>
+<p>运行后结果如下:</p>
+<img src="../static/images/vulkan/03/03_mac_final_result.png" alt=""></img>
 
 
       </div>
@@ -207,7 +87,7 @@ to evaluate our debugging options by checking out <a href="//vulkan-tutorial.com
   export default {
     name: 'vulkan03',
     data: function () {return {
-      articleTitle:'5.[译] Vulkan 入门系列 —— 绘制三角形(设置)',
+      articleTitle:'5.[译] Vulkan 入门系列 —— 绘制三角形 | 设置 | 基础代码测试',
       snippet1:`#include <vulkan/vulkan.h>
 
 #include <iostream>
@@ -286,6 +166,9 @@ const int HEIGHT = 600;`,
 #include <iostream>
 #include <stdexcept>
 
+// If you run Vulkan in macOS,add this line,otherwise comment it 
+#include <Molten/MoltenVK/include/MoltenVK/mvk_vulkan.h>
+
 const int WIDTH = 800;
 const int HEIGHT = 600;
 
@@ -324,140 +207,6 @@ private:
         glfwDestroyWindow(window);
 
         glfwTerminate();
-    }
-};
-
-int main() {
-    HelloTriangleApplication app;
-
-    try {
-        app.run();
-    } catch (const std::runtime_error& e) {
-        std::cerr << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    return EXIT_SUCCESS;
-}`,
-    snippet13:`void initVulkan() {
-    createInstance();
-}`,
-    snippet14:`private:
-VkInstance instance;`,
-    snippet15:`VkApplicationInfo appInfo = {};
-appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-appInfo.pApplicationName = "Hello Triangle";
-appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-appInfo.pEngineName = "No Engine";
-appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-appInfo.apiVersion = VK_API_VERSION_1_0;`,
-    snippet16:`VkInstanceCreateInfo createInfo = {};
-createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-createInfo.pApplicationInfo = &appInfo;`,
-    snippet17:`uint32_t glfwExtensionCount = 0;
-const char** glfwExtensions;
-
-glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
-
-createInfo.enabledExtensionCount = glfwExtensionCount;
-createInfo.ppEnabledExtensionNames = glfwExtensions;`,
-    snippet18:`createInfo.enabledLayerCount = 0;`,
-    snippet19:`VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);`,
-    snippet20:`if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
-    throw std::runtime_error("failed to create instance!");
-}`,
-    snippet21:`uint32_t extensionCount = 0;
-vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);`,
-    snippet22:`std::vector<VkExtensionProperties> extensions(extensionCount);`,
-    snippet23:`vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());`,
-    snippet24:`std::cout << "available extensions:" << std::endl;
-
-for (const auto& extension : extensions) {
-    std::cout << "\t" << extension.extensionName << std::endl;
-}
-`,
-    snippet25:`void cleanup() {
-    vkDestroyInstance(instance, nullptr);
-
-    glfwDestroyWindow(window);
-
-    glfwTerminate();
-}`,
-    snippet26:`#define GLFW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
-
-#include <iostream>
-#include <stdexcept>
-
-const int WIDTH = 800;
-const int HEIGHT = 600;
-
-class HelloTriangleApplication {
-public:
-    void run() {
-        initWindow();
-        initVulkan();
-        mainLoop();
-        cleanup();
-    }
-
-private:
-    GLFWwindow* window;
-
-    VkInstance instance;
-
-    void initWindow() {
-        glfwInit();
-
-        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-
-        window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
-    }
-
-    void initVulkan() {
-        createInstance();
-    }
-
-    void mainLoop() {
-        while (!glfwWindowShouldClose(window)) {
-            glfwPollEvents();
-        }
-    }
-
-    void cleanup() {
-        vkDestroyInstance(instance, nullptr);
-
-        glfwDestroyWindow(window);
-
-        glfwTerminate();
-    }
-
-    void createInstance() {
-        VkApplicationInfo appInfo = {};
-        appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-        appInfo.pApplicationName = "Hello Triangle";
-        appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-        appInfo.pEngineName = "No Engine";
-        appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-        appInfo.apiVersion = VK_API_VERSION_1_0;
-
-        VkInstanceCreateInfo createInfo = {};
-        createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-        createInfo.pApplicationInfo = &appInfo;
-
-        uint32_t glfwExtensionCount = 0;
-        const char** glfwExtensions;
-        glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
-
-        createInfo.enabledExtensionCount = glfwExtensionCount;
-        createInfo.ppEnabledExtensionNames = glfwExtensions;
-
-        createInfo.enabledLayerCount = 0;
-
-        if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
-            throw std::runtime_error("failed to create instance!");
-        }
     }
 };
 
@@ -473,7 +222,6 @@ int main() {
 
     return EXIT_SUCCESS;
 }`
-
     }},
     components: {SnippetComponent,MockupComponent,CodeModal},
     methods: {
@@ -491,94 +239,4 @@ int main() {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
-.scene {
-	position: absolute;
-	left: calc(50% - 300px);
-}
-
-.scene--full {
-	width: 100%;
-	height: 100vh;
-}
-
-.content__inner {
-	grid-area: 1 / 1 / 1 / 1;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	align-content: center;
-}
-
-
-.demo-3 {
-	--color-text: #fff;
-	/* --color-bg: #A9E7DA; */
-	--color-bg: #fff;
-	--color-link: #523bdc;
-	--color-link-hover: #fff;
-	--color-title: #fff;
-}
-
-main {
-	position: relative;
-	width: 100%;
-}
-
-
-.content{
-	position: relative;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    margin: 0 auto;
-    height: 400px;
-    overflow: hidden;
-	background: #a9e7da;
-	min-height: 400px;
-}
-
-.content__title {
-	font-family: 'Poppins', sans-serif;
-	letter-spacing: -0.025em;
-	font-size: 7vw;
-	color: var(--color-title);
-	line-height: 1;
-	margin: 0;
-	position: relative;
-	text-shadow: 0 10px 20px rgba(0,0,0,.2);
-}
-
-.content__title::before,
-.content__title::after {
-	content: '';
-	position: absolute;
-	width: 100px;
-	height: 200px;
-	background: url(../static/images/vulkan/dot.png);
-	background-size: 25px;
-	opacity: 0.4;
-}
-
-.content__title::before {
-	top: 120%;
-	right: 81%;
-}
-
-.content__title::after {
-	bottom: 120%;
-	left: 81%;
-}
-
-@media screen and (max-width: 55em) {
-	.content__title::before,
-	.content__title::after {
-		width: 50px;
-		height: 100px;
-		background-size: 12px;
-	}
-}
 </style>
