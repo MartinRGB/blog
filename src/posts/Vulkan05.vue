@@ -85,11 +85,7 @@ const std::vector&lt;const char*> validationLayers = {
     const bool enableValidationLayers = true;
 #endif</snippet-component>
 
-<p>We'll add a new function <code>checkValidationLayerSupport</code> that checks if all of
-the requested layers are available. First list all of the available extensions
-using the <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkEnumerateInstanceLayerProperties.html"><code>vkEnumerateInstanceLayerProperties</code></a> function. Its usage is identical
-to that of <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkEnumerateInstanceExtensionProperties.html"><code>vkEnumerateInstanceExtensionProperties</code></a> which was discussed in the
-instance creation chapter.</p>
+<p>我们添加一个新函数 <strong>checkValidationLayerSupport</strong> 来检查所有请求的验证层是否可用。首先用 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkEnumerateInstanceLayerProperties.html"><strong>vkEnumerateInstanceLayerProperties</strong></a> 函数来遍历所有可用的拓展。 它的作用和前面实例化章节中 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkEnumerateInstanceExtensionProperties.html"><strong>vkEnumerateInstanceExtensionProperties</strong></a> 的作用一致。</p>
 
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>bool checkValidationLayerSupport() {
     uint32_t layerCount;
@@ -101,8 +97,8 @@ instance creation chapter.</p>
     return false;
 }</snippet-component>
 
-<p>Next, check if all of the layers in <code>validationLayers</code> exist in the
-<code>availableLayers</code> list. You may need to include <code>&lt;cstring&gt;</code> for <code>strcmp</code>.</p>
+<p>下一步，检测 <strong>validationLayers</strong> 中所有的验证层是否存在于
+<strong>availableLayers</strong> 的列表中。使用 <strong>strcmp</strong> 需要 include <strong>&lt;cstring&gt;</strong></p>
 
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>for (const char* layerName : validationLayers) {
     bool layerFound = false;
@@ -121,7 +117,7 @@ instance creation chapter.</p>
 
 return true;</snippet-component>
 
-<p>We can now use this function in <code>createInstance</code>:</p>
+<p>现在我们在 <strong>createInstance</strong> 使用这一函数:</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>void createInstance() {
     if (enableValidationLayers &amp;&amp; !checkValidationLayerSupport()) {
         throw std::runtime_error(&quot;validation layers requested, but not available!&quot;);
@@ -130,13 +126,9 @@ return true;</snippet-component>
     ...
 }</snippet-component>
 
-<p>Now run the program in debug mode and ensure that the error does not occur. If
-it does, then make sure you have properly installed the Vulkan SDK. If none or
-very few layers are being reported, then you may be dealing with
-<a href="https://vulkan.lunarg.com/app/issues/578e8c8d5698c020d71580fc">this issue</a>
-(requires a LunarG account to view). See that page for help with fixing it.</p>
-<p>Finally, modify the <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkInstanceCreateInfo.html"><code>VkInstanceCreateInfo</code></a> struct instantiation to include the
-validation layer names if they are enabled:</p>
+<p>现在在 debug 模式下运行程序，确保无错误。如果发生错误，那么检查 Vulkan SDK 安装情况。如果不支持或仅仅少量支持验证层，那你可能需要处理 <a href="https://vulkan.lunarg.com/app/issues/578e8c8d5698c020d71580fc">这个问题</a>
+(需要注册 LunarG 账号查看)。在这一页面中找到问题解决方案。</p>
+<p>最后，调整 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkInstanceCreateInfo.html"><strong>VkInstanceCreateInfo</strong></a> 结构体的实例化，以便包含开启的验证层的名字:</p>
 
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>if (enableValidationLayers) {
     createInfo.enabledLayerCount = static_cast&lt;uint32_t>(validationLayers.size());
@@ -145,8 +137,7 @@ validation layer names if they are enabled:</p>
     createInfo.enabledLayerCount = 0;
 }</snippet-component>
 
-<p>If the check was successful then <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkCreateInstance.html"><code>vkCreateInstance</code></a> should not ever return a
-<code>VK_ERROR_LAYER_NOT_PRESENT</code> error, but you should run the program to make sure.</p>
+<p>如果检测无误，那么 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkCreateInstance.html"><strong>vkCreateInstance</strong></a> 便不会返回 <strong>VK_ERROR_LAYER_NOT_PRESENT</strong>错误，但还是要运行一下来保证无误。</p>
 <h2 id="page_Message_callback">信息回调</h2>
 <p>Unfortunately just enabling the layers doesn't help much, because they currently
 have no way to relay the debug messages back to our program. To receive those
