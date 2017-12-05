@@ -27,6 +27,7 @@
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "mathjax": "^2.7.2",
+    "medium-zoom": "^0.2.0",
     "shaderfrog-runtime": "^0.2.0",
     "smooth-scroll": "^12.1.5",
     "stats.js": "^0.17.0",
