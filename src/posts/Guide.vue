@@ -21,6 +21,14 @@
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet-3" :bindCode ='anchorSnippet' bindSpecial='fontSize:14px' ></snippet-component></strong>
             <a href="javascript:void(0)" @click="goAnchor('#component_LaTex')">LaTex 组件</a>
 
+            <h2>提示</h2>
+            <strong><p>基于 <a href="https://github.com/euvl/vue-js-popover" target="_blank">vue-js-popover</a> 请查看其使用指南或者 API 文档。</p></strong>
+            <snippet-component v-if="$route.meta.keepAlive" lan='javascript'>import ToolTip from '@/components/ToolTip'</snippet-component>
+            <p>在 <code>tips</code> 中编写提示内容</p>
+            <p>在标签内部编写外部显示内容</p>
+             <snippet-component v-if="$route.meta.keepAlive" lan='html'>&lt;tool-tip tips="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.">&lt;p>Show&lt;/p>&lt;/tool-tip></snippet-component>
+             <tool-tip tips="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."><p>Show</p></tool-tip>
+
             <h2>导入图片</h2>
             <p>本地图片需要放置到 <code>src/static/xxxx</code> 中：</p>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' :bindCode ='imgImportSnippet'></snippet-component>
@@ -47,9 +55,21 @@
             <p>首先在单文件组件文章中导入本地代码文件 <code>import vertFile from 'src/static/xxx'</code></p>
             <p>然后在 <code>data</code> 中绑定数据 <code>vertSnippet:vertFile</code></p>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' :bindCode ='codeImportSnippet1'></snippet-component>
+            <h3>标签内嵌</h3>
+            <snippet-component v-if="$route.meta.keepAlive" lan='html' :bindCode ='codeImportSnippet3' bindSpecial='fontSize:14px'></snippet-component>
+            <p>效果如下：</p>
+            <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>void createInstance() {
+                if (enableValidationLayers &amp;&amp; !checkValidationLayerSupport()) {
+                    throw std::runtime_error(&quot;validation layers requested, but not available!&quot;);
+                }
+
+                ...
+            }</snippet-component>
+
             <h3>仅高亮少量代码</h3>
             <p>在 <code>data</code> 中自定义代码字符串 <code>codeSnippet:"xxx"</code></p>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' :bindCode ='codeImportSnippet2'></snippet-component>
+            <p>效果如下：</p>
             <snippet-component v-if="$route.meta.keepAlive" id="CodeSnippet" :bindUrl ='vertSnippet'></snippet-component>
             <p><caption>高亮示例</caption></p>
             <h3>直接使用 hljs</h3>
@@ -184,6 +204,7 @@
 
   import MockupComponent from '@/components/MockupComponent'
   import assetFile from '../static/mockups/device_test.mp4'
+  import ToolTip from '@/components/ToolTip'
 
   import GSAPExample from '@/components/example/GSAPExample'
   import ReboundExample from '@/components/example/ReboundExample'
@@ -206,6 +227,13 @@
       codeImportSnippet0: "<snippet-component v-if=\"$route.meta.keepAlive\" lan='javascript' bindUrl ='HttpUrl'></snippet-component>",
       codeImportSnippet1: "<snippet-component v-if=\"$route.meta.keepAlive\" lan='glsl' :bindUrl ='vertSnippet'></snippet-component>",
       codeImportSnippet2: "<snippet-component v-if=\"$route.meta.keepAlive\" lan='html' :bindCode ='codeSnippet'></snippet-component>",
+      codeImportSnippet3:String.raw`<snippet-component v-if=\"$route.meta.keepAlive\" lan='cpp c++'>void createInstance() \{
+                if (enableValidationLayers &amp;&amp; !checkValidationLayerSupport()) {
+                    throw std::runtime_error(&quot;validation layers requested, but not available!&quot;);
+                }
+
+                ...
+            }</snippet-component>`,
       vertSnippet:vertFile,
       importMathjaxComponent:"import MathjaxComponent from '@/components/MathjaxComponent'",
       mathImportSnippet0: "<mathjax-component :bindFunc=\"MathFunc\"></mathjax-component>",
@@ -245,7 +273,7 @@
       // htmlSnippet: htmlFile,
       // rawHTML:htmlFile2,
     }},
-    components: {MathjaxComponent,GLSLComponent,ThreeComponent,GSAPExample,ReboundExample,SnippetComponent,MockupComponent},
+    components: {MathjaxComponent,GLSLComponent,ThreeComponent,GSAPExample,ReboundExample,SnippetComponent,MockupComponent,ToolTip},
     methods: {},
     computed: {},
     created: function () {},

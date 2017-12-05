@@ -68,7 +68,6 @@
 <p>运行后结果如下:</p>
 <img  data-action="zoom" src="../static/images/vulkan/03/03_mac_final_result.png" alt=""></img>
 
-
       </div>
     </div>
   </div>
@@ -76,7 +75,6 @@
 
 <script>
   import SnippetComponent from '@/components/SnippetComponent'
-  import MockupComponent from '@/components/MockupComponent'
   import CodeModal from '@/components/CodeModal'
 
 //   import * as THREE from 'three' 
@@ -223,7 +221,7 @@ int main() {
     return EXIT_SUCCESS;
 }`
     }},
-    components: {SnippetComponent,MockupComponent,CodeModal},
+    components: {SnippetComponent,CodeModal},
     methods: {
     },
     computed: {},

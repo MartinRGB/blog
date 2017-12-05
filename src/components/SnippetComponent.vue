@@ -1,6 +1,6 @@
 <template>
         <div>
-          <pre ref="snippets" v-bind:class='lan'><code>{{ codeInfo }}</code></pre>
+          <pre ref="snippets" v-bind:class='lan'><code><slot>{{ codeInfo }}</slot></code></pre>
         </div>
 </template>
 
@@ -61,31 +61,39 @@
             //   hljs.highlightBlock(aCode);
             //   hljs.lineNumbersBlock(aCode);
             // })
-        }
+        },
     },
     mounted:function(){
 
-      if(this.bindUrl !=null){
-        this.request()
+      if(this.$el.textContent.length !=0){
+            this.codeInfo=this.$el.textContent
+            this.$nextTick(function () { this.highlight() });
       }
-      else if(this.bindCode !=null){
-        this.localBind()
+      else{
+        if(this.bindUrl !=null){
+          this.request()
+        }
+        else if(this.bindCode !=null){
+          this.localBind()
 
-        var codeElements = this.$el.getElementsByTagName('code')
-        for (var i = 0; i < codeElements.length; i++) {
-          codeElements[i].style.background = 'transparent';
-          codeElements[i].style.whiteSpace = 'pre-line';
-          codeElements[i].style.fontSize = '12px';
-          
-          if(this.bindSpecial !=null){
-            var str = this.bindSpecial.split(':')
-            codeElements[i].style[str[0]] = str[1];
-            codeElements[i].style.paddingLeft = '0px';
+          var codeElements = this.$el.getElementsByTagName('code')
+          for (var i = 0; i < codeElements.length; i++) {
+            codeElements[i].style.background = 'transparent';
+            codeElements[i].style.whiteSpace = 'pre-line';
+            codeElements[i].style.fontSize = '12px';
+            
+            if(this.bindSpecial !=null){
+              var str = this.bindSpecial.split(':')
+              codeElements[i].style[str[0]] = str[1];
+              codeElements[i].style.paddingLeft = '0px';
+            }
+
           }
 
         }
-
       }
+
+
     }
   }
 

@@ -74,6 +74,7 @@
 <h2 id="page_Cleaning_up">清理</h2>
 <p>在程序退出之前，应该销毁 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkInstance.html"><strong>VkInstance</strong></a> ，可以在 <strong>cleanup</strong> 中调用 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkDestroyInstance.html"><strong>vkDestroyInstance</strong></a> 函数:</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-25" bindSpecial='fontSize:14px' :bindCode ='snippet25'></snippet-component>
+
 <p>The parameters for the <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkDestroyInstance.html"><strong>vkDestroyInstance</strong></a> 函数的参数非常明了。前面提到过，Vulkan 中的分配和解除分配函数有可选分配器回调，这里我们暂时忽略，填写 <strong>nullptr</strong>。后面章节中，所有的创建的 Vulkan 资源在销毁前都应该清理。</p>
 <p>实例创建完成后，我们要研究一下验证层了。</p>
 <code-modal>
@@ -96,7 +97,6 @@
 
 <script>
   import SnippetComponent from '@/components/SnippetComponent'
-  import MockupComponent from '@/components/MockupComponent'
   import CodeModal from '@/components/CodeModal'
 
 //   import * as THREE from 'three' 
@@ -248,7 +248,7 @@ int main() {
 }`
 
     }},
-    components: {SnippetComponent,MockupComponent,CodeModal},
+    components: {SnippetComponent,CodeModal},
     methods: {
     },
     computed: {},
