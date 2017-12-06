@@ -9,6 +9,8 @@
             </div>
         </div>
     </main> -->
+
+    <toc :tocData='contentData'></toc>
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
@@ -98,7 +100,7 @@
 <script>
   import SnippetComponent from '@/components/SnippetComponent'
   import CodeModal from '@/components/CodeModal'
-
+  import Toc from '@/components/Toc'
 //   import * as THREE from 'three' 
 //   var perlin = require('../static/js/vulkan/perlin.js');
 //   var TweenMax = require('../static/js/vulkan/TweenMax.min.js');
@@ -108,6 +110,15 @@
     name: 'vulkan03',
     data: function () {return {
       articleTitle:'6.[译] Vulkan 入门系列 —— 绘制三角形 | 设置 | 实例化',
+      contentData:{
+          title:'Vulkan 实例化',
+          list:{
+            创建实例: '#page_Creating_an_instance',
+            检测拓展支持: '#page_Checking_for_extension_support',
+            清理: '#page_Cleaning_up',
+          }
+      },
+
 
     snippet13:`void initVulkan() {
     createInstance();
@@ -248,7 +259,7 @@ int main() {
 }`
 
     }},
-    components: {SnippetComponent,CodeModal},
+    components: {SnippetComponent,CodeModal,Toc},
     methods: {
     },
     computed: {},

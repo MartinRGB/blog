@@ -10,6 +10,9 @@
         </div>
     </main> -->
     <div id="center-container" class="center-container">
+
+      <toc :tocData='contentData'></toc>
+
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
             <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Drawing_a_triangle/Setup/Validation_layers" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
@@ -535,14 +538,24 @@ int main() {
   import SnippetComponent from '@/components/SnippetComponent'
   import CodeModal from '@/components/CodeModal'
   import ToolTip from '@/components/ToolTip'
+  import Toc from '@/components/Toc'
 
   export default {
     name: 'vulkan05',
     data: function () {return {
-      articleTitle:'7.[译] Vulkan 入门系列 —— 绘制三角形 | 设置 | 验证层'
+      articleTitle:'7.[译] Vulkan 入门系列 —— 绘制三角形 | 设置 | 验证层',
+      contentData:{
+          title:'Vulkan 验证层',
+          list:{
+            什么是验证层: '#page_What_are_validation_layers',
+            使用验证层: '#page_Using_validation_layers',
+            信息回调: '#page_Message_callback',
+            配置:'#page_Configuration'
+          }
+      }
 
     }},
-    components: {SnippetComponent,CodeModal,ToolTip},
+    components: {SnippetComponent,CodeModal,ToolTip,Toc},
     methods: {
     },
     computed: {},
@@ -556,5 +569,69 @@ int main() {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* .float-toc{
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08), 0 1px 4px 0 rgba(0,0,0,0.12);
+    border-radius: 6px;
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 140px;
+    position: fixed;
+    left: 40px;
+    bottom: 40px;
+    background: white;
+    overflow: hidden;
+}
+
+
+.toc-left-bg {
+    width: 100%;
+    background: #f1f1f1;
+    height: 1px;
+    top: 50px;
+    position: relative;
+}
+
+.toc-title{
+    text-align: left;
+    margin-left: 1px;
+    font-weight: 500;
+    font-family: "Avenir", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+}
+
+
+.float-toc ul{
+    padding-left: 24px;
+}
+
+.float-toc li {
+    counter-increment: li;
+    list-style-type:none;
+}
+
+.float-toc li p {
+    margin: 0px;
+    margin-top: 8px;
+}
+
+.float-toc li a {
+    font-size: 12px;
+    color:#333;
+}
+
+
+.float-toc li::before {
+  content: counter(li, decimal-leading-zero);
+  color:#333;
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1.3rem;
+  position: absolute;
+  text-align: right; 
+  direction: rtl;
+  font-size: 10px;
+  margin-top: 3px;
+  font-family: "Avenir", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+} */
 
 </style>
