@@ -1,23 +1,24 @@
 <template>
   <div class="transition-container">
     <img class="hero-image" src='../static/images/vulkan/01.overview.jpg' alt='hero image'/>
+    <toc :tocData='contentData'></toc>
     <div id="center-container" class="center-container">
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
             <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Drawing_a_triangle/Setup" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
-            <h2>基础代码测试</h2>
-    
-    <ul class="TableOfContents">
-        <li>
-        <p><a href="javascript:void(0)" @click="goAnchor('#page_General_structure')">一般结构</a></p>
-        </li>
-        <li>
-        <p><a href="javascript:void(0)" @click="goAnchor('#page_Resource_management')">资源管理</a></p>
-        </li>
-        <li>
-        <p><a href="javascript:void(0)" @click="goAnchor('#page_Integrating_GLFW')">整合 GLFW</a></p>
-        </li>
-    </ul>
+<!-- <h2>基础代码测试</h2>
+
+<ul class="TableOfContents">
+<li>
+<p><a href="javascript:void(0)" @click="goAnchor('#page_General_structure')">一般结构</a></p>
+</li>
+<li>
+<p><a href="javascript:void(0)" @click="goAnchor('#page_Resource_management')">资源管理</a></p>
+</li>
+<li>
+<p><a href="javascript:void(0)" @click="goAnchor('#page_Integrating_GLFW')">整合 GLFW</a></p>
+</li>
+</ul> -->
 <h2 id="page_General_structure">一般结构</h2>
 <p>在之前的章节中，完成了 Vulkan 项目的配置和测试，本章我们直接码代码：</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' id="CodeSnippet-1" bindSpecial='fontSize:14px' :bindCode ='snippet1'></snippet-component>
@@ -76,7 +77,7 @@
 <script>
   import SnippetComponent from '@/components/SnippetComponent'
   import CodeModal from '@/components/CodeModal'
-
+  import Toc from '@/components/Toc'
 //   import * as THREE from 'three' 
 //   var perlin = require('../static/js/vulkan/perlin.js');
 //   var TweenMax = require('../static/js/vulkan/TweenMax.min.js');
@@ -86,6 +87,16 @@
     name: 'vulkan03',
     data: function () {return {
       articleTitle:'5.[译] Vulkan 入门系列 —— 绘制三角形 | 设置 | 基础代码测试',
+      contentData:{
+          title:'Vulkan 基础代码测试',
+          list:{
+            一般结构: '#page_General_structure',
+            资源管理: '#page_Resource_management',
+            整合GLFW: '#page_Integrating_GLFW'
+          }
+      },
+
+
       snippet1:`#include <vulkan/vulkan.h>
 
 #include <iostream>
@@ -221,7 +232,7 @@ int main() {
     return EXIT_SUCCESS;
 }`
     }},
-    components: {SnippetComponent,CodeModal},
+    components: {SnippetComponent,CodeModal,Toc},
     methods: {
     },
     computed: {},

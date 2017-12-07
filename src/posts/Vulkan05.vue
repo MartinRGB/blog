@@ -17,9 +17,9 @@
             <h1 id="toc_0">{{articleTitle}}</h1>
             <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Drawing_a_triangle/Setup/Validation_layers" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
 
-            <h2>验证层</h2>
+<!-- <h2>验证层</h2>
 
-        <ul class="TableOfContents">
+<ul class="TableOfContents">
 <li>
 <p><a href="javascript:void(0)" @click="goAnchor('#page_What_are_validation_layers')">什么是验证层</a></p>
 </li>
@@ -32,7 +32,7 @@
 <li>
 <p><a href="javascript:void(0)" @click="goAnchor('#page_Configuration')">配置</a></p>
 </li>
-</ul>
+</ul> -->
 <h2 id="page_What_are_validation_layers">什么是验证层</h2>
 <p>Vulkan API 的设计理念是最小化驱动开销，设计声明里面也提到过默认错误检测的功能有限。因此，即便是一些很简单参数设置错误或者传入空指针都会引起表意不明，导致崩溃或未知错误。因为 Vulkan 要求你把所操作的一切都清晰表述，因此在很多地方你会犯一些小错，比如使用 GPU 新功能，比如在创建时请求逻辑设备。</p>
 <p>尽管错误不容易检测，但也没必要在 API 里面加入检测功能。Vulkan 引进了一套更优雅的错误检测系统 <em><strong>Validation Layers</strong></em>。验证层是可选组件，它能在 Vulkan 函数调用中做一个<tool-tip tips='其实就是设计模式里面的观察者模式。

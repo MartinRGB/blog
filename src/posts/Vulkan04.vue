@@ -16,9 +16,9 @@
             <h1 id="toc_0">{{articleTitle}}</h1>
             <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Drawing_a_triangle/Setup/Instance" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
 
-            <h2>实例化</h2>
-    
-    <ul class="TableOfContents">
+<!-- <h2>实例化</h2>
+
+<ul class="TableOfContents">
 <li>
 <p><a href="javascript:void(0)" @click="goAnchor('#page_Creating_an_instance')">创建实例</a></p>
 </li>
@@ -28,7 +28,7 @@
 <li>
 <p><a href="javascript:void(0)" @click="goAnchor('#page_Cleaning_up')">清理</a></p>
 </li>
-</ul>
+</ul> -->
 <h2 id="page_Creating_an_instance">创建实例</h2>
 <p>首先要通过创建 <strong>实例化</strong> 来初始化 Vulkan 库。实例能够实现 Vulkan 库和应用的链接，通过实例化，能告知驱动你的应用所包含的自定义图形细节。</p>
 <p>在 <strong>initVulkan</strong> 函数中，调用 <strong>createInstance</strong> 函数：</p>

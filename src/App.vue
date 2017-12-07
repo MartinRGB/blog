@@ -42,12 +42,9 @@ export default {
     // Router Event
     // -------------------------------------------------------
     afterEnter: function( el ) {
-      // alert(el.firstChild.firstChild.className +' Route entered' );
-      // alert(el.firstChild.firstChild.className)
       this.addZoom()
     },
     beforeEnter: function(el){
-      // alert(el.firstChild.firstChild.className +' Route entered' );
       window.scrollTo(0, 0);
 
       //  navigation Part
@@ -75,7 +72,7 @@ export default {
       
     },
     routeChange: function(){
-      //alert(this.$route.name)
+      
     }
   },
   computed: {},
