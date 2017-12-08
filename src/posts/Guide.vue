@@ -1,11 +1,12 @@
 <template>
   <div class="transition-container">
     <div id="center-container" class="center-container">
+      <toc :tocData='contentData'></toc>
       <div id="article-view" class="article-view">
-            <h1 id="toc_0">{{articleTitle}}</h1>
+            <h1>{{articleTitle}}</h1>
             <p><a href="https://github.com/MartinRGB/vue_shader_ghblog/" target="_blank">Repo on GitHub</a></p>
             <p>这是一个简单的、主要基于 Vue 和 ThreeJS 的着色器学习博客，之前在学习 OpenGL 的过程中，主要使用 Github Wiki 结合项目学习，但 Github Wiki 无法展示着色器效果，只能使用截图。因此决定自己动手学习制作一个能够结合 MWeb 的 GLES 学习环境。</p>
-            <h2>简单结构介绍</h2>
+            <h2 id="toc_0">简单结构介绍</h2>
             <p>本项目主要依托 ghpages，利用 <code>npm run deploy</code> 生成静态文件到根目录的 <code>docs</code> 中</p>
             <p><code>src/components</code> 中主要存放写笔记常用的组件</p>
             <p><code>src/postjs</code> 中利用 Shell 脚本读取本地文章，并编写列表相关文件</p>
@@ -14,14 +15,41 @@
             <p><code>src/static</code> 中存放了本地静态资源，利用 webpack 在 deploy 后，打包到 <code>docs</code> 中</p>
             <p><code>src/style</code> 中存放了样式</p>
             
-            <h2>设置标题</h2>
+            <h2 id="toc_1">设置标题</h2>
             <p>因为使用了 Shell 脚本来填充列表和排序，所以若想文章有序，必须在单文件组件文章中设置<p style="display: inline;"><code>article<p style="text-transform: capitalize;display: inline;">t</p>itle:</code> 数字.名称</p></p>
 
-            <h2>锚点链接</h2>
+            <h2 id="toc_2">锚点链接</h2>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet-3" :bindCode ='anchorSnippet' bindSpecial='fontSize:14px' ></snippet-component></strong>
             <a href="javascript:void(0)" @click="goAnchor('#component_LaTex')">LaTex 组件</a>
 
-            <h2>提示</h2>
+            <h2 id="toc_44">设置目录</h2>
+            <snippet-component v-if="$route.meta.keepAlive" lan='javascript'>import Toc from '@/components/Toc'</snippet-component>
+            <snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet-33" :bindCode ='tocSnippet' bindSpecial='fontSize:14px' ></snippet-component>
+            <p>在data中：</p>
+            <snippet-component v-if="$route.meta.keepAlive" lan='javascript'>contentData:{
+          title:'使用指南',
+          list:{
+            简单结构介绍: '#toc_0',
+            设置标题: '#toc_1',
+            锚点链接: '#toc_2',
+            设置目录: '#toc_44',
+            添加提示: '#toc_3',
+            导入图片: '#toc_4',
+            代码高亮: '#toc_5',
+            'LaTex 数学公式':'#component_LaTex',
+            GLSLCanvas: '#toc_6',
+            ThreeJS: '#toc_7',
+            手机展示: '#toc_8',
+            GSAP: '#toc_9',
+            ReboundJS: '#toc_10',
+          }
+}</snippet-component>
+            <p>效果参考本页面目录。</p>
+
+
+            
+
+            <h2 id="toc_3">添加提示</h2>
             <strong><p>基于 <a href="https://github.com/euvl/vue-js-popover" target="_blank">vue-js-popover</a> 请查看其使用指南或者 API 文档。</p></strong>
             <snippet-component v-if="$route.meta.keepAlive" lan='javascript'>import ToolTip from '@/components/ToolTip'</snippet-component>
             <p>在 <code>tips</code> 中编写提示内容</p>
@@ -29,7 +57,7 @@
              <snippet-component v-if="$route.meta.keepAlive" lan='html'>&lt;tool-tip tips="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.">&lt;p>Show&lt;/p>&lt;/tool-tip></snippet-component>
              <tool-tip tips="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."><p>Show</p></tool-tip>
 
-            <h2>导入图片</h2>
+            <h2 id="toc_4">导入图片</h2>
             <p>本地图片需要放置到 <code>src/static/xxxx</code> 中：</p>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' :bindCode ='imgImportSnippet'></snippet-component>
             <img src='../static/images/guide/img0.jpg' alt="img0"/>
@@ -41,7 +69,7 @@
             <img data-action="zoom" src='../static/images/guide/img1.jpg' alt="img1"/>
             <p><caption>图片示例2</caption></p>
 
-            <h2>代码高亮 - SnippetComponent</h2>
+            <h2 id="toc_5">代码高亮 - SnippetComponent</h2>
             <strong><p>基于 <a href="https://highlightjs.org/" target="_blank">highlightjs</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importSnippetComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>在 <code>v-if</code> 中设置 <code>$route.meta.keepAlive</code> 是否缓存</p>
@@ -95,7 +123,7 @@
             <mathjax-component :bindFunc="MathFunc"></mathjax-component>
             <p><caption>公式示例</caption></p>
 
-            <h2>GLSLCanvas - GLSLComponent</h2>
+            <h2 id="toc_6">GLSLCanvas - GLSLComponent</h2>
             <strong><p>基于 <a href="https://github.com/patriciogonzalezvivo/glslCanvas" target="_blank">glslCanvas</a> 和 <a href="https://github.com/patriciogonzalezvivo/glslEditor" target="_blank">glslEditor</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importGLSLComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>在 <code>v-if</code> 中设置 <code>$route.meta.keepAlive</code> 是否缓存</p>
@@ -120,7 +148,7 @@
             <GLSL-Component v-if="$route.meta.keepAlive" id ="graphContainer" class="simpleEditor" data='https://gist.githubusercontent.com/MartinRGB/1148c22d7189ec2a78e32beca4ce45fd/raw/c35d0259d42d4ffd899d2729cdd8b8c4db1ff33a/frag_liquid.frag'></GLSL-Component>
             <p><caption>使用外部资源示例 - 效果来自 ShaderToy，忘记地址，侵删</caption></p>
 
-            <h2>ThreeJS - ThreeComponent</h2>
+            <h2 id="toc_7">ThreeJS - ThreeComponent</h2>
             <strong><p>基于 <a href="https://github.com/mrdoob/three.js" target="_blank">threeJS</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importThreeComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importThreeComponent2' bindSpecial='fontSize:14px'></snippet-component></strong>
@@ -157,7 +185,7 @@
             <three-component v-if="$route.meta.keepAlive" bindId='threeContainer2' :bindModel='threeModel2' :bindMaterial='threeTexture2' :bindUniform='shaderUniform'></three-component>
             <p><caption>自定义模型和自定义着色器</caption></p>
 
-            <h2>手机展示 - MockupComponent</h2>
+            <h2 id="toc_8">手机展示 - MockupComponent</h2>
             <strong><p>基于 <a href="https://github.com/pixelsign/html5-device-mockups" target="_blank">html5-device-mockups</a> 请查看其使用指南或者 API 文档</p></strong>
             <strong><snippet-component v-if="$route.meta.keepAlive" lan='javascript' :bindCode ='importMockupComponent' bindSpecial='fontSize:14px'></snippet-component></strong>
             <p>在 <code>bindDevice</code> 中设置绑定机型为 <code>android</code> 还是 <code>iOS</code>，默认安卓</p>
@@ -167,12 +195,12 @@
             <mockup-component bindDevice='android' :bindUrl='screenAsset'></mockup-component>
             <p><caption>这个效果来自“人肉安卓Stackoverflow” —— <a href="http://weibo.com/u/2834711045?topnav=1&wvr=6&topsug=1" target="_blank">Cyandev</a> 的 <a href="https://github.com/unixzii/android-SpringAnimator" target="_blank">SpringAnimator</a>,在安卓上实现了 FramerJS 的动画器</caption></p>
             
-            <h2>在 Vue 中使用 GSAP 动画系统</h2>
+            <h2 id="toc_9">在 Vue 中使用 GSAP 动画系统</h2>
             <strong><p>基于 <a href="https://github.com/greensock/GreenSock-JS" target="_blank">GreenSock-JS</a> 请查看其使用指南或者 API 文档,以及 <code>src/components/GSAPExample.vue</code></p></strong>
             <p>下面是案例组件实现的效果</p>
             <GSAP-example></GSAP-example>
             
-            <h2>在 Vue 中使用 ReboundJS 动画系统</h2>
+            <h2 id="toc_10">在 Vue 中使用 ReboundJS 动画系统</h2>
             <strong><p>基于 <a href="https://github.com/facebook/rebound-js" target="_blank">ReboundJS</a> 请查看其使用指南或者 API 文档,以及 <code>src/components/ReboundExample.vue</code>下面是组件效果</p></strong>
             <p>下面是案例组件实现的效果</p>
             <rebound-example></rebound-example>
@@ -213,11 +241,30 @@
   //import htmlFile3 from 'vue-html-loader!../static/html/test3.html'
 
 
-
+  import Toc from '@/components/Toc'
+  
   export default {
     name: 'three',
     data: function () {return {
       articleTitle:'1.使用指南',
+      contentData:{
+          title:'使用指南',
+          list:{
+            简单结构介绍: '#toc_0',
+            设置标题: '#toc_1',
+            锚点链接: '#toc_2',
+            设置目录: '#toc_44',
+            添加提示: '#toc_3',
+            导入图片: '#toc_4',
+            代码高亮: '#toc_5',
+            'LaTex 数学公式':'#component_LaTex',
+            GLSLCanvas: '#toc_6',
+            ThreeJS: '#toc_7',
+            手机展示: '#toc_8',
+            GSAP: '#toc_9',
+            ReboundJS: '#toc_10',
+          }
+      },
       imgImportSnippet: "<img src='../static/images/guide/img0.jpg' alt=\"img0\"/>",
       imgImportSnippet2: "<img data-action=\"zoom\" src='../static/images/guide/img1.jpg' alt=\"img1\"/>",
       highLightSnippet:highLightFile,
@@ -263,6 +310,8 @@
       //   BrickColor:new THREE.Vector3(1.,0.3,0.2)
       // },
       anchorSnippet:`<a href="javascript:void(0)" @click="goAnchor('#component_LaTex')">LaTex 组件</a>`,
+      tocSnippet:`<toc :tocData='contentData'></toc>`,
+      
       shaderUniform:{
         u_texture:THREE.ImageUtils.loadTexture(texture2),
         lightPosition:new THREE.Vector3(100.,100.,1200.)
@@ -273,7 +322,7 @@
       // htmlSnippet: htmlFile,
       // rawHTML:htmlFile2,
     }},
-    components: {MathjaxComponent,GLSLComponent,ThreeComponent,GSAPExample,ReboundExample,SnippetComponent,MockupComponent,ToolTip},
+    components: {MathjaxComponent,GLSLComponent,ThreeComponent,GSAPExample,ReboundExample,SnippetComponent,MockupComponent,ToolTip,Toc},
     methods: {},
     computed: {},
     created: function () {},

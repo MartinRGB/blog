@@ -2,7 +2,7 @@
 
   <div id="GSAP">
     <div class="boxExample">
-      <h2 class="exampleTitle">GSAP - Counter Repeat Animation</h2>
+      <h3 class="exampleTitle">GSAP - Counter Repeat Animation</h3>
         <div class="exampleDescription">
           This example demonstrates moving a box on a GSAP ease animation.
         </div>
@@ -10,7 +10,7 @@
     </div>
 
     <div class="visualizerExampple">
-        <h2 class="exampleTitle">GSAP - Easing Visualizer</h2>
+        <h3 class="exampleTitle">GSAP - Easing Visualizer</h3>
         <div class="exampleDescription">
           This example demonstrates GSAP Easing Curves
         </div>

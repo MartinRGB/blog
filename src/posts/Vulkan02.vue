@@ -2,6 +2,51 @@
   <div class="transition-container">
     <img class="hero-image" src='../static/images/vulkan/01.overview.jpg' alt='hero image'/>
     <div id="center-container" class="center-container">
+      <toc tocTitle='综述'><ul class="TableOfContents">
+              <li>
+              <p><a href="javascript:void(0)" @click="goAnchor('#page_Windows')">Windows</a></p>
+              <ul class="TableOfContents">
+              <li>
+              <p><a href="javascript:void(0)" @click="goAnchor('#page_Vulkan_SDK')" >Vulkan SDK</a></p>
+              </li>
+              <li>
+              <p><a href="javascript:void(0)" @click="goAnchor('#page_GLFW')">GLFW</a></p>
+              </li>
+              <li>
+              <p><a href="javascript:void(0)" @click="goAnchor('#page_GLM')">GLM</a></p>
+              </li>
+              <li>
+              <p><a href="javascript:void(0)" @click="goAnchor('#page_Setting_up_Visual_Studio')">设置 Visual Studio</a></p>
+              </li>
+              </ul>
+              </li>
+              <li>
+              <p><a href="javascript:void(0)" @click="goAnchor('#page_Android')">Android</a></p>
+              <ul class="TableOfContents">
+              <li>
+              <p><a href="javascript:void(0)" @click="goAnchor('#page_Vulkan_Wrapper')">Vulkan Wrapper</a></p>
+              </li>
+              </ul>
+              </li>
+              <li>
+                <p><a href="javascript:void(0)" @click="goAnchor('#page_MacOS')">MacOS &amp; iOS</a></p>
+                  <ul class="TableOfContents">
+                    <li>
+                    <p><a href="javascript:void(0)" @click="goAnchor('#page_Vulkan_Main')">MoltenVK 测试</a></p>
+                    </li>
+                    <li>
+                    <p><a href="javascript:void(0)" @click="goAnchor('#page_Vulkan_MacOS')">MacOS|iOS with Vulkan</a></p>
+                    </li>
+                  </ul>
+              </li>
+              <li>
+                <p><a href="javascript:void(0)" @click="goAnchor('#page_Linux')">Linux</a></p>
+              </li>
+              <li>
+                <p><a href="javascript:void(0)" @click="goAnchor('#page_Reference')">参考</a></p>
+              </li>
+            </ul></toc>
+
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
             <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Development_environment" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
@@ -257,6 +302,7 @@
   import xmlFile from 'file-loader!../static/codesnippets/vulkan/02/AndroidManifest.xml'
   import cmakeFile from '../static/codesnippets/vulkan/02/CMakeLists.txt'
   import cppFile from '../static/codesnippets/vulkan/02/native-lib.cpp'
+  import Toc from '@/components/Toc'
 
   export default {
     name: 'vulkan02',
@@ -374,7 +420,7 @@ int main() {
       cmakeSnippet:cmakeFile,
       cppSnippet:cppFile
     }},
-    components: {SnippetComponent,MockupComponent},
+    components: {SnippetComponent,MockupComponent,Toc},
     methods: {},
     computed: {},
     created: function () {},

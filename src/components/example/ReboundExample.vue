@@ -2,7 +2,7 @@
 
   <div id="Rebound">
     <div class="exampleHeader">
-      <h2 class="exampleTitle">ReboundJS - Photo Scale Animation</h2>
+      <h3 class="exampleTitle">ReboundJS - Photo Scale Animation</h3>
       <div class="exampleDescription">
         This example demonstrates scaling a photo on a Rebound spring animation. You can adjust the
         tension and friction using the sliders and observe how this changes the curve of the spring
@@ -31,7 +31,7 @@
     </div>
 
     <div class="exampleHeader">
-      <h2 class="exampleTitle">ReboundJS - Ball Animation</h2>
+      <h3 class="exampleTitle">ReboundJS - Ball Animation</h3>
       <div class="exampleDescription">
         This example demonstrates moving a ball on a Rebound spring animation. 
       </div>
