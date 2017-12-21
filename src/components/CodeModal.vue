@@ -220,6 +220,7 @@
   animation-name: slideOutDown;
 }
 
+
 /* .modal-enter {
   opacity: 0;
 }

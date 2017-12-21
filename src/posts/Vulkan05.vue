@@ -142,13 +142,8 @@ return true;</snippet-component>
 
 <p>如果检测无误，那么 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkCreateInstance.html"><strong>vkCreateInstance</strong></a> 便不会返回 <strong>VK_ERROR_LAYER_NOT_PRESENT</strong>错误，但还是要运行一下来保证无误。</p>
 <h2 id="page_Message_callback">信息回调</h2>
-<p>Unfortunately just enabling the layers doesn't help much, because they currently
-have no way to relay the debug messages back to our program. To receive those
-messages we have to set up a callback, which requires the <code>VK_EXT_debug_report</code>
-extension.</p>
-<p>We'll first create a <code>getRequiredExtensions</code> function that will return the
-required list of extensions based on whether validation layers are enabled or
-not:</p>
+<p>然而仅开启验证层并没有什么用，因为我们目前仅仅是开启了它，而它并没有接替我们程序目前的报错信息。为了接收验证层的信息，我们需要设置一个回调，需要<strong>VK_EXT_debug_report</strong> 这个拓展。</p>
+<p>我们首先创建一个 <code>getRequiredExtensions</code> 函数，它能根据验证层的开启与否，返送需要的拓展列表:</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>std::vector&lt;const char*> getRequiredExtensions() {
     std::vector&lt;const char*> extensions;
 
@@ -166,23 +161,14 @@ not:</p>
 
     return extensions;
 }</snippet-component>
-<p>The extensions specified by GLFW are always required, but the debug report
-extension is conditionally added. Note that I've used the
-<code>VK_EXT_DEBUG_REPORT_EXTENSION_NAME</code> macro here which is equal to the literal
-string "VK_EXT_debug_report". Using this macro lets you avoid typos.</p>
-<p>We can now use this function in <code>createInstance</code>:</p>
+<p>GLFW 规定的拓展总会用到，通常还会添加 debug 报告拓展。注意这里我使用了 <strong>VK_EXT_DEBUG_REPORT_EXTENSION_NAME</strong> 宏，它等于字面意义上的字符串 "VK_EXT_debug_report"。使用宏可以少打字。</p>
+<p>现在我们可以在 <strong>createInstance</strong> 中使用这个函数:</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>auto extensions = getRequiredExtensions();
 createInfo.enabledExtensionCount = static_cast&lt;uint32_t>(extensions.size());
 createInfo.ppEnabledExtensionNames = extensions.data();</snippet-component>
 
-<p>Run the program to make sure you don't receive a
-<code>VK_ERROR_EXTENSION_NOT_PRESENT</code> error. We don't really need to check for the
-existence of this extension, because it should be implied by the availability of
-the validation layers.</p>
-<p>Now let's see what a callback function looks like. Add a new static member
-function called <code>debugCallback</code> with the <code>PFN_vkDebugReportCallbackEXT</code>
-prototype. The <code>VKAPI_ATTR</code> and <code>VKAPI_CALL</code> ensure that the function has the
-right signature for Vulkan to call it.</p>
+<p>运行程序，确保没有收到 <strong>VK_ERROR_EXTENSION_NOT_PRESENT</strong> 错误。因为验证层的存在，所以我们不需要检测这个拓展是否存在。</p>
+<p>现在我们来看一下这个回调函数。利用 <strong>PFN_vkDebugReportCallbackEXT</strong> 原型，添加一个静态成员函数叫做  <strong>debugCallback</strong>。 <strong>VKAPI_ATTR</strong> 和 <strong>VKAPI_CALL</strong> 确保函数签名正确，Vulakn 便可以调用。</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(
     VkDebugReportFlagsEXT flags,
     VkDebugReportObjectTypeEXT objType,
@@ -198,8 +184,7 @@ right signature for Vulkan to call it.</p>
     return VK_FALSE;
 };</snippet-component>
 
-<p>The first parameter specifies the type of message, which can be a combination of
-any of the following bit flags:</p>
+<p>第一个参数定义了信息的类型，信息类型可以是以下几种:</p>
 <ul>
 <li>
 <code>VK_DEBUG_REPORT_INFORMATION_BIT_EXT</code>
@@ -217,26 +202,14 @@ any of the following bit flags:</p>
 <code>VK_DEBUG_REPORT_DEBUG_BIT_EXT</code>
 </li>
 </ul>
-<p>The <code>objType</code> parameter specifies the type of object that is the subject of the
-message. For example if <code>obj</code> is a <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPhysicalDevice.html"><code>VkPhysicalDevice</code></a> then <code>objType</code> would be
-<code>VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT</code>. This works because internally all
-Vulkan handles are typedef'd as <code>uint64_t</code>. The <code>msg</code> parameter contains the
-pointer to the message itself. Finally, there's a <code>userData</code> parameter to pass
-your own data to the callback.</p>
-<p>The callback returns a boolean that indicates if the Vulkan call that triggered
-the validation layer message should be aborted. If the callback returns true,
-then the call is aborted with the <code>VK_ERROR_VALIDATION_FAILED_EXT</code> error. This
-is normally only used to test the validation layers themselves, so you should
-always return <code>VK_FALSE</code>.</p>
-<p>All that remains now is telling Vulkan about the callback function. Perhaps
-somewhat surprisingly, even the debug callback in Vulkan is managed with a
-handle that needs to be explicitly created and destroyed. Add a class member for
-this handle right under <code>instance</code>:</p>
+<p> <strong>objType</strong> 向信息指定了对象的类型。例如，如果 <strong>obj</strong> 是一种 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPhysicalDevice.html"><strong>VkPhysicalDevice</strong></a>，那么 <strong>objType</strong> 将会是
+<strong>VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT</strong>。起效的原因是，在 Vulkan 内部，所有的句柄都是定义类型为 <strong>uint64_t</strong>。<strong>msg</strong> 参数包含了指向信息本身的指针。最后，<strong>userData</strong> 参数将你自己的数据传递到回调中。</p>
+<p>回调函数返回一个布尔值，来决定 Vulkan 调用出发的验证层信息是否该被忽略。如果回调返送 true，那么回调中止，出现 <strong>VK_ERROR_VALIDATION_FAILED_EXT</strong> 错误。这通常仅用来检测验证层本身，因为你应该永远返送 <strong>VK_FALSE</strong>。</p>
+<p>上述代码描述了回调函数，但令人吃惊的是，Vulkan 中即便是 debug 回调，也由一个句柄控制，需要清晰的创建和销毁。在<strong>instance</strong> 下面，给这个句柄添加一个类成员:</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>VkDebugReportCallbackEXT callback;</snippet-component>
 
 
-<p>Now add a function <code>setupDebugCallback</code> to be called from <code>initVulkan</code> right
-after <code>createInstance</code>:</p>
+<p>现在添加一个 <strong>setupDebugCallback</strong> 函数，从而在 <strong>initVulkan</strong> 中，在 <strong>createInstance</strong>后调用:</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>void initVulkan() {
     createInstance();
     setupDebugCallback();
@@ -247,23 +220,14 @@ void setupDebugCallback() {
 
 }</snippet-component>
 
-<p>We'll need to fill in a structure with details about the callback:</p>
+<p>我们需要填写一个结构体，来描述这个回调:</p>
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>VkDebugReportCallbackCreateInfoEXT createInfo = {};
 createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
 createInfo.flags = VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT;
 createInfo.pfnCallback = debugCallback;</snippet-component>
 
-<p>The <code>flags</code> field allows you to filter which types of messages you would like to
-receive. The <code>pfnCallback</code> field specifies the pointer to the callback function.
-You can optionally pass a pointer to the <code>pUserData</code> field which will be passed
-along to the callback function via the <code>userData</code> parameter. You could use this
-to pass a pointer to the <code>HelloTriangleApplication</code> class, for example.</p>
-<p>This struct should be passed to the <code>vkCreateDebugReportCallbackEXT</code> function to
-create the <code>VkDebugReportCallbackEXT</code> object. Unfortunately, because this
-function is an extension function, it is not automatically loaded. We have to
-look up its address ourselves using <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkGetInstanceProcAddr.html"><code>vkGetInstanceProcAddr</code></a>. We're going to
-create our own proxy function that handles this in the background. I've added it
-right above the <code>HelloTriangleApplication</code> class definition.</p>
+<p><strong>flags</strong> 那行让你可以过滤接收到的信息。 <strong>pfnCallback</strong> 那行定义了指向回调函数的指针。还可以可选的传一个指向  <strong>pUserData</strong> 的指针，通过 <strong>userData</strong>,也会同样的传递到回调函数中。例如，你可以使用这个方法传一个指针到 <strong>HelloTriangleApplication</strong> 类中。</p>
+<p>这个结构体应该被传递到 <strong>vkCreateDebugReportCallbackEXT</strong> 函数中，来创建 <strong>VkDebugReportCallbackEXT</strong> 对象。🙅不幸的是，因为这个函数是一个拓展函数，无法自动加载，因此我们需要自己查找它的地址，通过使用 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkGetInstanceProcAddr.html"><strong>vkGetInstanceProcAddr</strong></a>。我们将创造我们自己的后台处理代理函数，我将其添加到 <strong>HelloTriangleApplication</strong> 类的定义的上方。</p>
 
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>VkResult CreateDebugReportCallbackEXT(VkInstance instance, const VkDebugReportCallbackCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugReportCallbackEXT* pCallback) {
     auto func = (PFN_vkCreateDebugReportCallbackEXT) vkGetInstanceProcAddr(instance, &quot;vkCreateDebugReportCallbackEXT&quot;);
@@ -274,27 +238,15 @@ right above the <code>HelloTriangleApplication</code> class definition.</p>
     }
 }</snippet-component>
 
-<p>The <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkGetInstanceProcAddr.html"><code>vkGetInstanceProcAddr</code></a> function will return <code>nullptr</code> if the function
-couldn't be loaded. We can now call this function to create the extension
-object if it's available:</p>
+<p>如果函数无法加载，那么 <a href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkGetInstanceProcAddr.html"><strong>vkGetInstanceProcAddr</strong></a> 函数将返送 <strong>nullptr</strong>。我们现在可以调用这个函数，来创建可用的拓展对象:</p>
 
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>if (CreateDebugReportCallbackEXT(instance, &amp;createInfo, nullptr, &amp;callback) != VK_SUCCESS) {
     throw std::runtime_error(&quot;failed to set up debug callback!&quot;);
 }</snippet-component>
 
-<p>The second to last parameter is again the optional allocator callback that we
-set to <code>nullptr</code>, other than that the parameters are fairly straightforward.
-Since the debug callback is specific to our Vulkan instance and its layers, it
-needs to be explicitly specified as first argument. You will also see this
-pattern with other <em>child</em> objects later on. Let's see if it works... Run the
-program and close the window once you're fed up with staring at the blank
-window. You'll see that the following message is printed to the command prompt:</p>
+<p>倒数第二个参数，仍旧是可选的分配器回调，我们设置为 <strong>nullptr</strong>。既然 debug 回调是专门为 Vulkan 实例和验证层定制的，它需要清晰定义第一个参数。这种设计模式在其他 <em>子</em> 对象中也存在，我们来看看是否有效，运行程序，迅速关掉白色窗口，你会看到一闪而过的如下信息:</p>
 <p><img data-action="zoom" src="../static/images/vulkan/05/validation_layer_test.png" alt=""></p>
-<p>Oops, it has already spotted a bug in our program! The
-<code>VkDebugReportCallbackEXT</code> object needs to be cleaned up with a call to
-<code>vkDestroyDebugReportCallbackEXT</code>. Similarly to <code>vkCreateDebugReportCallbackEXT</code>
-the function needs to be explicitly loaded. Create another proxy function right
-below <code>CreateDebugReportCallbackEXT</code>:</p>
+<p>靠，这么快我们的程序就有 bug 了！<strong>VkDebugReportCallbackEXT</strong> 对象需要使用 <strong>vkDestroyDebugReportCallbackEXT</strong>来清理。跟 <strong>vkCreateDebugReportCallbackEXT</strong> 类似，这个函数需要清晰描述一切。创建一个代理函数，放在 <strong>CreateDebugReportCallbackEXT</strong>下方:</p>
 
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>void DestroyDebugReportCallbackEXT(VkInstance instance, VkDebugReportCallbackEXT callback, const VkAllocationCallbacks* pAllocator) {
     auto func = (PFN_vkDestroyDebugReportCallbackEXT) vkGetInstanceProcAddr(instance, &quot;vkDestroyDebugReportCallbackEXT&quot;);
@@ -303,8 +255,7 @@ below <code>CreateDebugReportCallbackEXT</code>:</p>
     }
 }</snippet-component>
 
-<p>Make sure that this function is either a static class function or a function
-outside the class. We can then call it in the <code>cleanup</code> function:</p>
+<p>却好这个函数既不是静态类函数，也不是类外面的函数，我们可以在 <strong>cleanup</strong> 函数中调用:</p>
 
 <snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>void cleanup() {
     DestroyDebugReportCallbackEXT(instance, callback, nullptr);
@@ -315,27 +266,17 @@ outside the class. We can then call it in the <code>cleanup</code> function:</p>
     glfwTerminate();
 }</snippet-component>
 
-<p>When you run the program again you'll see that the error message has
-disappeared. If you want to see which call triggered a message, you can add a
-breakpoint to the message callback and look at the stack trace.</p>
+<p>当你再次运行这个程序，你会发现错误消失了，如果你想要看哪个调用触发了信息，你可以在信息回调中添加断点，然后查看堆叠追踪。</p>
 <h2 id="page_Configuration">配置</h2>
-<p>There are a lot more settings for the behavior of validation layers than just
-the flags specified in the <code>VkDebugReportCallbackCreateInfoEXT</code> struct. Browse
-to the Vulkan SDK and go to the <code>Config</code> directory. There you will find a
-<code>vk_layer_settings.txt</code> file that explains how to configure the layers.</p>
-<p>To configure the layer settings for your own application, copy the file to the
-<code>Debug</code> and <code>Release</code> directories of your project and follow the instructions to
-set the desired behavior. However, for the remainder of this tutorial I'll
-assume that you're using the default settings.</p>
-<p>Throughout this tutorial I'll be making a couple of intentional mistakes to show
-you how helpful the validation layers are with catching them and to teach you
-how important it is to know exactly what you're doing with Vulkan. Now it's time
-to look at <a href="//vulkan-tutorial.com/Drawing_a_triangle/Setup/Physical_devices_and_queue_families">Vulkan devices in the system</a>.</p>
+<p>除了 <strong>VkDebugReportCallbackCreateInfoEXT</strong> 结构体中的那些 flag，验证层还有更多的设置和操作。可以浏览 Vulkan 的 SDK，去查看 <strong>Config</strong> 目录，然后找到 <strong>vk_layer_settings.txt</strong> ，这个文件讲述了应该如何配置验证层。</p>
+<p>为了配置你自己应用的验证层，可以拷贝 To configure the layer settings for your own application, copy the file to the
+<strong>Debug</strong> 和 <strong>Release</strong> 目录中的这一文件，然后根据指示进行配置。但是下面的教程中，我将假设你使用默认设置。</p>
+<p>这个教程中，我故意翻了一些错误来展示验证层的作用，并告诉了你“在使用 Vulkan 过程中，必须清晰明确的知道你的每一行代码的“重要性。现在可以进行下一章  <a href="//vulkan-tutorial.com/Drawing_a_triangle/Setup/Physical_devices_and_queue_families">Vulkan devices in the system</a> 了。</p>
 <code-modal>
   <a slot="link">C++ code</a>
   <div slot="header"></div>
   <div slot="body">
-<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++'>#define GLFW_INCLUDE_VULKAN
+<snippet-component v-if="$route.meta.keepAlive" lan='cpp c++' class="disable-select">#define GLFW_INCLUDE_VULKAN
 #include &lt;GLFW/glfw3.h>
 
 #include &lt;iostream>
