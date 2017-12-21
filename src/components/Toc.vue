@@ -147,8 +147,8 @@
     padding-left: 20px;
     padding-right: 20px;
     min-width: 140px;
-    max-width: 400px;
-    max-height: 600px;
+    max-width: 500px;
+    max-height: 1200px;
 }
 
 
@@ -213,15 +213,6 @@
   content: counter(item) counter(subitem, lower-alpha);
 } */
 
-.float-toc ul{
-    padding-left: 24px;
-}
-
-.float-toc li {
-    counter-increment: li;
-    list-style-type:none;
-}
-
 .float-toc li p {
     margin: 0px;
     margin-top: 8px;
@@ -233,9 +224,17 @@
 }
 
 
+.float-toc ul{
+    padding-left: 24px;
+    list-style-type:none;
+}
+
+.float-toc ul li {
+    counter-increment: section;
+}
 
 .float-toc ul li::before {
-  content: counter(li, decimal-leading-zero);
+  content: "."counter(section, decimal);
   color:#333;
   display: inline-block; 
   width: 1em;
@@ -245,10 +244,20 @@
   direction: rtl;
   font-size: 10px;
   margin-top: 3px;
+  
 }
 
+.float-toc ul li ul{
+
+}
+
+.float-toc ul li ul li{
+    counter-increment: item;
+}
+
+
 .float-toc ul li ul li::before {
-  content: '';
+  content: counter(section, decimal)"."counter(item,decimal);
   color:#333;
   display: inline-block; 
   width: 1em;

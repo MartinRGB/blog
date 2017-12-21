@@ -25,6 +25,7 @@
             <h2 id="toc_44">设置目录</h2>
             <snippet-component v-if="$route.meta.keepAlive" lan='javascript'>import Toc from '@/components/Toc'</snippet-component>
             <snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet-33" :bindCode ='tocSnippet' bindSpecial='fontSize:14px' ></snippet-component>
+            <h3>Vue Data 方法</h3>
             <p>在data中：</p>
             <snippet-component v-if="$route.meta.keepAlive" lan='javascript'>contentData:{
           title:'使用指南',
@@ -45,7 +46,9 @@
           }
 }</snippet-component>
             <p>效果参考本页面目录。</p>
-
+            <h3>HTML 标签方法</h3>
+            <p>仅支持一二级目录</p>
+             <snippet-component v-if="$route.meta.keepAlive" lan='html' id="CodeSnippet-35" :bindCode ='tocSnippet2' bindSpecial='fontSize:14px' ></snippet-component>            
 
             
 
@@ -311,6 +314,29 @@
       // },
       anchorSnippet:`<a href="javascript:void(0)" @click="goAnchor('#component_LaTex')">LaTex 组件</a>`,
       tocSnippet:`<toc :tocData='contentData'></toc>`,
+      tocSnippet2:` <toc tocTitle='开发环境'>
+        <ul class="TableOfContents">
+              <li>
+                <p>...</p>
+              <li>
+              ...
+              <li>
+                <p>...</p>
+                <ul class="TableOfContents">
+                  <li>
+                    <p>...</p>
+                  </li>
+                  <li>
+                    <p>...</p>
+                  </li>
+                </ul>
+              </li>
+              ...
+              <li>
+                <p>...</p>
+              </li>
+        </ul>
+</toc>`,
       
       shaderUniform:{
         u_texture:THREE.ImageUtils.loadTexture(texture2),

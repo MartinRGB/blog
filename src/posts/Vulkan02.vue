@@ -2,7 +2,8 @@
   <div class="transition-container">
     <img class="hero-image" src='../static/images/vulkan/01.overview.jpg' alt='hero image'/>
     <div id="center-container" class="center-container">
-      <toc tocTitle='综述'><ul class="TableOfContents">
+      <toc tocTitle='开发环境'>
+        <ul class="TableOfContents">
               <li>
               <p><a href="javascript:void(0)" @click="goAnchor('#page_Windows')">Windows</a></p>
               <ul class="TableOfContents">
@@ -50,50 +51,6 @@
       <div id="article-view" class="article-view">
             <h1 id="toc_0">{{articleTitle}}</h1>
             <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Development_environment" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
-            <ul class="TableOfContents">
-              <li>
-              <p><a href="javascript:void(0)" @click="goAnchor('#page_Windows')">Windows</a></p>
-              <ul class="TableOfContents">
-              <li>
-              <p><a href="javascript:void(0)" @click="goAnchor('#page_Vulkan_SDK')" >Vulkan SDK</a></p>
-              </li>
-              <li>
-              <p><a href="javascript:void(0)" @click="goAnchor('#page_GLFW')">GLFW</a></p>
-              </li>
-              <li>
-              <p><a href="javascript:void(0)" @click="goAnchor('#page_GLM')">GLM</a></p>
-              </li>
-              <li>
-              <p><a href="javascript:void(0)" @click="goAnchor('#page_Setting_up_Visual_Studio')">设置 Visual Studio</a></p>
-              </li>
-              </ul>
-              </li>
-              <li>
-              <p><a href="javascript:void(0)" @click="goAnchor('#page_Android')">Android</a></p>
-              <ul class="TableOfContents">
-              <li>
-              <p><a href="javascript:void(0)" @click="goAnchor('#page_Vulkan_Wrapper')">Vulkan Wrapper</a></p>
-              </li>
-              </ul>
-              </li>
-              <li>
-                <p><a href="javascript:void(0)" @click="goAnchor('#page_MacOS')">MacOS &amp; iOS</a></p>
-                  <ul class="TableOfContents">
-                    <li>
-                    <p><a href="javascript:void(0)" @click="goAnchor('#page_Vulkan_Main')">MoltenVK 测试</a></p>
-                    </li>
-                    <li>
-                    <p><a href="javascript:void(0)" @click="goAnchor('#page_Vulkan_MacOS')">MacOS|iOS with Vulkan</a></p>
-                    </li>
-                  </ul>
-              </li>
-              <li>
-                <p><a href="javascript:void(0)" @click="goAnchor('#page_Linux')">Linux</a></p>
-              </li>
-              <li>
-                <p><a href="javascript:void(0)" @click="goAnchor('#page_Reference')">参考</a></p>
-              </li>
-            </ul>
 
             <p>本章，我们将会设置 Vulkan 应用开发环境，并安装第三方库。我们所使用的工具在 Win 和 Linux 下完全兼容，但是安装过程稍有不同，这里分开阐述。</p>
 <h2 id="page_Windows">Windows</h2>

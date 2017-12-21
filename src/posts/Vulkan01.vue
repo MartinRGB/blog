@@ -2,10 +2,8 @@
   <div class="transition-container">
     <img class="hero-image" src='../static/images/vulkan/01.overview.jpg' alt='hero image'/>
     <div id="center-container" class="center-container">
-      <div id="article-view" class="article-view">
-            <h1 id="toc_0">{{articleTitle}}</h1>
-            <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Overview" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
-            <ul class="TableOfContents">
+      <toc tocTitle='综述'>
+        <ul class="TableOfContents">
               <li>
               <p><a href="javascript:void(0)" @click="goAnchor('#page_Origin_of_Vulkan')">Vulkan 的起源</a></p>
               </li>
@@ -53,6 +51,11 @@
               </ul>
               </li>
             </ul>
+      </toc>
+      <div id="article-view" class="article-view">
+            <h1 id="toc_0">{{articleTitle}}</h1>
+            <strong><p>原文来自 <a href="https://vulkan-tutorial.com/Overview" target="_blank">Vulkan-Tutorial.com</a>，初次翻译开发类文章，恳请指正。</p></strong>
+            
             <p>我们先来介绍 Vulkan 本身和它的设计目的——它能解决什么问题？然后下面的每个章节，我们来详细剖析一下，绘制一个三角形需要的必要步骤。同时我们会涵盖 Vulkan API 的结构及其常规使用模式。</p>
             
 <h2 id="page_Origin_of_Vulkan">Vulkan 的起源</h2>
@@ -176,6 +179,7 @@ createInfo.bar = ...;
 
 <script>
   import SnippetComponent from '@/components/SnippetComponent'
+  import Toc from '@/components/Toc'
 
   export default {
     name: 'vulkan01',
@@ -193,7 +197,7 @@ if (vkCreateXXX(&createInfo, nullptr, &object) != VK_SUCCESS) {
     return false;
 }`
     }},
-    components: {SnippetComponent},
+    components: {SnippetComponent,Toc},
     methods: {
       highlight:function(){
             var aCodes = this.$el.getElementsByTagName('pre');
