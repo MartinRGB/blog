@@ -30,7 +30,7 @@ export default {
     prevShow:false,
     nextShow:false,
     //Add Num Here
-    listNum:7  
+    listNum:8  
     }
   },
   components: {
