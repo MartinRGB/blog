@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="example-container" id="example-container">
-      <div id="logo"><img src="https://raw.githubusercontent.com/MartinRGB/vue_shader_ghblog/master/src/static/images/orange.png" alt="" /></div>
+      <div id="logo"></div>
     </div>
   </div>
 </template>
@@ -255,6 +255,9 @@
   cursor: pointer;
   position: relative;
   left:0px;
+  height:100px;
+  background: orange;
+  border-radius: 50px;
   width: 100px;
 }
 
