@@ -72,7 +72,7 @@
   export default {
     name: 'Visualizing_RK4',
     data: function () {return {
-      articleTitle:'8.可视化阐述龙格库塔',
+      articleTitle:'8.[译]可视化阐述龙格库塔',
       contentData:{
           title:'RK4 可视化讲解',
           list:{

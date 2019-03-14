@@ -77,7 +77,7 @@
   export default {
     name: 'article',
     data: function () {return {
-      articleTitle:'2.砖块着色器',
+      articleTitle:'2.[总结]砖块着色器',
 
       vertSnippet:vertFile,
       fragSnippet:fragFile,

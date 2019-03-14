@@ -2,6 +2,8 @@
 import Vue from 'vue'
 import Brick from '../posts/Brick.vue'
 Vue.component('Brick', Brick)
+import FBM from '../posts/FBM.vue'
+Vue.component('FBM', FBM)
 import Guide from '../posts/Guide.vue'
 Vue.component('Guide', Guide)
 import RK4 from '../posts/RK4.vue'
@@ -16,4 +18,4 @@ import Vulkan04 from '../posts/Vulkan04.vue'
 Vue.component('Vulkan04', Vulkan04)
 import Vulkan05 from '../posts/Vulkan05.vue'
 Vue.component('Vulkan05', Vulkan05)
-export default [Brick, Guide, RK4, Vulkan01, Vulkan02, Vulkan03, Vulkan04, Vulkan05]
+export default [Brick, FBM, Guide, RK4, Vulkan01, Vulkan02, Vulkan03, Vulkan04, Vulkan05]
