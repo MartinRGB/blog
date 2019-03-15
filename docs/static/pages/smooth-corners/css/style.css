@@ -1,0 +1,57 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+body {
+  background: transparent;
+  overflow: hidden;
+}
+
+.upload-image {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.dg .property-name{
+  transform: scale(0.9);
+  -webkit-transform-origin-x: left;
+}
+
+.dg .a{
+  opacity:0.85;
+}
+
+.btn {
+  background: #2ecc71;
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+  padding: 14px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility:hidden
+}
+
+.upload-image input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+canvas {
+  display: block;
+}

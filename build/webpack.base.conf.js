@@ -74,15 +74,6 @@ module.exports = {
         },
         include: /codesnippets/
       },
-            {
-        test: /\.(html)(\?.*)?$/,
-        loader: 'file-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('articles/[name].[hash:7].[ext]')
-        },
-        include: /articles/
-      },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
@@ -90,6 +81,33 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.(html)(\?.*)?$/,
+        loader: 'html-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('page/[name].[hash:7].[ext]')
+        },
+        include: /pages/
+      },
+      {
+        test: /\.(css)(\?.*)?$/,
+        loader: 'css-loader!style-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('page/[name].[hash:7].[ext]')
+        },
+        include: /pages/
+      },
+      {
+        test: /\.(js)(\?.*)?$/,
+        loader: 'babel-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('page/[name].[hash:7].[ext]')
+        },
+        include: /pages/
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
