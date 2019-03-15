@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    body{
+      height:700px;
+    }
+    h1{
+    text-align: center;
+    /* transform: translateX(-48px); */
+    font-size: 30px;
+    }
+    svg {
+        display: block;
+        margin: 20px auto;
+        transform: scale(0.5) translate3d(48px,0,0);
+        -webkit-transform-origin-x: center;
+        -webkit-transform-origin-y: top;
+
+    }
+
+    .tgl {
+      display: none;
+    }
+      .tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+        box-sizing: border-box;
+      }
+      .tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+        background: none;
+      }
+      .tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+        background: none;
+      }
+      .tgl + .tgl-btn {
+        outline: 0;
+        display: block;
+        width: 4em;
+        height: 2em;
+        position: relative;
+        cursor: pointer;
+        -webkit-user-select: none;
+          -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+      }
+      .tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+        position: relative;
+        display: block;
+        content: "";
+        width: 50%;
+        height: 100%;
+      }
+      .tgl + .tgl-btn:after {
+        left: 0;
+      }
+      .tgl + .tgl-btn:before {
+        display: none;
+      }
+      .tgl:checked + .tgl-btn:after {
+        left: 50%;
+      }
+
+    .tgl-ios + .tgl-btn {
+      background: #fbfbfb;
+      border-radius: 2em;
+      padding: 2px;
+      transition: all .4s ease;
+      border: 1px solid #e8eae9;
+      margin: 0 auto;
+      /* transform: translate3d(-48px,0,0); */
+    }
+    .tgl-ios + .tgl-btn:after {
+      border-radius: 2em;
+      background: #fbfbfb;
+      transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+    }
+    .tgl-ios + .tgl-btn:hover:after {
+      will-change: padding;
+    }
+    .tgl-ios + .tgl-btn:active {
+      box-shadow: inset 0 0 0 2em #e8eae9;
+    }
+    .tgl-ios + .tgl-btn:active:after {
+      padding-right: .8em;
+    }
+    .tgl-ios:checked + .tgl-btn {
+      background: #86d993;
+      margin: 0 auto;
+      /* transform: translate3d(-48px,0,0); */
+    }
+    .tgl-ios:checked + .tgl-btn:active {
+      box-shadow: none;
+    }
+    .tgl-ios:checked + .tgl-btn:active:after {
+      margin-left: -.8em;
+}
+
+</style>
+</head>
+<body>
+<h1>SVG Morphing 测试</h1>
+<div>
+    <input class="tgl tgl-ios" id="cb2" type="checkbox"/>
+    <label class="tgl-btn" for="cb2"></label>
+</div>
+  <svg id="cups" width="1200" height="1200" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+	<path id="simple-cup" d="M442.555408,-4.14336123e-15 L637.444592,4.14336123e-15 C673.105342,-2.4074122e-15 686.036791,3.71302445 699.073828,10.6853082 C712.110865,17.6575919 722.342408,27.8891348 729.314692,40.9261719 C736.286976,53.9632089 740,66.8946584 740,102.555408 L740,297.444592 C740,333.105342 736.286976,346.036791 729.314692,359.073828 C722.342408,372.110865 712.110865,382.342408 699.073828,389.314692 C686.036791,396.286976 673.105342,400 637.444592,400 L442.555408,400 C406.894658,400 393.963209,396.286976 380.926172,389.314692 C367.889135,382.342408 357.657592,372.110865 350.685308,359.073828 C343.713024,346.036791 340,333.105342 340,297.444592 L340,102.555408 C340,66.8946584 343.713024,53.9632089 350.685308,40.9261719 C357.657592,27.8891348 367.889135,17.6575919 380.926172,10.6853082 C393.963209,3.71302445 406.894658,2.4074122e-15 442.555408,-4.14336123e-15 Z" fill-rule="nonzero" fill="#070707"/>
+    <path opacity="0" id="fancy-cup" d="M460.48565,40 L619.51435,40 C730.954192,40 771.364972,51.6032014 812.105713,73.391588 C852.846454,95.1799746 884.820025,127.153546 906.608412,167.894287 C928.396799,208.635028 940,249.045808 940,360.48565 L940,719.51435 C940,830.954192 928.396799,871.364972 906.608412,912.105713 C884.820025,952.846454 852.846454,984.820025 812.105713,1006.60841 C771.364972,1028.3968 730.954192,1040 619.51435,1040 L460.48565,1040 C349.045808,1040 308.635028,1028.3968 267.894287,1006.60841 C227.153546,984.820025 195.179975,952.846454 173.391588,912.105713 C151.603201,871.364972 140,830.954192 140,719.51435 L140,360.48565 C140,249.045808 151.603201,208.635028 173.391588,167.894287 C195.179975,127.153546 227.153546,95.1799746 267.894287,73.391588 C308.635028,51.6032014 349.045808,40 460.48565,40 Z" fill-rule="nonzero" fill="#070707"/>
+
+  </svg>
+  
+  <script src="./snap.svg-min.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>

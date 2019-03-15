@@ -83,33 +83,6 @@ module.exports = {
         }
       },
       {
-        test: /\.(html)(\?.*)?$/,
-        loader: 'html-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('page/[name].[hash:7].[ext]')
-        },
-        include: /pages/
-      },
-      {
-        test: /\.(css)(\?.*)?$/,
-        loader: 'css-loader!style-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('page/[name].[hash:7].[ext]')
-        },
-        include: /pages/
-      },
-      {
-        test: /\.(js)(\?.*)?$/,
-        loader: 'babel-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('page/[name].[hash:7].[ext]')
-        },
-        include: /pages/
-      },
-      {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {

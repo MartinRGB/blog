@@ -19,7 +19,7 @@
 
           <h4>SVG Morphing Test in Web</h4>
 
-          <iframe :src="newsrc"></iframe>
+          <iframe src='http://www.martinrgb.com/blog/static/pages/svg-morphing/index.html' scrolling='no'></iframe>
           
           <h4>AnimatedVectorDrawable Morphing Test in Android</h4>
 
@@ -38,8 +38,7 @@
   export default {
     name: 'article',
     data: function () {return {
-      articleTitle:'10.[总结]Sketch 平滑圆角在 Android 和 Web 中的绘制',
-      newsrc:'../static/pages/svg-morphing/index.html'
+      articleTitle:'10.[总结]Sketch 平滑圆角在 Android 和 Web 中的绘制'
     }},
     components: {ToolTip,Toc},
     methods: {},
@@ -57,5 +56,14 @@
 caption {
     letter-spacing: 0.0em;
     font-style: italic;
+}
+iframe{
+    width: 1100px !important;
+    transform: translate3d(-165px,0,0);
+    height: 700px;
+    margin: 1em auto!important;
+    border: 1px solid rgba(108, 119, 130, 0.1);
+    padding: 10px !important;
+    overflow: hidden;
 }
 </style>
