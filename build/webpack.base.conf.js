@@ -58,6 +58,14 @@ module.exports = {
         }
       },
       {
+        test: /\.(zip)(\?.*)?$/,
+        loader: 'file-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('zip/[name].[hash:7].[ext]')
+        }
+      },
+      {
         test: /\.(txt|cpp|c|java|vert|frag|glsl|json)(\?.*)?$/,
         loader: 'file-loader',
         options: {
