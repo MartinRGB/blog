@@ -63,6 +63,8 @@ npm run deploy
 
 - [ ] 2nd table of content hierarchy
 
+- [ ] package html asset
+
 **Three-Component**
 
 - [ ] Easy to extend
