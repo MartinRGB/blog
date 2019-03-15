@@ -1,0 +1,9 @@
+float amplitude = 1.;
+float frequency = 1.;
+y = sin(x * frequency);
+float t = 0.01*(-u_time*130.0);
+y += sin(x*frequency*2.1 + t)*4.5;
+y += sin(x*frequency*1.72 + t*1.121)*4.0;
+y += sin(x*frequency*2.221 + t*0.437)*5.0;
+y += sin(x*frequency*3.1122+ t*4.269)*2.5;
+y *= amplitude*0.06;
