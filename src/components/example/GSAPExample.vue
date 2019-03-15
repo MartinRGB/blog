@@ -62,7 +62,7 @@
 
       visualizerExample:function(){
         (function ($) {
-          var htmlLink = 'https://raw.githubusercontent.com/MartinRGB/blog/master/src/static/pages/gsap.html';
+          var htmlLink = 'http://www.martinrgb.com/blog/static/page/gsap.html';
           var id = 0;
           var timeline;
           var $menuEases;
