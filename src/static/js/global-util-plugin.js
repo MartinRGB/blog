@@ -5,8 +5,10 @@ import Vue from 'vue'
 import BackToTop from 'vue-backtotop'
 import SmoothScroll from 'smooth-scroll'
 import mediumZoom from 'medium-zoom'
+import { VLazyImagePlugin } from "v-lazy-image";
 var scroll = new SmoothScroll();
 Vue.use(BackToTop);
+Vue.use(VLazyImagePlugin);
 
 var prevImg=null;
 

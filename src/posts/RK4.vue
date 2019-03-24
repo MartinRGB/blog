@@ -21,7 +21,7 @@
 <p>四阶龙格库塔法，在很多游戏引擎研发书籍中，通常是用数学的角度来阐述，却鲜有可视化阐述。然而算法如果有了可视化的阐述，将会提高读者对算法的理解，了解其中原理。</p>
 <h2 id="page_4order_rk4">四阶龙格库塔法</h2>
 <p>物理引擎的设计目标之一就是根据驱动力计算加速度、速度、位移。需要根据运动学公式来完成积分计算。而运动学公式最简单的计算方法就是欧拉函数法。</p>
-<img src='../static/images/rk4/euler.jpeg' height="500" width="500"alt="euler"/>
+<img data-action="zoom" src='../static/images/rk4/euler.jpeg' height="500" width="500" alt="euler"/>
 <p><caption>Time step —— 时间步长，Slope approx —— 大约斜率</caption></p>
 <p>欧拉函数根据时间间隔计算速度，并且根据 t+∆t 计算下一步速度。这个方法非常容易实现，然而并不精确。下面的图片展示了欧拉函数的缺点。虽然可以通过把 ∆t 设小，而获取更为精确的结果。然而实践中，要如何设置时间步长却需要仔细考虑。</p>
 <img src='../static/images/rk4/euler2.png' alt="euler"/>
@@ -68,6 +68,7 @@
 <script>
   import ToolTip from '@/components/ToolTip'
   import Toc from '@/components/Toc'
+  import Mimage from '@/components/Mimage'
 
   export default {
     name: 'Visualizing_RK4',
@@ -81,7 +82,7 @@
       }
 
     }},
-    components: {ToolTip,Toc},
+    components: {ToolTip,Toc,Mimage},
     methods: {
     },
     computed: {},

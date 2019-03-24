@@ -5,7 +5,7 @@
             <!-- PUT CONTENTS HERE -->
               <!-- <video src="../static/mockups/device_test.mp4" autoplay="autoplay" loop="loop"></video> -->
               <!-- <img src='../static/images/bricks_light.jpg'></img> -->
-            </video>
+            <!-- </video> -->
           </div>
           <div class="button">
             <!-- You can hook the "home button" to some JavaScript events or just remove it -->

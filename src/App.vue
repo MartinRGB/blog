@@ -17,9 +17,8 @@ import FooterBar from './components/FooterBar.vue'
 import HeaderBar from './components/HeaderBar.vue'
 import Vue from 'vue'
 import UtilPlugin from './static/js/global-util-plugin.js'
-import mediumZoom from 'medium-zoom'
-Vue.use(UtilPlugin)
 
+Vue.use(UtilPlugin)
 var count = 0;
 
 export default {
