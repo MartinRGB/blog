@@ -64,6 +64,9 @@
               <li>
                 <p><a href="javascript:void(0)" @click="goAnchor('#warping_compare')">参考</a></p>
               </li>
+              <li>
+                <p><a href="javascript:void(0)" @click="goAnchor('#chooser')">材质生成器</a></p>
+              </li>
 
         </ul>
       </toc>
@@ -273,6 +276,352 @@ void main() {
             <p><a href="https://github.com/patriciogonzalezvivo/thebookofshaders/blob/master/16/blend.frag" target="_blank">Blend Mode</a> —— 图像混合的原理</p>
             <br>
             <p>感谢上述资料的作者给予的思考和指导。第二篇将总结 Android 移植和优化心得。</p>
+            <h2 id="chooser">材质生成器</h2>
+            <p>最后补充一个材质生成器 0 ~ 8 </p>
+            <snippet-component v-if="$route.meta.keepAlive" lan='glsl'>// Author @MartinRGB - 2019
+
+#ifdef GL_ES
+precision highp float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+// ---------------------------- Util ----------------------------
+#define BlendMultiply(base, blend)      (base * blend)
+#define BlendLightenf(base, blend)      max(blend, base)
+#define RED vec3(1.,0.,0.)
+#define GREEN vec3(0.,1.,0.)
+#define BLUE vec3(0.,0.,1.)
+
+
+// ---------------------------- Para Setting ----------------------------
+#define uBrightness 0.0
+#define uGamma 1.0
+#define uContrast 1.0
+
+#define enableColorAdjust true
+#define loop false
+//0 ~ 8
+#define texMode 0
+
+
+#define col1Offset1 vec2(10.)
+#define col1Offset2 vec2(-10.)
+#define col2Offset1 vec2(50.)
+#define col2Offset2 vec2(50.)
+#define col3Offset1 vec2(0.)
+#define col3Offset2 vec2(-200.)
+
+// ---------------------------- Tex Chooser ----------------------------
+
+#define texOutputMethod ((loop == false) ? texMode : int((sin(u_time/2.)+1.)/2.*8.))
+
+
+// ---------------------------- ColorAdjust ----------------------------
+
+vec3 brightnessContrast(vec3 value, float brightness, float contrast)
+{
+    return (value - 0.5) * contrast + 0.5 + brightness;
+}
+
+vec3 Gamma(vec3 value, float param)
+{
+    return vec3(pow(abs(value.r), param),pow(abs(value.g), param),pow(abs(value.b), param));
+}
+
+// ---------------------------- Method1 ----------------------------
+
+float random (in vec2 _st) {
+    return fract(sin(dot(_st.xy,
+                         vec2(12.9898,78.233)))*
+        43758.5453123);
+}
+
+// Based on Morgan McGuire @morgan3d
+// https://www.shadertoy.com/view/4dS3Wd
+float noise (in vec2 _st) {
+    vec2 i = floor(_st);
+    vec2 f = fract(_st);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+    vec2 u = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+#define NUM_OCTAVES 8
+
+float fbm ( in vec2 _st) {
+    float v = 0.0;
+    float a = 0.5;
+    vec2 shift = vec2(100.0);
+    // Rotate to reduce axial bias
+    mat2 rot = mat2(cos(0.5), sin(0.5),
+                    -sin(0.5), cos(0.50));
+    for (int i = 0; i < NUM_OCTAVES; ++i) {
+        v += a * noise(_st);
+        _st = rot * _st * 2.0 + shift;
+        a *= 0.5;
+    }
+    return v;
+}
+
+vec2 getQ(in vec2 st,in vec2 offset){
+    vec2 q = vec2(0.);
+    q.x = fbm( st + offset);
+    q.y = fbm( st + vec2(1.0));
+    return q;
+}
+
+vec2 getR(in vec2 st,in vec2 offset1,in vec2 offset2){
+    vec2 q = vec2(0.);
+    q.x = fbm( st + offset1);
+    q.y = fbm( st + vec2(1.0));
+    
+    vec2 r = vec2(0.);
+    r.x = fbm( st + 1.0*q + vec2(1.7,9.2)+ 0.15 * 4.);
+    r.y = fbm( st + 1.0*q + vec2(8.3,2.8)+ 0.15 * 4. + offset2);
+    return r;
+}
+
+float getF(in vec2 st,in vec2 offset1,in vec2 offset2,in vec2 offset3){
+    vec2 q = vec2(0.);
+    q.x = fbm( st + offset1);
+    q.y = fbm( st + vec2(1.0));
+    
+    vec2 r = vec2(0.);
+    r.x = fbm( st + 1.0*q + vec2(1.7,9.2)+ 0.15 * 4.);
+    r.y = fbm( st + 1.0*q + vec2(8.3,2.8)+ 0.15 * 4. + offset2);
+    
+    float f = fbm(st + r + offset3);
+    return f;
+}
+
+vec3 method1(in vec2 st){
+    
+    // ### Change Coord Mapping & Offset
+    vec3 color = vec3(0.0);
+
+    vec2 q = vec2(0.);
+    q.x = fbm( st + col1Offset1);
+    q.y = fbm( st + vec2(1.0));
+
+    
+    
+    vec2 r = vec2(0.);
+    r.x = fbm( st + 1.0*q + vec2(1.7,9.2)+ 0.15 * 4.);
+    r.y = fbm( st + 1.0*q + vec2(8.3,2.8)+ 0.15 * 4. + col1Offset2);
+
+    float f = fbm(st + r + col2Offset1);
+    
+    
+    color = BlendLightenf(BlendLightenf(r.x*GREEN,q.y*RED),f*BLUE);
+    
+    
+
+    
+    if(enableColorAdjust == true){
+        color.r = clamp(color.r, 0.0, 0.7);
+        color.g = clamp(color.g, 0.0, 0.9);
+        color = brightnessContrast(color, -uBrightness, uContrast);
+        color = Gamma(color, uGamma);
+    }
+
+    return color;
+}
+
+vec3 method1Extend(in vec2 st,in int method){
+    vec3 color = vec3(0.0);
+    if(method == 3)
+    	color = BlendLightenf(BlendLightenf(getQ(st,col1Offset1).x*GREEN,getQ(st,col3Offset1).x*RED),getQ(st,col3Offset1).y*BLUE);
+    if(method == 4)
+    	color = BlendLightenf(BlendLightenf(getR(st,col1Offset1,col1Offset2).y*GREEN,getR(st,col2Offset1,col2Offset2).x*RED),getR(st,col3Offset1,col3Offset2).y*BLUE);
+    if(method == 5)
+    	color = BlendLightenf(BlendLightenf(getF(st,col1Offset1,col1Offset2,col2Offset1)*GREEN,getF(st,col2Offset1,col2Offset2,col3Offset1)*RED),getF(st,col3Offset1,col3Offset2,col1Offset1)*BLUE);
+    
+    if(enableColorAdjust == true){
+        color.r = clamp(color.r, 0.0, 0.7);
+        color.g = clamp(color.g, 0.0, 0.9);
+        color = brightnessContrast(color, -uBrightness, uContrast);
+        color = Gamma(color, uGamma);
+    }
+ 	return color;
+}
+
+// ---------------------------- Method2 ----------------------------
+
+vec3 method2FinColor(in vec2 st,in vec2 offset1, in vec2 offset2){
+
+    vec3 color = vec3(0.0);
+    
+ 	vec2 q = vec2(0.);
+    q.x = fbm( st + offset1);
+    q.y = fbm( st - offset1);
+    
+    vec2 r = vec2(0.);
+    r.x = fbm( st + 1.0*q + vec2(1.7,9.2) + offset2);
+    r.y = fbm( st + 1.0*q + vec2(8.3,2.8) - offset2);
+
+    float f = fbm(st+r);
+    
+    color = mix(vec3(0.101961,0.619608,0.666667),
+                vec3(0.666667,0.666667,0.498039),
+                clamp(length(f*f)*1.0,0.0,1.0));
+    
+  	color = mix(color,vec3(0,0,0.164706),
+                clamp(length(q.y),0.0,1.0));
+    
+    color = mix(color,vec3(0.666667,1,1),
+                clamp(length(r.x),0.0,1.0));
+    
+    color = (f*f*f+.6*f*f+.5*f)*color;
+    
+    if(enableColorAdjust == true){
+        color.r = clamp(color.r, 0.0, 0.7);
+        color.g = clamp(color.g, 0.0, 0.9);
+
+        color = brightnessContrast(color, -uBrightness, uContrast);
+        color = Gamma(color, uGamma);
+    
+    }
+    
+    return color;
+    
+}
+
+vec3 method2(in vec2 st){
+
+    // ### Change Coord Mapping & Offset
+    vec3 color1 = method2FinColor(st,col1Offset1,col1Offset2);
+    vec3 color2 = method2FinColor(vec2(st.x,1.-st.y),col2Offset1,col2Offset2);
+    vec3 color3 = method2FinColor(vec2(1.-st.x,st.y),col3Offset1,col3Offset2);
+    
+    vec3 color = BlendLightenf(BlendLightenf(color1*GREEN,color2*RED),color3*BLUE);
+    
+    return color;
+}
+
+
+// ---------------------------- Method3 ----------------------------
+
+
+float pattern0( in vec2 p )
+{
+	return fbm( p );
+}
+
+float pattern1( in vec2 p )
+{
+    vec2 q = vec2( fbm( p + vec2(0.0,0.0) ),
+                   fbm( p + vec2(5.2,1.3) ) );
+
+    return fbm( p + 4.0*q );
+}
+
+float pattern2( in vec2 p )
+{
+    vec2 q = vec2(fbm( p + vec2(0.0,0.0) ),fbm( p + vec2(5.2,1.3) ) );
+
+    vec2 r = vec2(fbm( p + 4.0*q + vec2(1.7,9.2) ),fbm( p + 4.0*q + vec2(8.3,2.8) ) );
+
+    return fbm( p + 4.0*r );
+}
+
+vec3 method3FinColor(in vec2 st,vec2 offset1,vec2 offset2){
+    vec3 color = vec3(0.0);
+
+    vec2 q = vec2(0.);
+	q = vec2(pattern0(st ));
+
+    
+    vec2 r = vec2(0.);
+    r= vec2(pattern1(st + offset1));
+
+
+    float f = (fbm(st+r + offset2));
+    
+ 	color = mix(vec3(0.101961,0.619608,0.666667),
+                vec3(0.666667,0.666667,0.498039),
+                clamp(length(f*f)*4.0,0.0,1.0));
+    
+  	color = mix(color,vec3(0,0,0.164706),
+                clamp(length(q.y),0.0,1.0));
+    
+    color = mix(color,vec3(0.666667,1,1),
+                clamp(length(r.x),0.0,1.0));
+    
+
+    if(texOutputMethod == 6)
+        color = (pattern0(st + offset1))*color;
+    else if(texOutputMethod == 7)
+        color = (pattern1(st + offset1))*color;
+    else if(texOutputMethod == 8)
+        color = (pattern2(st + offset1))*color;
+    else
+        color = (f*f*f+.6*f*f+.5*f)*color;
+    
+    
+    
+    
+    if(enableColorAdjust == true){
+        color.r = clamp(color.r, 0.0, 0.7);
+        color.g = clamp(color.g, 0.0, 0.9);
+
+        color = brightnessContrast(color, -uBrightness, uContrast);
+        color = Gamma(color, uGamma);
+    
+    }
+    return color;
+}
+
+
+vec3 method3(in vec2 st){
+   
+    // ### Change Coord Mapping & Offset
+    vec3 color1 = method3FinColor(st,col1Offset1,col1Offset2);
+    vec3 color2 = method3FinColor(vec2(st.x,1.-st.y),col2Offset1,col2Offset2);
+    vec3 color3 = method3FinColor(vec2(1.-st.x,st.y),col3Offset1,col3Offset2);
+    
+    vec3 color = BlendLightenf(BlendLightenf(BlendMultiply(color1,GREEN),BlendMultiply(color2,RED)),
+                                                           BlendMultiply(color3,BLUE));
+    
+    return color;
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.y*4.;
+    
+    if(texOutputMethod == 0)
+        gl_FragColor = vec4(method1(st),1.);
+    else if (texOutputMethod == 1)
+        gl_FragColor = vec4(method2(st),1.);
+    else if (texOutputMethod == 2)
+        gl_FragColor = vec4(method3(st),1.);
+	else if (texOutputMethod == 3)
+        gl_FragColor = vec4(method1Extend(st,3),1.);
+	else if (texOutputMethod == 4)
+    	gl_FragColor = vec4(method1Extend(st,4),1.);
+ 	else if (texOutputMethod == 5)
+    	gl_FragColor = vec4(method1Extend(st,5),1.);
+    else if (texOutputMethod == 6)
+    	gl_FragColor = vec4(method3(st),1.);
+    else if (texOutputMethod == 7)
+    	gl_FragColor = vec4(method3(st),1.);
+    else if (texOutputMethod == 8)
+    	gl_FragColor = vec4(method3(st),1.);
+    //gl_FragColor = gl_FragColor*vec4(BLUE,1.);
+    
+}
+</snippet-component>
 
 
       </div>
