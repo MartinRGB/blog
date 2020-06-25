@@ -29,7 +29,7 @@ export default {
     prevShow:false,
     nextShow:false,
     //Add Num Here
-    listNum:10  
+    listNum:12  
     }
   },
   components: {

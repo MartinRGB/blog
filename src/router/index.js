@@ -11,8 +11,10 @@ import Vulkan01 from '@/posts/Vulkan01'
 import Sketch_Round_Corner from '@/posts/Sketch_Round_Corner' 
 import RK4 from '@/posts/RK4' 
 import Guide from '@/posts/Guide' 
+import Figma_Round_Corner from '@/posts/Figma_Round_Corner' 
 import FBM from '@/posts/FBM' 
 import Brick from '@/posts/Brick' 
+import Android_Overscroller from '@/posts/Android_Overscroller' 
 
 Vue.use(Router)
 
@@ -34,8 +36,10 @@ export default new Router({
     ,{path: '/Sketch_Round_Corner',name: 'Article10',component: Sketch_Round_Corner,meta: {keepAlive: true}} 
     ,{path: '/RK4',name: 'Article8',component: RK4,meta: {keepAlive: true}} 
     ,{path: '/Guide',name: 'Article1',component: Guide,meta: {keepAlive: true}} 
+    ,{path: '/Figma_Round_Corner',name: 'Article11',component: Figma_Round_Corner,meta: {keepAlive: true}} 
     ,{path: '/FBM',name: 'Article9',component: FBM,meta: {keepAlive: true}} 
     ,{path: '/Brick',name: 'Article2',component: Brick,meta: {keepAlive: true}} 
+    ,{path: '/Android_Overscroller',name: 'Article12',component: Android_Overscroller,meta: {keepAlive: true}} 
   ]
 })
 

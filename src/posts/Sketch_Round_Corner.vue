@@ -22,18 +22,18 @@
                 </ul>
               </li>
               <li>
-                 <p><a href="javascript:void(0)" @click="goAnchor('#static_method')">动态绘制</a></p>
+                 <p><a href="javascript:void(0)" @click="goAnchor('#dynamic_method')">动态绘制</a></p>
                   <ul class="TableOfContents">
-                      <li><p><a href="javascript:void(0)" @click="goAnchor('#svg_morph')">iOS 圆角的算法窥探</a></p></li>
-                      <li><p><a href="javascript:void(0)" @click="goAnchor('#avd_morph_android')">超椭圆远郊算法</a></p></li>
-                      <li><p><a href="javascript:void(0)" @click="goAnchor('#avd_morph_android')">Sketch 圆角算法的推理</a></p></li>       
-                      <li><p><a href="javascript:void(0)" @click="goAnchor('#avd_morph_android')">Web Demo</a></p></li>      
-                      <li><p><a href="javascript:void(0)" @click="goAnchor('#avd_morph_android')">Android 实现</a></p></li>   
-                      <li><p><a href="javascript:void(0)" @click="goAnchor('#avd_morph_android')">问题</a></p></li>              
+                      <li><p><a href="javascript:void(0)" @click="goAnchor('#ios_round')">iOS 圆角的算法窥探</a></p></li>
+                      <li><p><a href="javascript:void(0)" @click="goAnchor('#squircle_round')">超椭圆圆角算法</a></p></li>
+                      <li><p><a href="javascript:void(0)" @click="goAnchor('#sketch_round')">Sketch 圆角算法的推理</a></p></li>       
+                      <li><p><a href="javascript:void(0)" @click="goAnchor('#web_demo')">Web Demo</a></p></li>      
+                      <li><p><a href="javascript:void(0)" @click="goAnchor('#android_implementaion')">Android 实现</a></p></li>   
+                      <li><p><a href="javascript:void(0)" @click="goAnchor('#dynamic_question')">问题</a></p></li>              
                   </ul>
               </li>
               <li>
-                 <p><a href="javascript:void(0)" @click="goAnchor('#static_method')">资料参考</a></p>
+                 <p><a href="javascript:void(0)" @click="goAnchor('#reference')">资料参考</a></p>
               </li>
         </ul>
       </toc>
@@ -68,9 +68,9 @@
             <li>目前尚没有办法在 AE 中实现平滑圆角，需要表达式支持</li>
             <li>尚没有提供复杂圆角动画的方法，Shape Shifter 只能做简单效果。</li>
           </ul>
-          <h2>动态绘制</h2>
+          <h2  id="dynamic_method">动态绘制</h2>
           <p>上述提到的固定绘制方法，效果不可控，而且动画已经被定义好，若想动态绘制，需要在 canvas 中自行绘制。</p>
-          <h3>iOS 圆角</h3>
+          <h3 id="ios_round">iOS 圆角</h3>
           <p>通过资料，获取 iOS 圆角的数学公式如下</p>
           <img data-action="zoom" src='../static/images/smooth_corners/sc_2.png' alt="img0"/>
           <p>Javascript 绘制方法如下</p>
@@ -110,14 +110,14 @@
     ctx.fill()
   }</snippet-component>  
           </collapse-component>    
-          <h3>超椭圆角</h3>
+          <h3 id="squircle_round">超椭圆角</h3>
           <img data-action="zoom" src='../static/images/smooth_corners/sc_3.png' alt="img0"/>
           <p>另一个变种的绘制方法 JS 代码如下</p>
            <snippet-component v-if="$route.meta.keepAlive" lan='javascript'>const squircle = radius => theta => ({
   x: Math.pow(Math.abs(Math.cos(theta)), 2 / radius) * 50 * Math.sign(Math.cos(theta)) + 50,
   y: Math.pow(Math.abs(Math.sin(theta)), 2 / radius) * 50 * Math.sign(Math.sin(theta)) + 50
 });</snippet-component>           
-          <h3>Sketch 平滑圆角算法的推理</h3>
+          <h3 id="sketch_round">Sketch 平滑圆角算法的推理</h3>
           <p>我们可以通过代码发现，上述两种绘制算法，都需要寻着圆周不断计算，若想保证边缘线条的平滑，要不断增加计算次数，可能会影响性能</p>
           <p>通过在 Sketch 中将不同 Radius 的平滑圆角 Flatten，获取贝塞尔曲线，发现每个圆角由<b>三段三次贝塞尔曲线构成</b>，而且位置信息跟半径有一定的规律</p>
           <img data-action="zoom" src='../static/images/smooth_corners/sc_4.jpg' alt="img0"/>
@@ -392,13 +392,13 @@ public class SketchRealSmoothRect extends View {
             <li>如果使用圆角，并开启某几个边绘制直角时，圆角与直角的衔接处，开启超大圆角时由于绘制时强制把绘制起点和终点卡在 1/2，会导致看起来不如 Sketch 里面的平滑</li>
             <li>当圆角半径为 最大半径时，圆度比 Sketch 平滑圆角更圆（应该也是由于递减引起的）</li>
           </ul>
-          <h3>Web Demo</h3>
+          <h3 id="web_demo">Web Demo</h3>
           <iframe src='http://www.martinrgb.com/blog/static/page/smooth-corners/index.html' scrolling='no'></iframe>
-          <h3>Android Demo</h3>
+          <h3 id="android_implementaion">Android Demo</h3>
            <video src="../static/images/smooth_corners/round_corners_video.mp4" style="width: 50%;height: 50%;display: -webkit-box;margin: 0 auto;" controls="true"></video>
-          <h3>问题</h3>
+          <h3 id="dynamic_question">问题</h3>
           <p>动态重绘方法适合需要动态控制圆角的交互，计算量较大导致功耗问题，如果仅仅是动画或者静态素材，请使用静态绘制方法</p>
-          <h2>资料参考</h2>
+          <h2 id="reference">资料参考</h2>
           <ul>
             <li><a href="https://www.johndcook.com/blog/2018/02/13/squircle-curvature/" target="_blank">Apple design, squircles, and curvature</a></li>
 
