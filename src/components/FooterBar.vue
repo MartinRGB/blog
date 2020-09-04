@@ -1,6 +1,25 @@
 <template>
 
   <footer id="footer" class="footer">
+
+    <!-- comment module -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+    <div id="gitalk-container"></div>
+    <script>
+      var gitalk = new Gitalk({
+        clientID: 'GitHub Application Client ID',
+        clientSecret: 'GitHub Application Client Secret',
+        repo: 'GitHub repo',
+        owner: 'GitHub repo owner',
+        admin: ['GitHub repo owner and collaborators, only these guys can initialize github issues'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+      gitalk.render('gitalk-container')
+    </script>
+
     <ul class="pager" v-show='this.bindNavShow'>
         <li id="pager-left"  v-show='this.bindPrevShow' ref="pager-left" class="pager-left"><a href="javascript:void(0)" @click="clickPrevious()">上一篇</a></li> 
         <li id="pager-center"  ref="pager-center" class="pager-center"><a href="javascript:void(0)" @click="clickContent()">目录</a></li>           
