@@ -15,6 +15,7 @@ import Figma_Round_Corner from '@/posts/Figma_Round_Corner'
 import FBM from '@/posts/FBM' 
 import Brick from '@/posts/Brick' 
 import Android_Overscroller from '@/posts/Android_Overscroller' 
+import Android_Decay_Animation from '@/posts/Android_Decay_Animation' 
 
 Vue.use(Router)
 
@@ -40,6 +41,7 @@ exportholder
     ,{path: '/FBM',name: 'Article9',component: FBM,meta: {keepAlive: true}} 
     ,{path: '/Brick',name: 'Article2',component: Brick,meta: {keepAlive: true}} 
     ,{path: '/Android_Overscroller',name: 'Article12',component: Android_Overscroller,meta: {keepAlive: true}} 
+    ,{path: '/Android_Decay_Animation',name: 'Article13',component: Android_Decay_Animation,meta: {keepAlive: true}} 
   ]
 })
 

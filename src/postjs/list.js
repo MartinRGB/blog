@@ -1,5 +1,7 @@
 
 import Vue from 'vue'
+import Android_Decay_Animation from '../posts/Android_Decay_Animation.vue'
+Vue.component('Android_Decay_Animation', Android_Decay_Animation)
 import Android_Overscroller from '../posts/Android_Overscroller.vue'
 Vue.component('Android_Overscroller', Android_Overscroller)
 import Brick from '../posts/Brick.vue'
@@ -24,4 +26,4 @@ import Vulkan04 from '../posts/Vulkan04.vue'
 Vue.component('Vulkan04', Vulkan04)
 import Vulkan05 from '../posts/Vulkan05.vue'
 Vue.component('Vulkan05', Vulkan05)
-export default [Android_Overscroller, Brick, FBM, Figma_Round_Corner, Guide, RK4, Sketch_Round_Corner, Vulkan01, Vulkan02, Vulkan03, Vulkan04, Vulkan05]
+export default [Android_Decay_Animation, Android_Overscroller, Brick, FBM, Figma_Round_Corner, Guide, RK4, Sketch_Round_Corner, Vulkan01, Vulkan02, Vulkan03, Vulkan04, Vulkan05]

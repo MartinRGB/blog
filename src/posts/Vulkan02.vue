@@ -137,7 +137,7 @@
     <p>提取 LunarG 的 <a href="https://github.com/LunarG/VulkanSamples/tree/master/common">Vulkan Wrapper</a>,或者直接从源头 Google 处提取 <a href="https://github.com/googlesamples/android-vulkan-tutorials/tree/master/common/vulkan_wrapper">Vulkan Wrapper</a></p>
   </li>
     <li>
-    <p>在 NDK 目录下胶水层目录 <strong>native_app_glue</strong> 外部新建 <strong>vulkan_wrapper</strong> 目录，并复制 vulkan_wrapper 文件</a></p>
+    <p>在 NDK 目录下胶水层目录 <strong>native_app_glue</strong> 外部新建 <strong>vulkan_wrapper</strong> 目录，并复制 vulkan_wrapper 文件</p>
   </li>
   <li>使用 Android Studio 的 无 Activity 模板新建 C++ 11 的 NDK 项目 </li>
   <li>修改 <strong>AndroidManifest.xml</strong> 文件</li>
